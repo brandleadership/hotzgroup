@@ -1,0 +1,203 @@
+@mixin abstand200($value: 'margin') {
+  #{$value}: 200px;
+
+  @include media('<=tablet-xxl') {
+    #{$value}: 150px;
+  }
+
+  @include media('<=tablet-l') {
+    #{$value}: 100px;
+  }
+
+  //   @include media('<=tablet-l') {
+  //     #{$value}: 80px;
+  //   }
+}
+
+@mixin abstand140($value: 'margin') {
+  #{$value}: 140px;
+
+  @include media('<=tablet-xxl') {
+    #{$value}: 100px;
+  }
+
+  @include media('<=tablet-l') {
+    #{$value}: 70px;
+  }
+
+  //   @include media('<=tablet-l') {
+  //     #{$value}: 80px;
+  //   }
+}
+
+@mixin abstand100($value: 'margin') {
+  #{$value}: 100px;
+
+  @include media('<=tablet-xxl') {
+    #{$value}: 70px;
+  }
+
+  @include media('<=tablet-l') {
+    #{$value}: 50px;
+  }
+
+  @include media('<tablet') {
+    #{$value}: 40px;
+  }
+}
+
+@mixin abstand70($value: 'margin') {
+  #{$value}: 70px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 50px;
+  }
+
+  @include media('<tablet') {
+    #{$value}: 40px;
+  }
+}
+
+@mixin abstand60($value: 'margin') {
+  #{$value}: 60px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 45px;
+  }
+
+  @include media('<tablet') {
+    #{$value}: 35px;
+  }
+}
+
+@mixin abstand50($value: 'margin') {
+  #{$value}: 50px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 40px;
+  }
+
+  @include media('<tablet') {
+    #{$value}: 30px;
+  }
+}
+
+@mixin abstand40($value: 'margin') {
+  #{$value}: 40px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 30px;
+  }
+
+  @include media('<tablet') {
+    #{$value}: 20px;
+  }
+}
+
+@mixin abstand30($value: 'margin') {
+  #{$value}: 30px;
+
+  @include media('<tablet') {
+    #{$value}: 20px;
+  }
+}
+
+@mixin buttonBox($value: 'margin') {
+  #{$value}: 100px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 80px;
+  }
+}
+
+@mixin buttonBox($value: 'height') {
+  #{$value}: 100px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 80px;
+  }
+}
+
+@mixin threeButtonBox($value: 'height') {
+  #{$value}: 100px;
+
+  @include media('<=tablet-l') {
+    #{$value}: 60px;
+  }
+}
+
+@mixin textHuge {
+  font-size: 3.8vw;
+  line-height: 1.2em;
+  margin-top: -0.3em;
+  margin-bottom: -0.3em;
+
+  @include media('<tablet-l') {
+    font-size: 40px;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+      font-size: 30px;
+    }
+  }
+
+  @include media('<tablet') {
+    font-size: 30px;
+  }
+}
+
+@mixin textBig {
+  font-size: 2.6vw;
+  line-height: 1.2em;
+  margin-top: -0.3em;
+  margin-bottom: -0.3em;
+
+  @include media('<=tablet-l') {
+    font-size: 30px;
+  }
+
+  @include media('<tablet-l') {
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+      font-size: 25px;
+    }
+  }
+
+  @include media('<tablet') {
+    font-size: 22px;
+    line-height: 1.3em;
+  }
+}
+
+@mixin textMedium {
+  color: $sec-color;
+  text-indent: 1.6em;
+  font-size: 1.57vw;
+  line-height: 1.4em;
+  margin-top: -0.3em;
+  margin-bottom: -0.3em;
+
+  @include media('<=tablet-xxl') {
+    font-size: 25px;
+  }
+
+  @include media('<=tablet-l') {
+    font-size: 22px;
+    line-height: 1.3em;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+      font-size: 22px;
+      line-height: 1.3em;
+    }
+  }
+
+  @include media('<tablet') {
+    font-size: 22px;
+    line-height: 1.3em;
+  }
+}

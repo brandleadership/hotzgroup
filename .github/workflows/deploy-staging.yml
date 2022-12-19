@@ -1,0 +1,23 @@
+name: Deploy-Staging
+
+on:
+  push:
+    branches:
+      - disabled
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: build site
+        uses: appleboy/ssh-action@master
+        with:
+          host: 64.227.122.250
+          username: mario
+          key: ${{ secrets.SERVERKEY }}
+          script: cd /var/www/smv.spatzek.studio/html && source ~/.nvm/nvm.sh && nvm use 12.11.1 && yarn run deploy
+          debug: true
+        id: deploy
+      - name: Echo time
+        run: echo 'Build time ${{ steps.deploy.outputs.time }}.'

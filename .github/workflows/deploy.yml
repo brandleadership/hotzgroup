@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - disabled
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: build site
+        uses: appleboy/ssh-action@master
+        with:
+          host: 78.46.9.68
+          port: 222
+          username: sixmow
+          key: ${{ secrets.SERVERKEY_LIVE }}
+          script: export PATH=$PATH:/usr/home/sixmow/.linuxbrew/bin && cd /usr/home/sixmow/public_html/2020_sixmorevodka/html && yarn run deploy
+          debug: true
+        id: deploy
+      - name: Echo time
+        run: echo 'Build time ${{ steps.deploy.outputs.time }}.'

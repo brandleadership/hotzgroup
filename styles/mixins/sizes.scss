@@ -1,0 +1,10 @@
+@import '../defaults.scss';
+
+@function vh($vh) {
+  @return calc(var(--vh, 1vh) * #{$vh});
+}
+
+@mixin vh($vh, $prop: height) {
+  #{$prop}: $vh * 1vh;
+  #{$prop}: vh($vh);
+}

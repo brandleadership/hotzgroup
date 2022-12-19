@@ -1,0 +1,616 @@
+/**
+OVERWRITE PHOTOSWIPE STYLES HERE
+**/
+@import '@/styles/tools.scss';
+
+body .pswp__ui {}
+
+body .pswp__top-bar {
+  // opacity: 1 !important;
+  visibility: visible !important;
+  background-color: transparent !important;
+  height: fit-content; //$sidebar-width;
+  transition: all 0.3s ease-out;
+  transform: translateY(0);
+  @include main-font;
+  display: flex;
+  padding-top: grid(2);
+  // justify-content: center;
+  // align-items: center;
+
+  @include media('<=tablet-l') {}
+
+  @include media('<tablet-l') {}
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+      //height: $sidebar-width-s;
+    }
+  }
+
+  @include media('<tablet') {
+    //height: $sidebar-width-s;
+  }
+
+  >* {
+    position: relative;
+  }
+
+  .pswp__counter {
+    // font-size: 30px;
+    //padding: 0 60px;
+    // padding: 0 40px;
+    // border-right: 1px solid $brand-color;
+    height: 100%;
+    display: flex;
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    position: absolute;
+    color: $main-color;
+    font-size: $base-font-size;
+    line-height: 1em !important;
+    opacity: 1;
+    // margin-top: -0.1vw;
+    left: grid(26);
+    top: grid(2);
+    margin-top: -0.3vw;
+    align-content: flex-start;
+    display: flex;
+    padding: 0;
+
+    // height: auto !important;
+    @include media('<desktop-l') {
+      font-size: $base-font-size-m;
+
+    }
+
+    @include media('<=tablet-l') {
+      left: grid(28);
+    }
+
+    @include media('<tablet-l') {
+      top: grid(3);
+      left: grid(3);
+    }
+
+    @include media('<tablet-l') {
+      @media (orientation: landscape) {}
+    }
+
+    @include media('<tablet') {
+      top: grid(5);
+      left: grid(5);
+      @include sec-font;
+      // font-size: 12px;
+    }
+
+    @include media('<phone') {}
+  }
+
+  .pswp__controlls {
+    // margin-left: auto;
+    display: flex;
+    height: 100%;
+    position: relative;
+    padding: 0 40px 0 20px;
+    width: grid(25);
+    justify-content: space-between;
+    // border-left: 1px solid $brand-color;
+    align-items: flex-start;
+    position: absolute;
+    right: grid(2);
+    top: grid(2);
+    padding: 0 !important;
+    margin-top: -0.2vw;
+    line-height: 1em;
+
+    // @include media('<tablet-l') {
+    //   @media (orientation: landscape) {
+    //     padding: 0 20px 0 10px;
+    //   }
+    // }
+
+    // @include media('<tablet') {
+    //   padding: 0 10px 0 10px;
+    // }
+
+    @include media('<tablet-xxl') {
+      font-size: 12px;
+      width: grid(32);
+    }
+
+    @include media('<tablet-l') {
+      width: grid(45);
+      right: grid(3);
+      top: grid(3);
+    }
+
+    @include media('<tablet-l') {
+      @media (orientation: landscape) {}
+    }
+
+    @include media('<tablet') {
+      width: grid(43);
+      right: grid(5);
+      top: grid(5);
+    }
+
+    @include media('<phone') {}
+  }
+
+  .pswp__preloader {
+    display: none;
+  }
+}
+
+.pswp__button--zoom {
+  display: block !important;
+}
+
+// body .pswp__show_on_fullscreen,
+// body .pswp__show_on_zoomed_in {
+//   display: none;
+
+//   @include media('<=tablet-l') {
+//     display: none !important;
+//   }
+// }
+
+// fullscreen state
+// body .pswp__button--fs {
+//   @include media('<=tablet-l') {
+//     display: none !important;
+//   }
+// }
+
+// body .pswp--fs {
+//   .pswp__button--fs {
+//     .pswp__show_normal {
+//       display: none;
+//     }
+
+//     .pswp__show_on_fullscreen {
+//       display: block;
+//     }
+//   }
+// }
+
+// // zoom state
+// body .pswp--zoomed-in {
+//   .pswp__button--zoom {
+//     .pswp__show_normal {
+//       display: none;
+//     }
+
+//     .pswp__show_on_zoomed_in {
+//       display: block;
+//     }
+//   }
+// }
+
+// zoom state
+// body .pswp--zoomed-in {
+//   .pswp__button--zoom {
+//     .pswp__img {
+//       transform: none;
+//     }
+//   }
+// }
+
+// idle state
+
+body .pswp__ui--idle {
+  .pswp__top-bar {
+    //top: 0;
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+}
+
+// hide orignal caption
+body .pswp__caption {
+  //visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  height: 0 !important;
+}
+
+body .pswp__custom_caption {
+  @include sec-font;
+  display: flex;
+  left: grid(2);
+  width: grid(24);
+  // top: grid(2);
+  font-size: getVw(20px);
+  position: absolute;
+  height: 0 !important;
+  margin-top: -0.2vw;
+  // font-size: 20px;
+
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: flex-start;
+  // font-size: $base-font-size;
+  text-transform: uppercase;
+  // padding-left: 40px;
+  // line-height: 1.5em;
+
+  @include media('<desktop') {
+    font-size: 14px;
+  }
+
+  @include media('<=tablet-l') {
+    font-size: 12px;
+    line-height: 1em;
+
+  }
+
+  @include media('<tablet-l') {
+    display: none;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {}
+
+  @include media('<phone') {}
+
+  // span:first-of-type {
+  //   text-transform: uppercase;
+  //   font-size: 18px;
+  // }
+}
+
+.pswp__custom_caption_descr {
+  @include main-font;
+  font-size: getVw(12px);
+
+  @include media('<desktop') {
+    font-size: 10px;
+  }
+}
+
+body .pswp__container {
+  transition: none !important;
+}
+
+.pswp__yellowborder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  @include vh(100, height);
+  box-sizing: border-box;
+  border: grid(0.4) solid $brand-color;
+  pointer-events: none;
+
+  @include media('<=tablet-l') {
+    border: grid(0.7) solid $brand-color;
+  }
+
+  @include media('<tablet-l') {
+    border: grid(1) solid $brand-color;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {
+    border: grid(1.5) solid $brand-color;
+  }
+}
+
+.pswp__controlls_nav {
+
+  .pswp__button--arrow--left,
+  .pswp__button--arrow--right {
+    width: auto;
+    margin-left: grid(2);
+    margin-right: grid(2);
+
+    @include media('<tablet-l') {
+      margin-left: grid(3);
+      margin-right: grid(3);
+    }
+
+    @include media('<tablet') {
+      margin-left: grid(5);
+      margin-right: grid(5);
+    }
+
+  }
+
+  .pswp__button--arrow--left:before,
+  .pswp__button--arrow--right:before {
+    display: none;
+  }
+
+  .pswp__button--arrow--left,
+  .pswp__button--arrow--right {
+    opacity: 1 !important;
+    visibility: visible !important;
+    float: none;
+    display: flex;
+
+    svg {
+      pointer-events: none;
+
+      @include media('<tablet-l') {
+        @media (orientation: landscape) {
+          width: 10px;
+        }
+      }
+
+      @include media('<tablet') {
+        width: 10px;
+      }
+    }
+
+    svg path {
+      transition: stroke 0.3s;
+    }
+
+    &:hover {
+      line {
+        stroke: $brand-color;
+      }
+
+      path {
+        fill: $brand-color;
+      }
+    }
+  }
+}
+
+.pswp__button {
+  background: none !important;
+  // border: 0px;
+  // padding: 0px;
+  // margin: 0px;
+  // margin-left: 20px;
+  // padding: 0 10px;
+  height: auto !important;
+  width: auto !important;
+  opacity: 1 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // height: 40px;
+  // opacity: 1;
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+      margin-left: 0px;
+      // margin-left: 20px !important;
+    }
+  }
+
+  @include media('<tablet') {
+    margin-left: 0px;
+    // margin-left: 20px !important;
+  }
+
+  svg {
+    pointer-events: none;
+
+    @include media('<tablet-l') {
+      @media (orientation: landscape) {
+        width: 15px;
+        // margin-left: 20px !important;
+      }
+    }
+
+    @include media('<tablet') {
+      width: 15px;
+      // margin-left: 20px !important;
+    }
+
+    line,
+    circle.pswp__change_on_hover,
+    rect,
+    path {
+      transition: stroke 0.3s;
+    }
+  }
+
+  svg {
+    pointer-events: none;
+
+    rect {
+      transition: fill 0.3s;
+    }
+  }
+
+  &:hover {
+    svg {
+      line,
+      circle.pswp__change_on_hover,
+      // path {
+      //   stroke: $brand-color;
+      // }
+
+      rect {
+        fill: $brand-color;
+      }
+    }
+  }
+}
+
+.pswp__button:before {
+  display: none;
+}
+
+.pswp__button--close {
+  @include sec-font;
+  text-transform: uppercase;
+  font-size: getVw(20px);
+  line-height: 0.9em;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  flex-direction: column !important;
+  align-items: flex-end;
+
+  path {
+    transition: none !important;
+  }
+
+  &:hover {
+    color: $brand-color;
+
+    path {
+      stroke: $brand-color;
+    }
+  }
+
+  @include media('<desktop') {
+    font-size: 18px;
+  }
+
+  @include media('<tablet-xxl') {
+    // font-size: 16px;
+  }
+
+  @include media('<=tablet-l') {}
+
+  @include media('<tablet-l') {
+    font-size: 16px;
+
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {
+    right: 0 !important;
+    position: absolute !important;
+    line-height: 0.8em;
+  }
+
+  @include media('<phone') {}
+}
+
+.pswp__button--close-icon {
+  margin-right: 0.8vw;
+  margin-top: 0.5vw;
+
+  @include media('<tablet-l') {
+    width: 22px !important;
+  }
+}
+
+.pswp__button--arrow--left {
+  height: 8vh !important;
+  margin-top: auto !important;
+  transform: translate(0, -50%);
+
+  svg {
+    width: auto !important;
+  }
+
+  @include media('<tablet-xxl') {
+    width: 4vw !important;
+  }
+
+  @include media('<tablet-l') {
+    width: 5vw !important;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {
+    width: 7vw !important;
+    bottom: 0 !important;
+    transform: none;
+  }
+}
+
+.pswp__button--arrow--right {
+  height: 8vh !important;
+  margin-top: auto !important;
+  transform: translate(0, -50%);
+
+  svg {
+    width: auto !important;
+  }
+
+  @include media('<tablet-xxl') {
+    width: 4vw !important;
+  }
+
+  @include media('<tablet-l') {
+    width: 5vw !important;
+  }
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {
+    width: 7vw !important;
+    bottom: 0 !important;
+    transform: none;
+  }
+}
+
+.pswp__controlls-3btns {
+  display: flex !important;
+  margin-top: -0.1vw;
+
+  @include media('<tablet-l') {
+    transform: translate(-50%);
+  }
+
+  @include media('<tablet') {
+    transform: translate(-50%);
+
+  }
+
+  .pswp__button {
+    &:hover {
+      color: $brand-color;
+    }
+  }
+
+  .pswp__button-spacer {
+    pointer-events: none;
+  }
+}
+
+.pswp__button-txt {
+  pointer-events: none;
+}
+
+
+
+.pswp__share-tooltip {
+  right: 20vw !important;
+}
+
+// .pswp__ui--fit .pswp__top-bar,
+// .pswp__ui--fit .pswp__caption {
+//   background-color: transparent !important;
+// }
+
+.pswp__img {
+  transform: scale(0.8);
+
+  @include media('<tablet') {
+    transform: scale(0.89);
+  }
+}
+
+@media (pointer: coarse) {
+  .pswp__button-spacer:nth-of-type(2) {
+    display: none !important;
+  }
+
+  .pswp__button--fs {
+    display: none !important;
+  }
+}

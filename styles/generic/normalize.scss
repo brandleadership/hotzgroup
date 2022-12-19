@@ -1,0 +1,133 @@
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+video,
+section,
+summary {
+  display: block;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+}
+
+button,
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+video,
+img {
+  max-width: 100%; /* [1] */
+  font-style: italic; /* [2] */
+  display: block;
+}
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,53 @@
+$base-font-size: getVw(14px);
+$base-font-size-m: 14px;
+$base-line-height: 1.44em;
+// $base-spacing: 0px;
+
+// body
+@mixin main-font($color: '') {
+  font-family: 'suisse-book',
+    Arial,
+    sans-serif;
+  font-style: normal;
+  // font-display: swap;
+
+  // font-weight: 600;
+  @if $color !='' {
+    color: $color;
+  }
+}
+
+// display
+@mixin sec-font($color: '') {
+  font-family: 'suisse-book',
+    Impact,
+    Arial,
+    sans-serif;
+  font-style: normal;
+  // font-display: swap;
+
+  // font-weight: 500;
+  @if $color !='' {
+    color: $color;
+  }
+}
+
+%main-font {
+  font-size: 14px;
+
+  @include media('<=tablet-l') {
+    font-size: 14px;
+  }
+}
+
+%bigger-font {
+  font-size: 22px;
+
+  @include media('<=tablet-l') {
+    font-size: 18px;
+  }
+
+  @include media('<tablet') {
+    font-size: 16px;
+  }
+}

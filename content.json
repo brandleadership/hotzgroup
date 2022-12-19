@@ -1,0 +1,20 @@
+{
+
+  "projects": [
+    {
+      "id": 1,
+      "link": "https://burnishcreative.com",
+      "name": "Silberline",
+      "pic": "/images/andrew.jpg",
+      "subline": "Branding x Art Direction x Web Design",
+    },
+    {
+      "id": 1,
+      "link": "https://burnishcreative.com",
+      "name": "Blackberry",
+      "pic": "/images/andrew.jpg",
+      "subline": "Art Direction x Digital Campaign",
+    },
+  ]
+  
+}
