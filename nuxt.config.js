@@ -1,5 +1,5 @@
 const pkg = require('./package')
-const accesstoken = 'GkazroKEtpShXTYkL6AcFQtt'
+const accesstoken = '6X8Z9utBY23RYXdC3rLOmAtt'
 require('isomorphic-fetch')
 
 module.exports = {
@@ -190,13 +190,19 @@ module.exports = {
       {
         rel: 'preload',
         as: 'font',
-        href: '/fonts/suisse/SuisseIntl-Book-WebM.woff2',
+        href: '/fonts/avenir/avenir-next-lt-pro-bold.woff2',
         crossorigin: true,
       },
       {
         rel: 'preload',
         as: 'font',
-        href: '/fonts/sangbleu/SangBleuOGSerif-Regular-WebXL.woff2',
+        href: '/fonts/avenir/avenir-next-lt-pro-it.woff2',
+        crossorigin: true,
+      },
+      {
+        rel: 'preload',
+        as: 'font',
+        href: '/fonts/iskry/iskry.woff2',
         crossorigin: true,
       },
     ],

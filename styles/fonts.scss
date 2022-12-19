@@ -5,7 +5,7 @@ $base-line-height: 1.44em;
 
 // body
 @mixin main-font($color: '') {
-  font-family: 'suisse-book',
+  font-family: 'avenir-next-lt-pro-bold',
     Arial,
     sans-serif;
   font-style: normal;
@@ -19,8 +19,20 @@ $base-line-height: 1.44em;
 
 // display
 @mixin sec-font($color: '') {
-  font-family: 'suisse-book',
-    Impact,
+  font-family: 'iskry',
+    Arial,
+    sans-serif;
+  font-style: normal;
+  // font-display: swap;
+
+  // font-weight: 500;
+  @if $color !='' {
+    color: $color;
+  }
+}
+
+@mixin italic-font($color: '') {
+  font-family: 'avenir-next-lt-pro-it',
     Arial,
     sans-serif;
   font-style: normal;

@@ -5,15 +5,19 @@
     url('/fonts/soehne/soehne-schmal-web-fett.woff') format('woff');
 } */
 @font-face {
-  font-family: 'soehne-schmal-fett';
-  src: url('/fonts/soehne/SohneSchmal-Fett.woff2') format('woff2'),
-    url('/fonts/soehne/SohneSchmal-Fett.woff') format('woff');
+  font-family: 'avenir-next-lt-pro-bold';
+  src: url('/fonts/avenir/avenir-next-lt-pro-bold.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'suisse-book';
-  src: url('/fonts/suisse/SuisseIntl-Book-WebM.woff2') format('woff2'),
-    url('/fonts/suisse/SuisseIntl-Book-WebM.woff') format('woff');
+  font-family: 'avenir-next-lt-pro-it';
+  src: url('/fonts/avenir/avenir-next-lt-pro-it.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'iskry';
+  src: url('/fonts/iskry/iskry-bold.woff2') format('woff2');
   font-display: swap;
 }

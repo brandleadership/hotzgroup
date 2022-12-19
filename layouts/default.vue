@@ -18,13 +18,13 @@ export default {
   data() {
     return {}
   },
-  mounted: function() {
+  mounted: function () {
     this.setViewportCSSVar()
     addListener(window, 'resize', () => {
       this.setViewportCSSVar()
     })
 
-    this.smoothscroll = SmoothScroll()
+    // this.smoothscroll = SmoothScroll()
 
     console.log(
       '%c Made by SPATZEK STUDIO - https://spatzek.studio',

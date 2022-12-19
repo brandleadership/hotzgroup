@@ -122,81 +122,13 @@ export default {
 
 <template>
   <header>
-    <div class="js-header-menu header-menu">
-      <NavItem
-        :page="page"
-        :key="key"
-        v-for="(item, key) in globalSbSettings.nav_main"
-        :class="'header-topbar-quicknav-item'"
-        :sbData="item"
-      />
-    </div>
     <div class="js-header-menu-mobile header-menu-mobile">
       <!-- <div class="header-menu-mobile-bg"></div> -->
       <div
         class="js-header-menu-hamburger header-menu-hamburger"
         @click="toggleMobileMenu"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 32 24"
-          class="js-smv-hamburger-icon smv-hamburger-icon"
-        >
-          <g
-            id="Gruppe_46"
-            data-name="Gruppe 46"
-            transform="translate(-969 -749.25)"
-          >
-            <line
-              id="Linie_44"
-              data-name="Linie 44"
-              y2="23.5"
-              transform="translate(1000 749.25)"
-              stroke-width="2"
-            />
-            <g
-              id="Gruppe_45"
-              data-name="Gruppe 45"
-              transform="translate(949 1)"
-            >
-              <path
-                id="Pfad_17"
-                data-name="Pfad 17"
-                d="M0-.5v24"
-                transform="translate(23 748.75)"
-                stroke-width="2"
-              />
-              <line
-                id="Linie_41"
-                data-name="Linie 41"
-                y2="23.5"
-                transform="translate(29 748.25)"
-                stroke-width="2"
-              />
-              <line
-                id="Linie_42"
-                data-name="Linie 42"
-                y2="23.5"
-                transform="translate(35 748.25)"
-                stroke-width="2"
-              />
-              <line
-                id="Linie_43"
-                data-name="Linie 43"
-                y2="23.5"
-                transform="translate(41 748.25)"
-                stroke-width="2"
-              />
-              <line
-                id="Linie_45"
-                data-name="Linie 45"
-                x2="24"
-                transform="translate(20 760)"
-                stroke-width="2"
-              />
-            </g>
-          </g>
-        </svg>
+        <span class="header-menu-icon">Menu</span>
       </div>
 
       <div
@@ -217,78 +149,8 @@ export default {
             :sbData="item"
           />
         </div>
-
-        <svg
-          version="1.1"
-          id="Ebene_2_1_"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 93.3 89.3"
-          style="enable-background: new 0 0 93.3 89.3"
-          xml:space="preserve"
-          class="
-            js-header-menu-mobile-overlay-logo
-            header-menu-mobile-overlay-logo
-          "
-        >
-          <g id="Layer_1">
-            <g id="Layer_2">
-              <g id="Layer_1-2">
-                <rect x="27.4" y="13.9" width="11.6" height="61.4" />
-                <rect x="40.9" y="13.9" width="11.6" height="61.4" />
-                <rect x="54.3" y="13.9" width="11.6" height="61.4" />
-                <polygon
-                  points="25.5,30.1 25.5,13.6 12.4,0.5 0.5,0.5 0.5,24.1 25.5,49.1 25.5,32.7 12.1,19.3 12.1,16.6"
-                />
-                <polygon
-                  points="0.5,45.8 0.5,62.2 13.6,75.4 25.5,75.4 25.5,51.8 0.5,26.8 0.5,43.1 13.9,56.6 13.9,59.2"
-                />
-                <polygon points="67.8,14.6 67.8,56.6 79.3,68.1 79.3,26.2" />
-                <polygon
-                  points="81.2,14.6 81.2,72.6 67.8,59.3 67.8,75.7 80.9,88.8 92.8,88.8 92.8,26.2"
-                />
-              </g>
-            </g>
-          </g>
-        </svg>
       </div>
     </div>
-    <nuxt-link aria-label="home" :to="'/home'">
-      <svg
-        version="1.1"
-        id="Ebene_2_1_"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        x="0px"
-        y="0px"
-        viewBox="0 0 93.3 89.3"
-        style="enable-background: new 0 0 93.3 89.3"
-        xml:space="preserve"
-        class="js-header-smv-logo header-smv-logo"
-      >
-        <g id="Layer_1">
-          <g id="Layer_2">
-            <g id="Layer_1-2">
-              <rect x="27.4" y="13.9" width="11.6" height="61.4" />
-              <rect x="40.9" y="13.9" width="11.6" height="61.4" />
-              <rect x="54.3" y="13.9" width="11.6" height="61.4" />
-              <polygon
-                points="25.5,30.1 25.5,13.6 12.4,0.5 0.5,0.5 0.5,24.1 25.5,49.1 25.5,32.7 12.1,19.3 12.1,16.6"
-              />
-              <polygon
-                points="0.5,45.8 0.5,62.2 13.6,75.4 25.5,75.4 25.5,51.8 0.5,26.8 0.5,43.1 13.9,56.6 13.9,59.2"
-              />
-              <polygon points="67.8,14.6 67.8,56.6 79.3,68.1 79.3,26.2" />
-              <polygon
-                points="81.2,14.6 81.2,72.6 67.8,59.3 67.8,75.7 80.9,88.8 92.8,88.8 92.8,26.2"
-              />
-            </g>
-          </g>
-        </g>
-      </svg>
-    </nuxt-link>
   </header>
 </template>
 
@@ -299,12 +161,11 @@ header {
   // position: fixed;
   color: var(--main-color);
   display: flex !important;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
   position: fixed;
   top: grid(2);
   right: grid(2);
-  width: grid(14);
   z-index: $z-sun;
 
   @include media('<=tablet-l') {
@@ -334,52 +195,9 @@ header {
     //this is only touch
   }
 }
-
-.header-menu {
-  margin-top: -0.3vw;
-  line-height: 1.45em;
-  @include media('<=tablet-l') {
-    display: none;
-  }
+.header-menu-icon {
+  font-size: 20px;
 }
-.header-menu-mobile {
-  @include media('>tablet-l') {
-    display: none;
-  }
-}
-
-.header-smv-logo {
-  width: 47px;
-  fill: var(--main-color);
-  margin-top: -0.2vw;
-  transition: fill 0.1s;
-
-  &:hover {
-    fill: var(--brand-color) !important;
-  }
-
-  @include media('<=tablet-l') {
-  }
-  @include media('<tablet-l') {
-  }
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {
-    }
-  }
-  @include media('<tablet') {
-    width: 34px;
-  }
-  @include media('<phone') {
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    //this is only desktop
-  }
-  @media (hover: none) and (pointer: coarse) {
-    //this is only touch
-  }
-}
-
 .header-menu-mobile-overlay {
   position: fixed;
   @include vh(100, height);

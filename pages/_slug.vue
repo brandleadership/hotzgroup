@@ -199,7 +199,7 @@ export default {
 
   mounted: function () {
     //COLORS FROM CMS
-    this.getColorsFromStoryblok()
+    // this.getColorsFromStoryblok()
 
     const elements = find('img')
     imagesLoaded(elements, () => {
