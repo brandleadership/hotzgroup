@@ -232,20 +232,26 @@ export default {
         /* key: Optional String to prefix the CSS variables */
         key: null,
       })
-
-      for (let index = 0; index < results[0].lines.length; index++) {
-        for (
-          let indexWords = 0;
-          indexWords < results[0].lines[index].length;
-          indexWords++
-        ) {
-          results[0].lines[index][indexWords].classList.add('splitTextMask')
-          results[0].lines[index][indexWords].innerHTML =
-            '<span class="splitTextElement">' +
-            results[0].lines[index][indexWords].innerHTML +
-            '</span>' //wrap div around element with class 'splitTextMask'
-        }
-      }
+      //NEW LINE SPLIT:
+      this.lines = results[0].lines[0]
+      results[0].lines.forEach((line, index) => {
+        line.forEach((word) => {
+          word.classList.add('word-line' + index)
+        })
+      })
+      // for (let index = 0; index < results[0].lines.length; index++) {
+      //   for (
+      //     let indexWords = 0;
+      //     indexWords < results[0].lines[index].length;
+      //     indexWords++
+      //   ) {
+      //     results[0].lines[index][indexWords].classList.add('splitTextMask')
+      //     results[0].lines[index][indexWords].innerHTML =
+      //       '<span class="splitTextElement">' +
+      //       results[0].lines[index][indexWords].innerHTML +
+      //       '</span>' //wrap div around element with class 'splitTextMask'
+      //   }
+      // }
       // BASE FOR LINE SPLIT ATTEMPT:
       // for (let index = 0; index < results[0].lines.length; index++) {
       //   let wrapper = document.createElement('div')

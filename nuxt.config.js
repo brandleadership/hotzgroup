@@ -321,6 +321,10 @@ module.exports = {
     //   ssr: false,
     // },
     {
+      src: '~/plugins/splitting.js',
+      ssr: false,
+    },
+    {
       src: '~/plugins/hooper.js',
       ssr: false,
     },
