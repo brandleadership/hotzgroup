@@ -168,33 +168,17 @@ export default {
   margin-left: grid(1);
 }
 
-.navitem-ball {
-  position: absolute;
-  align-self: center;
-  width: grid(0.5);
-  max-width: 12px;
-  max-height: 12px;
-  height: grid(0.5);
-  margin-top: -1px;
-  background-color: var(--brand-color);
-  border-radius: 50%;
-}
-
-.header-menu-mobile {
+.header-menu {
   .navitem {
-    @include sec-font;
-    font-size: 16vw;
-    line-height: 0.8em;
-
-    text-transform: uppercase;
-    color: var(--bg-color) !important;
+    @include regular-font;
     display: flex;
-    &:hover {
-      color: var(--bg-color) !important;
-      text-decoration: none !important;
-    }
+    color: var(--sec-color);
+    // &:hover {
+    //   color: var(--bg-color) !important;
+    //   text-decoration: none !important;
+    // }
     .nuxt-link-active {
-      color: var(--bg-color) !important;
+      color: var(--sec-color) !important;
       text-decoration: underlined !important;
     }
     @include media('<=tablet-l') {

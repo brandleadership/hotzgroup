@@ -202,7 +202,7 @@ module.exports = {
       {
         rel: 'preload',
         as: 'font',
-        href: '/fonts/iskry/iskry.woff2',
+        href: '/fonts/iskry/iskry-bold.woff2',
         crossorigin: true,
       },
     ],

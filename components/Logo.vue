@@ -83,6 +83,7 @@ export default {
 @import '@/styles/tools.scss';
 
 .logo {
+  position: relative;
   width: 100%;
   @include media('<=tablet-l') {
   }
@@ -95,6 +96,11 @@ export default {
   @include media('<tablet') {
   }
   @include media('<phone') {
+  }
+}
+.header-menu {
+  .logo {
+    fill: var(--sec-color);
   }
 }
 </style>

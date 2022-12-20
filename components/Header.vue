@@ -10,12 +10,13 @@ import {
 } from '~/scripts/elements.js'
 import imagesLoaded from 'imagesloaded'
 import SbLink from '@/components/SbLink.vue'
-import NavItem from '@/components/NavItem.vue'
+// import NavItem from '@/components/NavItem.vue'
+import Logo from '@/components/Logo.vue'
 
 export default {
   name: 'Header',
   props: ['page', 'globalSbSettings'],
-  components: { NavItem },
+  components: { Logo },
 
   data() {
     //andere schreibweise für function() {
@@ -24,7 +25,7 @@ export default {
     }
   },
   methods: {
-    toggleMobileMenu: function () {
+    toggleMenu: function () {
       if (!this.menuOpen) {
         this.showMenu()
       } else {
@@ -35,39 +36,48 @@ export default {
     showMenu: function () {
       this.menuOpen = true
 
-      this.darkener = find('.js-header-menu-mobile-darkener', this.$el)[0]
-      this.yellowbg = find('.js-header-menu-mobile-bg', this.$el)[0]
-      this.mobile = find('.js-header-menu-mobile-box', this.$el)[0]
-      this.navitem = find('.js-navitem-text', this.mobile)
-      this.logo = find('.js-header-menu-mobile-overlay-logo', this.$el)[0]
+      this.darkener = find('.header-menu-darkener', this.$el)[0]
+      this.navbox = find('.header-nav-box', this.$el)[0]
+      this.navitem = find('.js-header-link-anim', this.navbox)
+
+      this.logo = find('.header-logo', this.$el)[0]
+      this.closeicon = find('.header-menu-closer', this.$el)[0]
+
+      console.log(this.navitem, this.darkener, this.navbox, this.logo)
+
       this.showMenuTl = gsap
         .timeline()
         .fromTo(
           this.darkener,
-          { opacity: 0 },
-          { duration: 0.3, opacity: 1, ease: Power0.easeNone },
-          0
-        )
-        .fromTo(
-          this.logo,
-          { opacity: 0 },
-          { duration: 0.5, opacity: 1, ease: Power0.easeNone },
-          0
-        )
-        .fromTo(
-          this.navitem,
-          { y: '-100%' },
-          { stagger: 0.06, duration: 0.3, y: 0, ease: Power2.easeOut },
-          0.2
-        )
-        .fromTo(
-          this.yellowbg,
           { scaleY: 0 },
           {
             duration: 0.5,
             scaleY: 1,
             ease: Power2.easeOut,
             transformOrigin: 'top',
+          },
+          0
+        )
+        .fromTo(
+          this.logo,
+          { y: '110%' },
+          { duration: 0.4, y: '0%', ease: Power2.easeOut },
+          0.3
+        )
+        .fromTo(
+          this.navitem,
+          { y: '-100%' },
+          { stagger: 0.03, duration: 0.4, y: 0, ease: Power2.easeOut },
+          0.5
+        )
+        .fromTo(
+          this.closeicon,
+          { opacity: 0, display: 'none' },
+          {
+            duration: 0.2,
+            opacity: 1,
+            display: 'block',
+            ease: Power0.easeNone,
           },
           0
         )
@@ -79,30 +89,26 @@ export default {
             this.menuOpen = false
           },
         })
-        .to(
-          this.darkener,
-          { duration: 0.3, opacity: 0, ease: Power0.easeNone },
-          0.2
-        )
-        .to(
-          this.logo,
-          { duration: 0.5, opacity: 0, ease: Power0.easeNone },
-          0.2
-        )
+        .to(this.logo, { duration: 0.4, y: '110%', ease: Power2.easeOut }, 0.2)
         .to(
           this.navitem,
-          { stagger: 0.05, duration: 0.3, y: '-100%', ease: Power2.easeOut },
+          { stagger: 0.03, duration: 0.4, y: '-100%', ease: Power2.easeOut },
           0
         )
         .to(
-          this.yellowbg,
+          this.darkener,
           {
             duration: 0.5,
             scaleY: 0,
             ease: Power2.easeOut,
             transformOrigin: 'top',
           },
-          0.2
+          0.5
+        )
+        .to(
+          this.closeicon,
+          { duration: 0.2, opacity: 0, display: 'none', ease: Power0.easeNone },
+          0.7
         )
     },
   },
@@ -122,32 +128,71 @@ export default {
 
 <template>
   <header>
-    <div class="js-header-menu-mobile header-menu-mobile">
-      <!-- <div class="header-menu-mobile-bg"></div> -->
-      <div
-        class="js-header-menu-hamburger header-menu-hamburger"
-        @click="toggleMobileMenu"
-      >
-        <span class="header-menu-icon">Menu</span>
+    <div class="js-header-menu header-menu">
+      <div class="header-menu-icon-box">
+        <div class="header-menu-icon" @click="toggleMenu">
+          <span>Menu</span>
+        </div>
+        <div class="header-menu-closer" @click="toggleMenu">
+          <span>Close</span>
+        </div>
       </div>
 
       <div
-        class="js-header-menu-mobile header-menu-mobile-overlay"
-        :class="{ 'mobile-nav-active': this.menuOpen }"
-        @click="toggleMobileMenu"
+        class="js-header-menu header-menu-overlay"
+        :class="{ 'nav-active': this.menuOpen }"
+        @click="toggleMenu"
       >
-        <div
-          class="js-header-menu-mobile-darkener header-menu-mobile-darkener"
-        ></div>
-        <div class="js-header-menu-mobile-bg header-menu-mobile-bg"></div>
-        <div class="js-header-menu-mobile-box header-menu-mobile-box">
-          <NavItem
-            :page="page"
-            :key="key"
-            v-for="(item, key) in globalSbSettings.nav_main"
-            :class="'header-topbar-quicknav-item'"
-            :sbData="item"
-          />
+        <div class="header-menu-darkener"></div>
+        <div class="header-logo-pos">
+          <div class="header-logo-mask">
+            <Logo class="header-logo"></Logo>
+          </div>
+          <div class="header-nav-box">
+            <div class="header-sectionlinks">
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink">Home</span>
+              </div>
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink"
+                  >Haltung</span
+                >
+              </div>
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink"
+                  >Ansatz</span
+                >
+              </div>
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink"
+                  >Geschichte</span
+                >
+              </div>
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink"
+                  >Governance</span
+                >
+              </div>
+              <div class="header-link-mask">
+                <span class="js-header-link-anim header-sectionlink">VR</span>
+              </div>
+            </div>
+
+            <div class="header-pagelinks">
+              <div class="header-link-mask">
+                <nuxt-link
+                  class="js-header-link-anim header-link"
+                  :to="'/datenschutz'"
+                  >Datenschutz
+                </nuxt-link>
+              </div>
+              <div class="header-link-mask">
+                <nuxt-link class="js-header-link-anim header-link" :to="'/agb'"
+                  >AGB
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -164,26 +209,20 @@ header {
   align-items: flex-end;
   justify-content: space-between;
   position: fixed;
-  top: grid(2);
-  right: grid(2);
+  top: 0;
+  right: 0;
+  @include sidepadding('padding');
   z-index: $z-sun;
 
   @include media('<=tablet-l') {
-    width: grid(19);
   }
   @include media('<tablet-l') {
-    // width: grid(90);
-    top: grid(3);
-    right: grid(3);
   }
   @include media('<tablet-l') {
     @media (orientation: landscape) {
     }
   }
   @include media('<tablet') {
-    width: grid(86);
-    top: grid(5);
-    right: grid(5);
   }
   @include media('<phone') {
   }
@@ -195,179 +234,115 @@ header {
     //this is only touch
   }
 }
-.header-menu-icon {
+.header-menu-icon-box {
+  position: relative;
   font-size: 20px;
+  // z-index: 999999;
+  cursor: pointer;
 }
-.header-menu-mobile-overlay {
+.header-menu-overlay {
   position: fixed;
-  @include vh(100, height);
-  width: 100%;
-  // background-color: var(--brand-color);
-  // border: grid(0.4) solid var(--bg-color);
+  @include sidepadding('padding');
   box-sizing: border-box;
-  padding: grid(2);
-
+  @include vh(100, height);
+  display: flex;
+  align-items: center;
+  width: 100%;
   left: 0;
   top: 0;
   display: none;
   @include media('<=tablet-l') {
-    padding: grid(4);
-    // border: grid(0.7) solid var(--bg-color);
   }
   @include media('<tablet-l') {
-    padding: grid(5);
-    // border: grid(1) solid var(--bg-color);
   }
   @include media('<tablet-l') {
     @media (orientation: landscape) {
     }
   }
   @include media('<tablet') {
-    padding: grid(7.5);
-    // border: grid(1.5) solid var(--bg-color);
     @media (orientation: landscape) {
-      padding: grid(5);
     }
   }
 }
 
-.header-menu-mobile-darkener {
+.header-menu-darkener {
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: var(--main-color);
   position: absolute;
   top: 0;
   left: 0;
-  // opacity: 0.5;
   box-sizing: border-box;
-  border: grid(0.4) solid var(--brand-color);
 
   @include media('<=tablet-l') {
-    border: grid(0.7) solid var(--brand-color);
   }
   @include media('<tablet-l') {
-    border: grid(1) solid var(--brand-color);
   }
   @include media('<tablet-l') {
     @media (orientation: landscape) {
     }
   }
   @include media('<tablet') {
-    border: grid(1.5) solid var(--brand-color);
   }
 }
-.header-menu-mobile-bg {
-  width: calc(100% - #{grid(10)});
-  height: calc(100% - #{grid(10)});
-  background-color: var(--brand-color);
-  box-sizing: border-box;
+
+.header-nav-box {
   position: absolute;
+  display: flex;
+  left: 50%;
+  top: 100%;
 
   @include media('<=tablet-l') {
-    width: calc(100% - #{grid(8)});
-    height: calc(100% - #{grid(8)});
   }
   @include media('<tablet-l') {
-    width: calc(100% - #{grid(10)});
-    height: calc(100% - #{grid(10)});
   }
   @include media('<tablet-l') {
     @media (orientation: landscape) {
     }
   }
   @include media('<tablet') {
-    width: calc(100% - #{grid(15)});
-    height: calc(100% - #{grid(15)});
     @media (orientation: landscape) {
-      width: calc(100% - #{grid(10)});
-      height: calc(100% - #{grid(10)});
-      padding: grid(5);
     }
   }
   @include media('<phone') {
   }
 }
 
-.header-menu-mobile-box {
-  margin-left: -1vw;
-  margin-top: -1vw;
+.header-logo-pos {
   position: relative;
-
-  @include media('<=tablet-l') {
-    padding: grid(5);
-  }
-  @include media('<tablet-l') {
-    padding: grid(6);
-  }
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {
-    }
-  }
-  @include media('<tablet') {
-    margin-left: 0;
-    margin-top: 0;
-    padding: grid(5);
-    @media (orientation: landscape) {
-      padding: grid(3);
-    }
-  }
-  @include media('<phone') {
-  }
+  width: 100%;
 }
-
-.header-menu-mobile-overlay-logo {
-  position: fixed;
-  width: 44px;
-  fill: var(--bg-color);
-  margin-top: -0.2vw;
-  transition: fill 0.1s;
-  top: grid(2);
-  right: grid(2);
-
-  @include media('<=tablet-l') {
-    top: grid(8);
-    right: grid(8);
-    margin-top: -0.2vw;
-  }
-  @include media('<tablet-l') {
-    top: grid(10);
-    right: grid(10);
-    margin-top: -0.2vw;
-  }
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {
-      top: grid(10);
-      right: grid(10);
-      margin-top: -0.2vw;
-      margin-right: -0.2vw;
-    }
-  }
-  @include media('<tablet') {
-    width: 40px;
-    top: grid(12);
-    right: grid(12);
-    margin-top: 0;
-    margin-right: 0;
-    @media (orientation: landscape) {
-      margin-top: 0;
-      margin-right: 0;
-      top: grid(8);
-      right: grid(8);
-      margin-top: 0;
-      margin-right: 0;
-    }
-  }
+.header-logo-mask {
+  position: relative;
+  overflow: hidden;
 }
-
-.mobile-nav-active {
+.header-link-mask {
+  position: relative;
+  overflow: hidden;
+}
+.header-sectionlinks,
+.header-pagelinks {
+  display: flex;
+  flex-direction: column;
+  @include regular-font;
+  color: var(--sec-color);
+  width: grid(15);
+}
+.header-sectionlink,
+.header-link {
   display: block;
-}
-
-.smv-hamburger-icon {
   position: relative;
-  left: 0;
+  cursor: pointer;
+}
+.nav-active {
+  display: flex;
+}
+.header-menu-closer {
+  display: none;
+  position: absolute;
   top: 0;
-  width: 27px;
-  stroke: var(--main-color);
+  z-index: 9999;
+  color: var(--sec-color);
+  cursor: pointer;
 }
 </style>

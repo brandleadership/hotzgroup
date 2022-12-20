@@ -11,13 +11,19 @@
 }
 
 @font-face {
+  font-family: 'avenir-next-lt-pro-regular';
+  src: url('/fonts/avenir/avenir-next-lt-pro-regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'avenir-next-lt-pro-it';
   src: url('/fonts/avenir/avenir-next-lt-pro-it.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'iskry';
+  font-family: 'iskry-bold';
   src: url('/fonts/iskry/iskry-bold.woff2') format('woff2');
   font-display: swap;
 }

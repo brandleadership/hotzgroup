@@ -1,4 +1,4 @@
-$base-font-size: getVw(14px);
+$base-font-size: 20px;
 $base-font-size-m: 14px;
 $base-line-height: 1.44em;
 // $base-spacing: 0px;
@@ -19,7 +19,20 @@ $base-line-height: 1.44em;
 
 // display
 @mixin sec-font($color: '') {
-  font-family: 'iskry',
+  font-family: 'iskry-bold',
+    Arial,
+    sans-serif;
+  font-style: normal;
+  // font-display: swap;
+
+  // font-weight: 500;
+  @if $color !='' {
+    color: $color;
+  }
+}
+
+@mixin regular-font($color: '') {
+  font-family: 'avenir-next-lt-pro-regular',
     Arial,
     sans-serif;
   font-style: normal;

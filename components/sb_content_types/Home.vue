@@ -60,7 +60,8 @@ export default {
 
 .home {
   // margin-bottom: 3vw;
-  padding: grid(2);
+  @include sidepadding('padding');
+
   @include media('<tablet-l') {
   }
   @include media('<tablet-l') {
