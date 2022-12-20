@@ -71,6 +71,7 @@ export default {
 }
 
 .intro-video-box {
+  pointer-events: none;
   padding-top: 5vw;
   height: calc(#{grid(92)} * 9 / 16);
   max-width: 100%;

@@ -23,8 +23,8 @@ const SmoothScroll = optionsToSet => {
   var defaultOptions = {
 
     // Scrolling Core
-    frameRate: 240, // [Hz]
-    animationTime: 500, // [ms]
+    frameRate: 150, // [Hz]
+    animationTime: 650, // [ms]
     stepSize: 110, // [px]
 
     // Pulse (less tweakable)
@@ -34,7 +34,7 @@ const SmoothScroll = optionsToSet => {
     pulseNormalize: 1,
 
     // Acceleration
-    accelerationDelta: 200, // 50
+    accelerationDelta: 400, // 50
     accelerationMax: 1, // 3
 
     // Keyboard Settings

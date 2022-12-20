@@ -24,7 +24,7 @@ export default {
       this.setViewportCSSVar()
     })
 
-    // this.smoothscroll = SmoothScroll()
+    this.smoothscroll = SmoothScroll()
 
     console.log(
       '%c Made by SPATZEK STUDIO - https://spatzek.studio',
