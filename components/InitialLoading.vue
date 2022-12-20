@@ -34,7 +34,7 @@ export default {
   },
 
   methods: {
-    show: function() {
+    show: function () {
       const loading = find('.initloading-container')
 
       if (this.showTl) {
@@ -48,13 +48,10 @@ export default {
       return this.showTl
     },
 
-    hide: function() {
+    hide: function () {
       const loading = find('.initloading-container')
 
-      const top = find('.js-initloading-topbox')[0]
-      const right = find('.js-initloading-rightbox')[0]
-      const bottom = find('.js-initloading-bottombox')[0]
-      const left = find('.js-initloading-leftbox')[0]
+      const bg = find('.initloading-blackbg')[0]
 
       const time = 1
 
@@ -69,7 +66,7 @@ export default {
         })
 
         .fromTo(
-          top,
+          bg,
           { scaleY: 1 },
           {
             duration: time,
@@ -77,40 +74,7 @@ export default {
             ease: Power4.easeOut,
             transformOrigin: 'top',
           },
-          1.3
-        )
-        .fromTo(
-          right,
-          { scaleX: 1 },
-          {
-            duration: time,
-            scaleX: 0,
-            ease: Power4.easeOut,
-            transformOrigin: 'right',
-          },
-          1.3
-        )
-        .fromTo(
-          bottom,
-          { scaleY: 1 },
-          {
-            duration: time,
-            scaleY: 0,
-            ease: Power4.easeOut,
-            transformOrigin: 'bottom',
-          },
-          1.3
-        )
-        .fromTo(
-          left,
-          { scaleX: 1 },
-          {
-            duration: time,
-            scaleX: 0,
-            ease: Power4.easeOut,
-            transformOrigin: 'left',
-          },
-          1.3
+          0
         )
         .set(loading, { display: 'none' })
       // .set(canvasblocker, { opacity: 0 })
@@ -118,7 +82,7 @@ export default {
       return this.hideTl
     },
   },
-  mounted: function() {},
+  mounted: function () {},
 }
 </script>
 
@@ -126,17 +90,9 @@ export default {
   <div class="initloading-container">
     <div class="initloading-box">
       <div
-        class="js-initloading-recolor js-initloading-topbox initloading-topbox"
-      ></div>
-      <div
-        class="js-initloading-recolor js-initloading-rightbox initloading-rightbox"
-      ></div>
-      <div
-        class="js-initloading-recolor js-initloading-bottombox initloading-bottombox"
-      ></div>
-      <div
-        class="js-initloading-recolor js-initloading-leftbox initloading-leftbox"
-      ></div>
+        class="js-initloading-recolor js-initloading-topbox initloading-blackbg"
+      >
+      </div>
     </div>
   </div>
 </template>
@@ -183,36 +139,12 @@ export default {
   // opacity: 0;
 }
 
-.initloading-topbox {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  background-color: var(--brand-color);
-}
-.initloading-rightbox {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  background-color: var(--brand-color);
-}
-.initloading-bottombox {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 50%;
-  width: 100%;
-  background-color: var(--brand-color);
-}
-.initloading-leftbox {
+.initloading-blackbg {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 50%;
-  background-color: var(--brand-color);
+  width: 100%;
+  background-color: var(--main-color);
 }
 </style>

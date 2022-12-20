@@ -201,7 +201,7 @@ export default {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: var(--brand-color);
+  background-color: var(--main-color);
   transform: scaleY(0);
   will-change: transform;
   z-index: 5;

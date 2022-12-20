@@ -13,6 +13,7 @@ import Sbimage from '@/components/Sbimage.vue'
 import ObjectFitImage from '@/components/ObjectFitImage.vue'
 import SbRichText from '@/components/SbRichText.vue'
 import Intro from '@/components/Intro.vue'
+import Haltung from '@/components/Haltung.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,6 +24,7 @@ export default {
     ObjectFitImage,
     SbRichText,
     Intro,
+    Haltung,
   },
 
   data() {
@@ -52,6 +54,7 @@ export default {
 <template>
   <div class="home js-transition transition">
     <Intro :sectioncontent="pagecontent.intro[0]"></Intro>
+    <Haltung :sectioncontent="pagecontent.haltung"></Haltung>
   </div>
 </template>
 
