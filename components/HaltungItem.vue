@@ -36,7 +36,7 @@ export default {
       console.log(bgColor)
       this.headline1 = find('.haltung-headline1', this.$el)[0]
       this.headline2 = find('.haltung-headline2', this.$el)[0]
-      const hlDuration = 1
+      const hlDuration = 0.7
       const stagger = 0.13
       // this.headline2 = find('.haltung-headline2', this.$el)[0]
 
