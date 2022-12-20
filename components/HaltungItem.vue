@@ -36,10 +36,11 @@ export default {
       console.log(bgColor)
       this.headline1 = find('.haltung-headline1', this.$el)[0]
       this.headline2 = find('.haltung-headline2', this.$el)[0]
-      const hlDuration = 0.7
+      const hlDuration = 1
       const stagger = 0.13
       // this.headline2 = find('.haltung-headline2', this.$el)[0]
 
+      // IN
       this.headlineInTl = gsap.timeline({ paused: true }).fromTo(
         this.headline1,
         {
@@ -75,8 +76,12 @@ export default {
         )
       }
 
-      this.headlineOutTl = gsap.timeline({ paused: true }).to(
+      // OUT
+      this.headlineOutTl = gsap.timeline({ paused: true }).fromTo(
         this.headline1,
+        {
+          y: '0%',
+        },
         {
           y: '-120%',
           duration: hlDuration,
@@ -85,8 +90,11 @@ export default {
         0
       )
       if (this.headline2) {
-        this.headlineOutTl.to(
+        this.headlineOutTl.fromTo(
           this.headline2,
+          {
+            y: '0%',
+          },
           {
             y: '-120%',
             duration: hlDuration,
@@ -103,6 +111,7 @@ export default {
         )
       }
 
+      //REV IN
       this.headlineInRevTl = gsap.timeline({ paused: true }).fromTo(
         this.headline1,
         {
@@ -139,6 +148,8 @@ export default {
           0
         )
       }
+
+      //REV OUT
       this.headlineOutRevTl = gsap.timeline({ paused: true }).to(
         this.headline1,
         {
@@ -195,7 +206,7 @@ export default {
 
     lineHeightAnim: function () {
       const textbox = find('.haltung-textbox', this.$el)[0]
-      const lines = find('.haltung-line', this.$el)
+      const link = find('.haltung-link', this.$el)[0]
       const text = find('.haltung-text', this.$el)[0]
       // const text = find(this.lines)
 
@@ -213,15 +224,51 @@ export default {
         },
         0
       )
+      if (link) {
+        this.lineHeightAnimTl.fromTo(
+          link,
+          {
+            y: '20vw',
+          },
+          {
+            y: '0',
+            duration: 1,
+            ease: Power0.easeNone,
+          },
+          0
+        )
+      }
 
       ScrollTrigger.create({
         animation: this.lineHeightAnimTl,
         trigger: textbox,
         start: 'top bottom', // when the top of the trigger hits the top of the viewport
-        end: 'top 60%', // when the top of the trigger hits the top of the viewport
+        end: 'top 40%', // when the top of the trigger hits the top of the viewport
         scrub: 1,
-        markers: 'true',
+        // markers: 'true',
       })
+
+      // let proxy = { lineHeight: 1.1 },
+      //   skewSetter = gsap.quickSetter('.haltung-text', 'lineHeight', 'em'), // fast
+      //   clamp = gsap.utils.clamp(0, 20) // don't let the skew go beyond 20 degrees. // don't let the skew go beyond 20 degrees.
+      // ScrollTrigger.create({
+      //   onUpdate: (self) => {
+      //     let lineHeight = clamp(self.getVelocity() / -500)
+      //     console.log(lineHeight)
+      //     // only do something if the skew is MORE severe. Remember, we're always tweening back to 0, so if the user slows their scrolling quickly, it's more natural to just let the tween handle that smoothly rather than jumping to the smaller skew.
+      //     if (Math.abs(lineHeight) > Math.abs(proxy.lineHeight)) {
+      //       proxy.lineHeight = lineHeight
+      //       console.log(proxy.lineHeight, 'LINE')
+      //       gsap.to(proxy, {
+      //         lineHeight: 0,
+      //         duration: 0.8,
+      //         ease: 'power3',
+      //         overwrite: true,
+      //         onUpdate: () => skewSetter(proxy.lineHeight),
+      //       })
+      //     }
+      //   },
+      // })
     },
 
     // splitText: function () {
@@ -288,12 +335,9 @@ export default {
     this.lineHeightAnim()
 
     // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
+    // document.fonts.ready.then(() => {
     //   this.$nextTick(() => {
     //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {
-    //         //do something
-    //       }, 100)
     //     })
     //   })
     // })
@@ -343,6 +387,7 @@ export default {
     </div>
     <div class="haltung-textbox">
       <p class="haltung-text"> {{ haltungitem.Text }}</p>
+      <p class="haltung-text text-spacer"> {{ haltungitem.Text }}</p>
       <a
         v-if="haltungitem.link"
         class="haltung-link"
@@ -420,7 +465,7 @@ export default {
   line-height: 1em;
   margin-bottom: -0.15em;
   text-transform: uppercase;
-  // transform: translate(0, 120%);
+  transform: translate(0, 120%);
 }
 .haltung-hl-mask2 {
   position: absolute;
@@ -450,6 +495,10 @@ export default {
   line-height: 1.1em;
   @include sec-font;
   color: var(--sec-color);
+}
+.text-spacer {
+  position: relative;
+  opacity: 0;
 }
 .haltung-line {
   display: block;

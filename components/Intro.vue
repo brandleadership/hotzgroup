@@ -23,6 +23,7 @@ export default {
     blackening: function () {
       const bg = find('.intro-blackbg', this.$el)[0]
       const video = find('.intro-video-box', this.$el)[0]
+      const menu = find('.header-menu-icon')[0]
 
       this.blackeningTl = gsap
         .timeline({ paused: true })
@@ -32,9 +33,16 @@ export default {
           { opacity: 1, duration: 0.4, ease: Power0.easeNone },
           0
         )
+        .fromTo(
+          menu,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
       this.whiteningTl = gsap
         .timeline({ paused: true })
         .to(bg, { opacity: 0, duration: 0.4, ease: Power0.easeNone }, 0)
+        .to(menu, { color: 'black', duration: 0.4, ease: Power0.easeNone }, 0)
 
       ScrollTrigger.create({
         animation: this.scrollanimTl,
