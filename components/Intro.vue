@@ -91,7 +91,7 @@ export default {
 
 
 <template>
-  <section class="intro">
+  <section class="intro" id="home">
     <div class="intro-blackbg"></div>
     <div class="intro-logo-box">
       <Logo></Logo>

@@ -1,7 +1,9 @@
 <script>
 import { gsap, Power0, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js'
 
+gsap.registerPlugin(ScrollToPlugin)
 import {
   find,
   hasClass,
@@ -31,6 +33,77 @@ export default {
       } else {
         this.hideMenu()
       }
+    },
+    scrollToAnim: function (sectionId) {
+      this.scrollToTl = new gsap.to(window, {
+        duration: 1,
+        scrollTo: '#' + sectionId,
+        ease: Power2.easeOut,
+      })
+    },
+    activateSection: function () {
+      const intro = find('.intro')[0]
+      const haltung = find('.haltung')[0]
+      const ansatz = find('.ansatz')[0]
+      // const process = find('.process')[0]
+      // const faq = find('.faq')[0]
+      // const contact = find('.contact')[0]
+      const indicators = find('.section-indicator')
+
+      this.allSections = [intro, haltung, ansatz]
+
+      this.allSections.map((section, index) => {
+        // this.sectionInTl = gsap
+        //   .timeline({ paused: true })
+        //   .fromTo(
+        //     indicators[index],
+        //     { y: '120%' },
+        //     { y: '0%', duration: 0.3, ease: Power2.easeInOut },
+        //     0
+        //   )
+        // this.sectionOutTl = gsap
+        //   .timeline({ paused: true })
+        //   .fromTo(
+        //     indicators[index],
+        //     { y: '0%' },
+        //     { y: '-120%', duration: 0.3, ease: Power2.easeInOut },
+        //     0
+        //   )
+        // this.sectionRevInTl = gsap
+        //   .timeline({ paused: true })
+        //   .fromTo(
+        //     indicators[index],
+        //     { y: '-120%' },
+        //     { y: '-0%', duration: 0.3, ease: Power2.easeInOut },
+        //     0
+        //   )
+        // this.sectionRevOutTl = gsap
+        //   .timeline({ paused: true })
+        //   .to(
+        //     indicators[index],
+        //     { y: '120%', duration: 0.3, ease: Power2.easeInOut },
+        //     0
+        //   )
+
+        ScrollTrigger.create({
+          onEnter: () => {
+            indicators[index].classList.add('section-active')
+          },
+          onLeave: () => {
+            indicators[index].classList.remove('section-active')
+          },
+          onEnterBack: () => {
+            indicators[index].classList.add('section-active')
+          },
+          onLeaveBack: () => {
+            indicators[index].classList.remove('section-active')
+          },
+          trigger: section,
+          start: '1px 80%',
+          end: 'bottom 80%',
+          // markers: true,
+        })
+      })
     },
 
     showMenu: function () {
@@ -114,14 +187,15 @@ export default {
   },
 
   mounted: function () {
-    const elements = find('img', this.$el)
-    onFontLoaded(() => {
-      this.$nextTick(() => {
-        imagesLoaded(elements, () => {
-          setTimeout(() => {}, 1000)
-        })
-      })
-    })
+    this.activateSection()
+    // const elements = find('img', this.$el)
+    // onFontLoaded(() => {
+    //   this.$nextTick(() => {
+    //     imagesLoaded(elements, () => {
+    //       setTimeout(() => {}, 1000)
+    //     })
+    //   })
+    // })
   },
 }
 </script>
@@ -129,6 +203,29 @@ export default {
 <template>
   <header>
     <div class="js-header-menu header-menu">
+      <div class="section-indicator-box">
+        <div class="section-indicator-mask">
+          <span class="section-indicator">&nbsp;</span>
+        </div>
+        <div class="section-indicator-mask">
+          <span class="section-indicator">Haltung</span>
+        </div>
+        <div class="section-indicator-mask">
+          <span class="section-indicator">Ansatz</span>
+        </div>
+        <div class="section-indicator-mask">
+          <span class="section-indicator">Geschichte</span>
+        </div>
+        <!-- <div class="section-indicator-mask">
+          <span class="section-indicator">Geschichte</span>
+        </div>
+        <div class="section-indicator-mask">
+          <span class="section-indicator">Governance</span>
+        </div>
+        <div class="section-indicator-mask">
+          <span class="section-indicator">VR</span>
+        </div> -->
+      </div>
       <div class="header-menu-icon-box">
         <div class="header-menu-icon" @click="toggleMenu">
           <span>Menu</span>
@@ -140,7 +237,7 @@ export default {
 
       <div
         class="js-header-menu header-menu-overlay"
-        :class="{ 'nav-active': this.menuOpen }"
+        :class="{ 'menu-active': this.menuOpen }"
         @click="toggleMenu"
       >
         <div class="header-menu-darkener"></div>
@@ -151,30 +248,46 @@ export default {
           <div class="header-nav-box">
             <div class="header-sectionlinks">
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink">Home</span>
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('home')"
+                  >Home</span
+                >
               </div>
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink"
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('haltung')"
                   >Haltung</span
                 >
               </div>
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink"
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('ansatz')"
                   >Ansatz</span
                 >
               </div>
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink"
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('geschichte')"
                   >Geschichte</span
                 >
               </div>
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink"
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('governance')"
                   >Governance</span
                 >
               </div>
               <div class="header-link-mask">
-                <span class="js-header-link-anim header-sectionlink">VR</span>
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('vr')"
+                  >VR</span
+                >
               </div>
             </div>
 
@@ -205,10 +318,9 @@ export default {
 header {
   // position: fixed;
   color: var(--main-color);
-  display: flex !important;
-  align-items: flex-end;
-  justify-content: space-between;
   position: fixed;
+  width: 100%;
+  box-sizing: border-box;
   top: 0;
   right: 0;
   @include sidepadding('padding');
@@ -233,6 +345,32 @@ header {
   @media (hover: none) and (pointer: coarse) {
     //this is only touch
   }
+}
+
+.header-menu {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: grid(-0.5);
+}
+.section-indicator-box {
+  @include regular-font;
+  text-transform: uppercase;
+  font-size: 12px;
+  position: relative;
+  color: $sec-color;
+  // left: 0;
+}
+.section-indicator-mask {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+.section-indicator {
+  display: none;
+  // position: relative;
+  // transform: translate(0, 120%);
 }
 .header-menu-icon-box {
   position: relative;
@@ -334,8 +472,12 @@ header {
   position: relative;
   cursor: pointer;
 }
-.nav-active {
+.menu-active {
   display: flex;
+}
+.section-active {
+  display: block;
+  // transform: translate(0, 0);
 }
 .header-menu-closer {
   display: none;

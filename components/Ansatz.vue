@@ -10,7 +10,7 @@ import imagesLoaded from 'imagesloaded'
 import AnsatzHaltungItem from '@/components/AnsatzHaltungItem.vue'
 
 export default {
-  name: 'Haltung',
+  name: 'Ansatz',
   props: ['sectioncontent'],
   components: { AnsatzHaltungItem },
 
@@ -39,7 +39,7 @@ export default {
 
 
 <template>
-  <section class="haltung" id="haltung">
+  <section class="ansatz" id="ansatz">
     <AnsatzHaltungItem
       v-for="(haltungitem, key) in sectioncontent"
       :key="key"
@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';
 
-.haltung {
+.ansatz {
   // position: relative;
 
   @include media('<=tablet-l') {
