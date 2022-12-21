@@ -3,6 +3,8 @@ import { gsap, Power1, Power2, Power3, Linear } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import SbLink from '@/components/SbLink.vue'
 import SbRichText from '@/components/SbRichText.vue'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js'
+gsap.registerPlugin(ScrollToPlugin)
 
 import {
   find,
@@ -22,13 +24,13 @@ export default {
     return {}
   },
   methods: {
-    scrollToAnim: function () {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
+    scrollToAnim: function (sectionId) {
+      this.scrollToTl = new gsap.to(window, {
+        duration: 2,
+        scrollTo: '#' + sectionId,
+        ease: Power2.easeOut,
       })
     },
-
     backToTopHoverAnim: function () {
       if (isTouchDevice() == true) {
         return
@@ -167,9 +169,13 @@ export default {
         </a>
       </div>
       <div class="footer-col2">
-        <span class="footer-col2-item">Home</span>
-        <span class="footer-col2-item">Haltung</span>
-        <span class="footer-col2-item">Ansatz</span>
+        <span class="footer-col2-item" @click="scrollToAnim('home')">Home</span>
+        <span class="footer-col2-item" @click="scrollToAnim('haltung')"
+          >Haltung</span
+        >
+        <span class="footer-col2-item" @click="scrollToAnim('ansatz')"
+          >Ansatz</span
+        >
         <span class="footer-col2-item">Geschichte</span>
         <span class="footer-col2-item">Governance</span>
         <span class="footer-col2-item">VR</span>
@@ -253,5 +259,9 @@ export default {
   display: flex;
   flex-direction: column;
   width: grid(15);
+}
+
+.footer-col2-item {
+  cursor: pointer;
 }
 </style>

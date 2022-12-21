@@ -36,7 +36,7 @@ export default {
     },
     scrollToAnim: function (sectionId) {
       this.scrollToTl = new gsap.to(window, {
-        duration: 1,
+        duration: 2,
         scrollTo: '#' + sectionId,
         ease: Power2.easeOut,
       })

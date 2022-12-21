@@ -218,7 +218,7 @@ export default {
           lineHeight: '2em',
         },
         {
-          lineHeight: '1.1em',
+          lineHeight: '1.2em',
           duration: 1,
           ease: Power0.easeNone,
         },
@@ -492,7 +492,7 @@ export default {
   width: 100%;
   position: absolute;
   font-size: getVw(50px);
-  line-height: 1.1em;
+  line-height: 1.2em;
   @include sec-font;
   color: var(--sec-color);
 }
