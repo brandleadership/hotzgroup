@@ -122,6 +122,7 @@ export default {
 .intro {
   position: relative;
   padding-bottom: 50vh;
+  @include sidepadding;
 }
 .intro-blackbg {
   position: fixed;
@@ -133,7 +134,7 @@ export default {
   opacity: 0;
 }
 .intro-logo-box {
-  padding-top: calc(5.4vw - #{grid(2)});
+  padding-top: 5.4vw;
 }
 
 .intro-video-box {

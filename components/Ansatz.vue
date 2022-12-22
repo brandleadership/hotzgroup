@@ -56,7 +56,7 @@ export default {
 @import '@/styles/tools.scss';
 
 .ansatz {
-  // position: relative;
+  @include sidepadding('padding');
 
   @include media('<=tablet-l') {
   }

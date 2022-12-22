@@ -323,7 +323,7 @@ header {
   box-sizing: border-box;
   top: 0;
   right: 0;
-  @include sidepadding('padding');
+  @include fullpadding('padding');
   z-index: $z-sun;
 
   @include media('<=tablet-l') {

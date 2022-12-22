@@ -1,0 +1,179 @@
+<script>
+import { gsap, Power0, Power2 } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
+import {
+  find,
+  hasClass,
+  isTouchDevice,
+  onFontLoaded,
+} from '~/scripts/elements.js'
+import imagesLoaded from 'imagesloaded'
+
+export default {
+  name: 'Geschichte',
+  props: ['sectioncontent'],
+  components: {},
+
+  data() {
+    //andere schreibweise für function() {
+    return {}
+  },
+  methods: {
+    setColors: function () {
+      this.bg = find('.geschichte-bg-color', this.$el)[0]
+      this.bg.style.backgroundColor = this.sectioncontent.background_color
+    },
+
+    lineHeightAnim: function () {
+      const textbox = find('.geschichte-textbox', this.$el)[0]
+      const text = find('.geschichte-text', this.$el)[0]
+
+      this.lineHeightAnimTl = gsap.timeline({ paused: true }).fromTo(
+        text,
+        {
+          lineHeight: '2em',
+        },
+        {
+          lineHeight: '1.2em',
+          duration: 1,
+          ease: Power0.easeNone,
+        },
+        0
+      )
+
+      ScrollTrigger.create({
+        animation: this.lineHeightAnimTl,
+        trigger: textbox,
+        start: 'top bottom', // when the top of the trigger hits the top of the viewport
+        end: 'top 40%', // when the top of the trigger hits the top of the viewport
+        scrub: 1,
+        // markers: 'true',
+      })
+    },
+
+    scrollanim: function () {
+      const bgColor = find('.geschichte-bg-color', this.$el)[0]
+
+      // IN
+      this.bgColorInTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          bgColor,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+      this.bgColorOutTl = gsap
+        .timeline({ paused: true })
+        .to(bgColor, { opacity: 0, duration: 0.4, ease: Power0.easeNone }, 0)
+
+      ScrollTrigger.create({
+        animation: this.bgColorTl,
+        trigger: this.$el,
+        start: 'top 80%', // when the top of the trigger hits the top of the viewport
+        end: 'bottom 80%', // when the top of the trigger hits the top of the viewport
+        onEnter: () => {
+          this.bgColorInTl.play(0)
+          // console.log('onEnter', 'PLAY')
+        },
+        // onLeave: () => {
+        //   this.headlineOutTl.play(0)
+        //   // console.log('onLeave', 'PAUSE')
+        // },
+        // onEnterBack: () => {
+        //   this.headlineInRevTl.play(0)
+        //   // console.log('onEnterBack', 'PLAY')
+        // },
+        onLeaveBack: () => {
+          this.bgColorOutTl.play(0)
+          // console.log('onLeaveBack', 'PAUSE')
+        },
+        // scrub: 0,
+        // markers: 'true',
+      })
+    },
+  },
+
+  mounted: function () {
+    this.setColors()
+    this.lineHeightAnim()
+    this.scrollanim()
+    // const elements = find('img', this.$el)
+    // onFontLoaded(() => {
+    //   this.$nextTick(() => {
+    //     imagesLoaded(elements, () => {
+    //       setTimeout(() => {
+    //         //do something
+    //       }, 100)
+    //     })
+    //   })
+    // })
+  },
+}
+</script>
+
+
+
+
+<template>
+  <section class="geschichte" id="geschichte">
+    <div class="geschichte-bg-color"></div>
+    <div class="geschichte-textbox">
+      <p class="geschichte-text"> {{ sectioncontent.Text }}</p>
+      <p class="geschichte-text text-spacer"> {{ sectioncontent.Text }}</p>
+    </div>
+  </section>
+</template>
+
+
+
+<style lang="scss" scoped="true">
+@import '@/styles/tools.scss';
+
+.geschichte {
+  position: relative;
+
+  @include media('<=tablet-l') {
+  }
+  @include media('<tablet-l') {
+  }
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+    }
+  }
+  @include media('<tablet') {
+  }
+  @include media('<phone') {
+  }
+}
+
+.geschichte-bg-color {
+  background-color: var(--brand-color);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.geschichte-textbox {
+  position: relative;
+  padding-top: 100vh;
+  padding-bottom: 100vh;
+  width: grid(56);
+  margin-left: grid(32);
+}
+.geschichte-text {
+  display: block;
+  width: 100%;
+  position: absolute;
+  font-size: getVw(50px);
+  line-height: 1.2em;
+  @include sec-font;
+  color: var(--sec-color);
+}
+.text-spacer {
+  position: relative;
+  opacity: 0;
+}
+</style>

@@ -103,13 +103,13 @@ export default {
           stagger
         )
       }
-      if (bgColor) {
-        this.headlineOutTl.to(
-          bgColor,
-          { opacity: 0, duration: 0.4, ease: Power0.easeNone },
-          0
-        )
-      }
+      // if (bgColor) {
+      //   this.headlineOutTl.to(
+      //     bgColor,
+      //     { opacity: 0, duration: 0.4, ease: Power0.easeNone },
+      //     0
+      //   )
+      // }
 
       //REV IN
       this.headlineInRevTl = gsap.timeline({ paused: true }).fromTo(
@@ -140,14 +140,14 @@ export default {
           0
         )
       }
-      if (bgColor) {
-        this.headlineInRevTl.fromTo(
-          bgColor,
-          { opacity: 0 },
-          { opacity: 1, duration: 0.4, ease: Power0.easeNone },
-          0
-        )
-      }
+      // if (bgColor) {
+      //   this.headlineInRevTl.fromTo(
+      //     bgColor,
+      //     { opacity: 0 },
+      //     { opacity: 1, duration: 0.4, ease: Power0.easeNone },
+      //     0
+      //   )
+      // }
 
       //REV OUT
       this.headlineOutRevTl = gsap.timeline({ paused: true }).to(
@@ -452,12 +452,13 @@ export default {
 }
 
 .haltung-hl-box {
-  width: grid(84);
+  width: grid(82);
   z-index: 1;
 }
 .haltung-hl-mask {
   overflow: hidden;
   display: block;
+  margin-left: -0.7vw;
 }
 .haltung-headline {
   position: relative;
@@ -485,7 +486,7 @@ export default {
   margin-top: 100vh;
   margin-bottom: 100vh;
   width: grid(56);
-  margin-left: grid(34);
+  margin-left: grid(32);
 }
 .haltung-text {
   display: block;

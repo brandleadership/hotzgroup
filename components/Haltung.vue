@@ -57,6 +57,7 @@ export default {
 
 .haltung {
   // position: relative;
+  @include sidepadding('padding');
 
   @include media('<=tablet-l') {
   }
