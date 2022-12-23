@@ -45,12 +45,12 @@ export default {
       const intro = find('.intro')[0]
       const haltung = find('.haltung')[0]
       const ansatz = find('.ansatz')[0]
-      // const process = find('.process')[0]
+      const geschichte = find('.geschichte')[0]
       // const faq = find('.faq')[0]
       // const contact = find('.contact')[0]
       const indicators = find('.section-indicator')
 
-      this.allSections = [intro, haltung, ansatz]
+      this.allSections = [intro, haltung, ansatz, geschichte]
 
       this.allSections.map((section, index) => {
         // this.sectionInTl = gsap

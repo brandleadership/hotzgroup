@@ -119,8 +119,9 @@ export default {
   <section class="geschichte" id="geschichte">
     <div class="geschichte-bg-color"></div>
     <div class="geschichte-textbox">
-      <p class="geschichte-text"> {{ sectioncontent.Text }}</p>
-      <p class="geschichte-text text-spacer"> {{ sectioncontent.Text }}</p>
+      <h2 class="geschichte-hl">{{ sectioncontent.headline }}</h2>
+      <p class="geschichte-text">{{ sectioncontent.Text }}</p>
+      <p class="geschichte-text text-spacer">{{ sectioncontent.Text }}</p>
     </div>
   </section>
 </template>
@@ -132,7 +133,9 @@ export default {
 
 .geschichte {
   position: relative;
-
+  color: var(--brand-color2);
+  padding-top: 35vw;
+  padding-bottom: 35vw;
   @include media('<=tablet-l') {
   }
   @include media('<tablet-l') {
@@ -158,10 +161,16 @@ export default {
 }
 .geschichte-textbox {
   position: relative;
-  padding-top: 100vh;
-  padding-bottom: 100vh;
-  width: grid(56);
-  margin-left: grid(32);
+
+  width: grid(63);
+  margin-left: grid(7);
+}
+.geschichte-hl {
+  display: block;
+  font-size: 24px;
+  line-height: 1.2em;
+  margin-bottom: 80px;
+  text-transform: uppercase;
 }
 .geschichte-text {
   display: block;
@@ -170,7 +179,6 @@ export default {
   font-size: getVw(50px);
   line-height: 1.2em;
   @include sec-font;
-  color: var(--sec-color);
 }
 .text-spacer {
   position: relative;

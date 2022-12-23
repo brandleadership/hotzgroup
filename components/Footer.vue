@@ -168,7 +168,7 @@ export default {
           <span class="footer-link-txt">Hieronymus</span>
         </a>
       </div>
-      <div class="footer-col2">
+      <div class="footer-col2 footer-r-col">
         <span class="footer-col2-item" @click="scrollToAnim('home')">Home</span>
         <span class="footer-col2-item" @click="scrollToAnim('haltung')"
           >Haltung</span
@@ -180,13 +180,13 @@ export default {
         <span class="footer-col2-item">Governance</span>
         <span class="footer-col2-item">VR</span>
       </div>
-      <div class="footer-col3">
+      <div class="footer-col3 footer-r-col">
         <nuxt-link class="footer-link" :to="'/datenschutz'"
           >Datenschutz
         </nuxt-link>
         <nuxt-link class="footer-link" :to="'/agb'">AGB </nuxt-link>
       </div>
-      <div class="footer-col4">
+      <div class="footer-col4 footer-r-col">
         <SbRichText
           class="footer-contact"
           :richTextParams="globalSbSettings.footer_contact"
@@ -201,7 +201,8 @@ export default {
 
 .footer {
   @include regular-font;
-  @include sidepadding('padding');
+  @include fullpadding('padding');
+  padding: grid(2) grid(7);
   color: var(--main-color);
   width: 100%;
 
@@ -248,14 +249,9 @@ export default {
 .footer-col1 {
   display: flex;
   flex-direction: column;
-  width: grid(46);
+  width: grid(37);
 }
-.footer-col2 {
-  display: flex;
-  flex-direction: column;
-  width: grid(15);
-}
-.footer-col3 {
+.footer-r-col {
   display: flex;
   flex-direction: column;
   width: grid(15);

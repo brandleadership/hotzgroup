@@ -16,6 +16,8 @@ import Intro from '@/components/Intro.vue'
 import Ansatz from '@/components/Ansatz.vue'
 import Haltung from '@/components/Haltung.vue'
 import Geschichte from '@/components/Geschichte.vue'
+import Verwaltungsrat from '@/components/Verwaltungsrat.vue'
+import Governance from '@/components/Governance.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,6 +31,8 @@ export default {
     Ansatz,
     Haltung,
     Geschichte,
+    Verwaltungsrat,
+    Governance,
   },
 
   data() {
@@ -61,6 +65,10 @@ export default {
     <Haltung :sectioncontent="pagecontent.haltung"></Haltung>
     <Ansatz :sectioncontent="pagecontent.ansatz"></Ansatz>
     <Geschichte :sectioncontent="pagecontent.geschichte[0]"></Geschichte>
+    <Governance :sectioncontent="pagecontent.governance"></Governance>
+    <Verwaltungsrat
+      :sectioncontent="pagecontent.verwaltungsrat[0]"
+    ></Verwaltungsrat>
   </div>
 </template>
 
