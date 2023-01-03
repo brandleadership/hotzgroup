@@ -1,5 +1,6 @@
 <script>
-import { gsap } from 'gsap'
+import { gsap, Power2 } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import {
   find,
   hasClass,
@@ -18,19 +19,67 @@ export default {
     //andere schreibweise für function() {
     return {}
   },
-  methods: {},
+  methods: {
+    lineanim: function () {
+      const linesht = find('.gov-line-hor-top', this.$el)
+      const lineshb = find('.gov-line-hor-bot', this.$el)
+      const linesvt = find('.gov-line-vert-right', this.$el)
+      const linesvb = find('.gov-line-vert-left', this.$el)
+      const trigger = find('.gov-box', this.$el)[0]
+      const headline = find('.vr-headline', this.$el)
+      // const words = find('.char', this.$el)
+      this.lineanimTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          linesht,
+          { scaleX: 0 },
+          { scaleX: 1, stagger: 0.2, duration: 1, ease: Power2.easeOut },
+          0
+        )
+        .fromTo(
+          lineshb,
+          { scaleX: 0 },
+          { scaleX: 1, stagger: 0.2, duration: 1, ease: Power2.easeOut },
+          0
+        )
+        .fromTo(
+          linesvt,
+          { scaleY: 0 },
+          { scaleY: 1, stagger: 0.2, duration: 1, ease: Power2.easeOut },
+          0
+        )
+        .fromTo(
+          linesvb,
+          { scaleY: 0 },
+          { scaleY: 1, stagger: 0.2, duration: 1, ease: Power2.easeOut },
+          0
+        )
+
+      ScrollTrigger.create({
+        animation: this.lineanimTl,
+        trigger: trigger,
+        start: 'top 70%', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+
+        // end: 'top 50%', // when the top of the trigger hits the top of the viewport
+        // scrub: 0,
+        // markers: 'true',
+      })
+    },
+  },
 
   mounted: function () {
-    const elements = find('img', this.$el)
-    onFontLoaded(() => {
-      this.$nextTick(() => {
-        imagesLoaded(elements, () => {
-          setTimeout(() => {
-            //do something
-          }, 100)
-        })
-      })
-    })
+    this.lineanim()
+    // const elements = find('img', this.$el)
+    // onFontLoaded(() => {
+    //   this.$nextTick(() => {
+    //     imagesLoaded(elements, () => {
+    //       setTimeout(() => {
+    //         //do something
+    //       }, 100)
+    //     })
+    //   })
+    // })
   },
 }
 </script>
@@ -62,23 +111,45 @@ export default {
             <div class="gov-line-hor-bot"></div>
           </div>
           <div class="gov-brands-box">
-            <div class="gov-brand"
-              >BRAND
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/calydo_logo.svg"
+                alt="calydo"
+              />
               <div class="gov-line-vert-right"></div>
             </div>
-            <div class="gov-brand"
-              >BRAND
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/hotz_logo.svg"
+                alt="hotz"
+              />
               <div class="gov-line-vert-right"></div>
             </div>
-            <div class="gov-brand"
-              >BRAND
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/gateb_logo.svg"
+                alt="gateb"
+              />
               <div class="gov-line-vert-right"></div>
             </div>
-            <div class="gov-brand"
-              >BRAND
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/hilda_logo.svg"
+                alt="hilda"
+              />
               <div class="gov-line-vert-right"></div>
             </div>
-            <div class="gov-brand">BRAND </div>
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/focusnext_logo.svg"
+                alt="focusnext"
+              />
+            </div>
           </div>
         </div>
         <div class="gov-centerbox">
@@ -88,7 +159,13 @@ export default {
             <div class="gov-line-hor-bot"></div>
           </div>
           <div class="gov-brands-box">
-            <div class="gov-brand">BRAND </div>
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/lab_logo.svg"
+                alt="lab"
+              />
+            </div>
           </div>
         </div>
         <div class="gov-rightbox">
@@ -97,11 +174,21 @@ export default {
             <div class="gov-line-hor-bot"></div>
           </div>
           <div class="gov-brands-box">
-            <div class="gov-brand"
-              >BRAND
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/hieronymus_logo.svg"
+                alt="hieronymus"
+              />
               <div class="gov-line-vert-right"></div>
             </div>
-            <div class="gov-brand">BRAND </div>
+            <div class="gov-brand">
+              <img
+                class="gov-brand-logo"
+                src="/images/extrablack_logo.svg"
+                alt="extrablack"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -188,7 +275,7 @@ export default {
   display: flex;
   position: relative;
   width: 100%;
-  padding: grid(3) grid(26);
+  padding: grid(4) grid(26);
   box-sizing: border-box;
 }
 .gov-tier2 {
@@ -204,7 +291,7 @@ export default {
   justify-content: center;
   font-size: getVw(35px);
   width: 100%;
-  padding: grid(1) grid(1) grid(2);
+  padding: grid(2) grid(1) grid(2.5);
   box-sizing: border-box;
 }
 .gov-leftbox {
@@ -243,8 +330,14 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: grid(1) 0;
+  padding: grid(1.2) 0;
   box-sizing: border-box;
+}
+.gov-brand-logo {
+  position: relative;
+  width: 100%;
+  max-width: 65%;
+  max-height: 0.9vw;
 }
 .gov-firstline-box {
   width: calc(100% - #{grid(2)});
