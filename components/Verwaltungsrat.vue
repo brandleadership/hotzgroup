@@ -101,7 +101,7 @@ export default {
 
 
 <template>
-  <section class="verwaltungsrat">
+  <section class="verwaltungsrat" id="vr">
     <div class="vr-mask">
       <h1 class="vr-headline">{{ sectioncontent.Headline }}</h1>
     </div>

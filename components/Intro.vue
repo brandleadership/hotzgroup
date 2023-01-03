@@ -23,6 +23,7 @@ export default {
     blackening: function () {
       const bg = find('.intro-blackbg', this.$el)[0]
       const video = find('.intro-video-box', this.$el)[0]
+      const haltung = find('.haltung')[0]
       const menu = find('.header-menu-icon')[0]
 
       this.blackeningTl = gsap
@@ -46,8 +47,8 @@ export default {
 
       ScrollTrigger.create({
         animation: this.scrollanimTl,
-        trigger: video,
-        start: 'bottom 80%', // when the top of the trigger hits the top of the viewport
+        trigger: haltung,
+        start: 'bottom 90%', // when the top of the trigger hits the top of the viewport
         // end: 'bottom 80%', // when the top of the trigger hits the top of the viewport
         onEnter: () => {
           this.blackeningTl.play(0)
@@ -66,7 +67,7 @@ export default {
           // console.log('onLeaveBack', 'PAUSE')
         },
         // scrub: 0,
-        // markers: 'true',
+        markers: 'true',
       })
     },
   },
@@ -122,6 +123,7 @@ export default {
 .intro {
   position: relative;
   padding-bottom: 50vh;
+  min-height: 110vh;
   @include sidepadding;
 }
 .intro-blackbg {

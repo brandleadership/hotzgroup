@@ -176,9 +176,13 @@ export default {
         <span class="footer-col2-item" @click="scrollToAnim('ansatz')"
           >Ansatz</span
         >
-        <span class="footer-col2-item">Geschichte</span>
-        <span class="footer-col2-item">Governance</span>
-        <span class="footer-col2-item">VR</span>
+        <span class="footer-col2-item" @click="scrollToAnim('geschichte')"
+          >Geschichte</span
+        >
+        <span class="footer-col2-item" @click="scrollToAnim('governance')"
+          >Governance</span
+        >
+        <span class="footer-col2-item" @click="scrollToAnim('vr')">VR</span>
       </div>
       <div class="footer-col3 footer-r-col">
         <nuxt-link class="footer-link" :to="'/datenschutz'"
@@ -202,7 +206,7 @@ export default {
 .footer {
   @include regular-font;
   @include fullpadding('padding');
-  padding: grid(2) grid(7);
+  padding: grid(2) grid(7) grid(12) grid(7);
   color: var(--main-color);
   width: 100%;
 

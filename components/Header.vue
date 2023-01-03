@@ -46,11 +46,11 @@ export default {
       const haltung = find('.haltung')[0]
       const ansatz = find('.ansatz')[0]
       const geschichte = find('.geschichte')[0]
-      // const faq = find('.faq')[0]
-      // const contact = find('.contact')[0]
+      const governance = find('.governance')[0]
+      const vr = find('.verwaltungsrat')[0]
       const indicators = find('.section-indicator')
 
-      this.allSections = [intro, haltung, ansatz, geschichte]
+      this.allSections = [intro, haltung, ansatz, geschichte, governance, vr]
 
       this.allSections.map((section, index) => {
         // this.sectionInTl = gsap
@@ -216,15 +216,12 @@ export default {
         <div class="section-indicator-mask">
           <span class="section-indicator">Geschichte</span>
         </div>
-        <!-- <div class="section-indicator-mask">
-          <span class="section-indicator">Geschichte</span>
-        </div>
         <div class="section-indicator-mask">
           <span class="section-indicator">Governance</span>
         </div>
         <div class="section-indicator-mask">
           <span class="section-indicator">VR</span>
-        </div> -->
+        </div>
       </div>
       <div class="header-menu-icon-box">
         <div class="header-menu-icon" @click="toggleMenu">

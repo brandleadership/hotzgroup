@@ -88,7 +88,7 @@ export default {
 
 
 <template>
-  <section class="governance">
+  <section class="governance" id="governance">
     <div class="gov-bg"></div>
 
     <h1 class="gov-hl">{{ sectioncontent }}</h1>
