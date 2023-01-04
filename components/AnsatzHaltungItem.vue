@@ -331,16 +331,16 @@ export default {
   mounted: function () {
     // this.splitText()
     this.setColors()
-    this.scrollanim()
-    this.lineHeightAnim()
 
-    // const elements = find('img', this.$el)
-    // document.fonts.ready.then(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //     })
-    //   })
-    // })
+    const elements = find('img', this.$el)
+    document.fonts.ready.then(() => {
+      this.$nextTick(() => {
+        imagesLoaded(elements, () => {
+          this.scrollanim()
+          this.lineHeightAnim()
+        })
+      })
+    })
   },
 }
 </script>
@@ -449,11 +449,20 @@ export default {
   top: 0;
   left: 0;
   opacity: 0;
+  pointer-events: none;
 }
 
 .haltung-hl-box {
   width: grid(82);
   z-index: 1;
+  @include media('<=tablet-l') {
+    width: grid(78);
+  }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      width: grid(88);
+    }
+  }
 }
 .haltung-hl-mask {
   overflow: hidden;
@@ -467,6 +476,10 @@ export default {
   margin-bottom: -0.15em;
   text-transform: uppercase;
   transform: translate(0, 120%);
+
+  // @include media('<=tablet-l') {
+  //   font-size: getVw(200px);
+  // }
 }
 .haltung-hl-mask2 {
   position: absolute;
@@ -475,6 +488,13 @@ export default {
   position: relative;
   width: calc(100% - #{grid(4)});
   height: calc(100vh - #{grid(8)});
+
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      // height: 130vw;
+      width: calc(100% - #{grid(6)});
+    }
+  }
 }
 .haltung-pic {
   width: 100%;
@@ -487,14 +507,32 @@ export default {
   margin-bottom: 100vh;
   width: grid(56);
   margin-left: grid(32);
+
+  @include media('<tablet-xxl') {
+    @media (orientation: portrait) {
+      margin-top: 50vh;
+      margin-bottom: 50vh;
+    }
+  }
+  @include media('<tablet-l') {
+    @media (orientation: portrait) {
+      width: grid(60);
+      margin-left: grid(28);
+    }
+  }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      width: grid(76);
+      margin-left: grid(12);
+    }
+  }
 }
 .haltung-text {
   display: block;
   width: 100%;
   position: absolute;
-  font-size: getVw(50px);
-  line-height: 1.2em;
   @include sec-font;
+  @include textBig;
   color: var(--sec-color);
 }
 .text-spacer {
@@ -511,5 +549,15 @@ export default {
   position: relative;
   margin-top: 60px;
   @include italic-font;
+  font-size: 30px;
+
+  @include media('<=tablet-xxl') {
+    font-size: 25px;
+  }
+  @include media('<tablet-l') {
+    @media (orientation: portrait) {
+      font-size: 20px;
+    }
+  }
 }
 </style>

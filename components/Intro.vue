@@ -22,7 +22,7 @@ export default {
   methods: {
     blackening: function () {
       const bg = find('.intro-blackbg', this.$el)[0]
-      const video = find('.intro-video-box', this.$el)[0]
+      // const video = find('.intro-video-box', this.$el)[0]
       const haltung = find('.haltung')[0]
       const menu = find('.header-menu-icon')[0]
 
@@ -48,7 +48,7 @@ export default {
       ScrollTrigger.create({
         animation: this.scrollanimTl,
         trigger: haltung,
-        start: 'bottom 90%', // when the top of the trigger hits the top of the viewport
+        start: 'top 80%', // when the top of the trigger hits the top of the viewport
         // end: 'bottom 80%', // when the top of the trigger hits the top of the viewport
         onEnter: () => {
           this.blackeningTl.play(0)
@@ -67,7 +67,7 @@ export default {
           // console.log('onLeaveBack', 'PAUSE')
         },
         // scrub: 0,
-        markers: 'true',
+        // markers: 'true',
       })
     },
   },
@@ -136,7 +136,13 @@ export default {
   opacity: 0;
 }
 .intro-logo-box {
-  padding-top: 5.4vw;
+  padding-top: 5.5vw;
+  @include media('<=tablet-xxl') {
+    padding-top: 6vw;
+  }
+  @include media('<=tablet-l') {
+    padding-top: 7vw;
+  }
 }
 
 .intro-video-box {
@@ -145,6 +151,12 @@ export default {
   height: calc(#{grid(92)} * 9 / 16);
   max-width: 100%;
   // height: 100vh;
+
+  @include media('<=tablet-xxl') {
+    @media (orientation: portrait) {
+      height: calc(#{grid(92)} * 9 / 16);
+    }
+  }
 }
 .intro-video {
   position: relative;

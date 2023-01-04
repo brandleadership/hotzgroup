@@ -57,6 +57,7 @@ export default {
 
 .ansatz {
   @include sidepadding('padding');
+  padding-top: grid(4);
 
   @include media('<=tablet-l') {
   }

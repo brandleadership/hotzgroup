@@ -1,5 +1,5 @@
 <script>
-import { gsap, Power1, Power2, Power3, Linear } from 'gsap'
+import { gsap, Power0, Power2, Power3, Linear } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import SbLink from '@/components/SbLink.vue'
 import SbRichText from '@/components/SbRichText.vue'
@@ -25,11 +25,20 @@ export default {
   },
   methods: {
     scrollToAnim: function (sectionId) {
-      this.scrollToTl = new gsap.to(window, {
-        duration: 2,
-        scrollTo: '#' + sectionId,
-        ease: Power2.easeOut,
-      })
+      if (this.$route.path != '/') {
+        this.$router.push({
+          path: '/#' + sectionId,
+        })
+        setTimeout(() => {
+          history.pushState('', document.title, window.location.pathname)
+        }, 2000)
+      } else {
+        this.scrollToTl = new gsap.to(window, {
+          duration: 2,
+          scrollTo: '#' + sectionId,
+          ease: Power2.easeOut,
+        })
+      }
     },
     backToTopHoverAnim: function () {
       if (isTouchDevice() == true) {
@@ -123,7 +132,7 @@ export default {
   <section class="js-footer footer">
     <div class="footer-line"></div>
     <div class="footer-inner">
-      <div class="footer-col1">
+      <div class="footer-col1 footer-col">
         <span class="footer-links-hl">
           {{ globalSbSettings.headline_links_col1 }}
         </span>
@@ -168,7 +177,7 @@ export default {
           <span class="footer-link-txt">Hieronymus</span>
         </a>
       </div>
-      <div class="footer-col2 footer-r-col">
+      <div class="footer-col2 footer-col footer-r-col">
         <span class="footer-col2-item" @click="scrollToAnim('home')">Home</span>
         <span class="footer-col2-item" @click="scrollToAnim('haltung')"
           >Haltung</span
@@ -184,13 +193,13 @@ export default {
         >
         <span class="footer-col2-item" @click="scrollToAnim('vr')">VR</span>
       </div>
-      <div class="footer-col3 footer-r-col">
+      <div class="footer-col3 footer-col footer-r-col">
         <nuxt-link class="footer-link" :to="'/datenschutz'"
           >Datenschutz
         </nuxt-link>
         <nuxt-link class="footer-link" :to="'/agb'">AGB </nuxt-link>
       </div>
-      <div class="footer-col4 footer-r-col">
+      <div class="footer-col4 footer-col footer-r-col">
         <SbRichText
           class="footer-contact"
           :richTextParams="globalSbSettings.footer_contact"
@@ -205,11 +214,10 @@ export default {
 
 .footer {
   @include regular-font;
-  @include fullpadding('padding');
+  // @include fullpadding('padding');
   padding: grid(2) grid(7) grid(12) grid(7);
   color: var(--main-color);
   width: 100%;
-
   position: relative;
   box-sizing: border-box;
   background-color: var(--main-color);
@@ -232,9 +240,9 @@ export default {
   // @include media('<phone') {
   // }
 
-  // a {
-  //   text-decoration: underline;
-  // }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 .footer-line {
@@ -245,23 +253,72 @@ export default {
   // margin-left: grid(2);
   width: 100%;
   background-color: var(--sec-color);
+  @include media('<tablet') {
+    margin-top: 60px;
+  }
 }
 
 .footer-inner {
   display: flex;
+  @include media('<tablet') {
+    flex-direction: column;
+  }
 }
 .footer-col1 {
   display: flex;
   flex-direction: column;
   width: grid(37);
+  @include media('<tablet-l') {
+    width: grid(22);
+  }
+  @include media('<tablet') {
+    flex-direction: column;
+    width: 100%;
+  }
 }
 .footer-r-col {
   display: flex;
   flex-direction: column;
   width: grid(15);
+  @include media('<tablet-l') {
+    width: grid(20);
+  }
 }
 
 .footer-col2-item {
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.footer-col1 {
+  @include media('<tablet-l') {
+    order: 2;
+    margin-bottom: 60px;
+  }
+}
+.footer-col2 {
+  @include media('<tablet-l') {
+    order: 1;
+    margin-bottom: 60px;
+    margin-top: 20px;
+  }
+}
+.footer-col3 {
+  @include media('<tablet-l') {
+    order: 3;
+    margin-bottom: 60px;
+  }
+}
+.footer-col4 {
+  @include media('<tablet-l') {
+    order: 4;
+    margin-bottom: 60px;
+  }
+}
+.footer-col {
+  @include media('<tablet-l') {
+    width: 100%;
+  }
 }
 </style>

@@ -34,20 +34,34 @@ export default {
         this.hideMenu()
       }
     },
-    scrollToAnim: function (sectionId) {
-      this.scrollToTl = new gsap.to(window, {
-        duration: 2,
-        scrollTo: '#' + sectionId,
-        ease: Power2.easeOut,
+    backToHome: function () {
+      this.$router.push({
+        path: '/',
       })
+    },
+    scrollToAnim: function (sectionId) {
+      if (this.$route.path != '/') {
+        this.$router.push({
+          path: '/#' + sectionId,
+        })
+        setTimeout(() => {
+          history.pushState('', document.title, window.location.pathname)
+        }, 2000)
+      } else {
+        this.scrollToTl = new gsap.to(window, {
+          duration: 2,
+          scrollTo: '#' + sectionId,
+          ease: Power2.easeOut,
+        })
+      }
     },
     activateSection: function () {
       const intro = find('.intro')[0]
       const haltung = find('.haltung')[0]
       const ansatz = find('.ansatz')[0]
-      const geschichte = find('.geschichte')[0]
-      const governance = find('.governance')[0]
-      const vr = find('.verwaltungsrat')[0]
+      const geschichte = find('#geschichte-anker')[0]
+      const governance = find('#governance-anker')[0]
+      const vr = find('#vr-anker')[0]
       const indicators = find('.section-indicator')
 
       this.allSections = [intro, haltung, ansatz, geschichte, governance, vr]
@@ -203,7 +217,10 @@ export default {
 <template>
   <header>
     <div class="js-header-menu header-menu">
-      <div class="section-indicator-box">
+      <div
+        :class="{ hideme: this.$route.path != '/' }"
+        class="section-indicator-box"
+      >
         <div class="section-indicator-mask">
           <span class="section-indicator">&nbsp;</span>
         </div>
@@ -231,6 +248,11 @@ export default {
           <span>Close</span>
         </div>
       </div>
+      <!-- <div v-if="this.$route.path != '/'" class="header-menu-icon-box">
+        <div class="header-menu-icon" @click="backToHome">
+          <span>Home</span>
+        </div>
+      </div> -->
 
       <div
         class="js-header-menu header-menu-overlay"
@@ -324,6 +346,7 @@ header {
   z-index: $z-sun;
 
   @include media('<=tablet-l') {
+    padding-top: grid(3);
   }
   @include media('<tablet-l') {
   }
@@ -332,6 +355,9 @@ header {
     }
   }
   @include media('<tablet') {
+    @media (orientation: portrait) {
+      padding-top: 20px;
+    }
   }
   @include media('<phone') {
   }
@@ -343,7 +369,9 @@ header {
     //this is only touch
   }
 }
-
+.hideme {
+  visibility: hidden;
+}
 .header-menu {
   display: flex;
   align-items: flex-end;
@@ -374,6 +402,10 @@ header {
   font-size: 20px;
   // z-index: 999999;
   cursor: pointer;
+
+  @include media('<=tablet-l') {
+    font-size: 18px;
+  }
 }
 .header-menu-overlay {
   position: fixed;
@@ -468,6 +500,9 @@ header {
   display: block;
   position: relative;
   cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 .menu-active {
   display: flex;

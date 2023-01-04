@@ -22,6 +22,18 @@
   }
 }
 
+@mixin megapadding($value: 'padding') {
+  #{$value}: grid(7);
+
+  @include media('<=tablet-xxl') {
+    #{$value}: grid(7);
+  }
+
+  @include media('<=tablet-l') {
+    #{$value}: grid(7);
+  }
+}
+
 @mixin abstand200($value: 'margin') {
   #{$value}: 200px;
 
@@ -172,27 +184,51 @@
 }
 
 @mixin textBig {
-  font-size: 2.6vw;
+  font-size: getVw(50px);
   line-height: 1.2em;
-  margin-top: -0.3em;
-  margin-bottom: -0.3em;
 
-  @include media('<=tablet-l') {
-    font-size: 30px;
+  @include media('<=tablet-xxl') {
+    font-size: getVw(60px);
+    // line-height: 1.2em;
   }
 
   @include media('<tablet-l') {}
 
   @include media('<tablet-l') {
-    @media (orientation: landscape) {
-      font-size: 25px;
+    @media (orientation: portrait) {
+      font-size: getVw(70px);
     }
   }
 
-  @include media('<tablet') {
-    font-size: 22px;
-    line-height: 1.3em;
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
   }
+
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      font-size: 20px;
+    }
+  }
+
+  @include media('<tablet') {}
+}
+
+@mixin miniHl {
+  font-size: 24px;
+  line-height: 1.2em;
+
+  @include media('<=tablet-xxl') {
+    font-size: 24px;
+    // line-height: 1.2em;
+  }
+
+  @include media('<tablet-l') {}
+
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {}
+  }
+
+  @include media('<tablet') {}
 }
 
 @mixin textMedium {

@@ -88,8 +88,9 @@ export default {
 
 
 <template>
-  <section class="governance" id="governance">
+  <section class="governance" id="governance-anker">
     <div class="gov-bg"></div>
+    <div class="governance-anker" id="governance"></div>
 
     <h1 class="gov-hl">{{ sectioncontent }}</h1>
     <div class="gov-box">
@@ -105,10 +106,11 @@ export default {
       </div>
       <div class="gov-tier2">
         <div class="gov-leftbox">
-          <div class="gov-line-vert-right"></div>
+          <div class="gov-line-vert-right linenotonmobile"></div>
+          <div class="gov-line-hor-bot lineonlyonmobile"></div>
           <div class="gov-categories-box">
             <span class="gov-categories">Brand Leadership Circle</span>
-            <div class="gov-line-hor-bot"></div>
+            <div class="gov-line-hor-bot linenotonmobile"></div>
           </div>
           <div class="gov-brands-box">
             <div class="gov-brand">
@@ -153,10 +155,11 @@ export default {
           </div>
         </div>
         <div class="gov-centerbox">
-          <div class="gov-line-vert-right"></div>
+          <div class="gov-line-vert-right linenotonmobile"></div>
+          <div class="gov-line-hor-bot lineonlyonmobile"></div>
           <div class="gov-categories-box">
             <span class="gov-categories">Do Tank</span>
-            <div class="gov-line-hor-bot"></div>
+            <div class="gov-line-hor-bot linenotonmobile"></div>
           </div>
           <div class="gov-brands-box">
             <div class="gov-brand">
@@ -171,7 +174,7 @@ export default {
         <div class="gov-rightbox">
           <div class="gov-categories-box">
             <span class="gov-categories">Luxusmarken</span>
-            <div class="gov-line-hor-bot"></div>
+            <div class="gov-line-hor-bot linenotonmobile"></div>
           </div>
           <div class="gov-brands-box">
             <div class="gov-brand">
@@ -219,6 +222,13 @@ export default {
   @include media('<phone') {
   }
 }
+
+.governance-anker {
+  position: absolute;
+  height: 100vh;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 .gov-line-hor-top {
   position: absolute;
   width: 100%;
@@ -261,7 +271,7 @@ export default {
 }
 .gov-hl {
   position: relative;
-  font-size: 24px;
+  @include miniHl;
   text-transform: uppercase;
   margin-bottom: grid(8);
 }
@@ -277,6 +287,10 @@ export default {
   width: 100%;
   padding: grid(4) grid(26);
   box-sizing: border-box;
+
+  @include media('<tablet-l') {
+    padding: 860px 40px;
+  }
 }
 .gov-tier2 {
   position: relative;
@@ -284,15 +298,25 @@ export default {
   width: 100%;
   padding: grid(1);
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    flex-direction: column;
+    padding: 10px;
+  }
 }
 .gov-categories-box {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   font-size: getVw(35px);
+  line-height: 1em;
   width: 100%;
   padding: grid(2) grid(1) grid(2.5);
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    padding: 20px 10px;
+    font-size: 20px;
+  }
 }
 .gov-leftbox {
   flex-direction: column;
@@ -301,6 +325,10 @@ export default {
   width: grid(40);
   padding: 0 grid(1) 0 0;
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    width: 100%;
+    padding: 10px 0 30px 0;
+  }
 }
 .gov-centerbox {
   flex-direction: column;
@@ -309,6 +337,10 @@ export default {
   width: grid(16);
   padding: 0 grid(1);
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    width: 100%;
+    padding: 20px 0 20px 0;
+  }
 }
 .gov-rightbox {
   flex-direction: column;
@@ -317,12 +349,19 @@ export default {
   width: grid(26);
   padding: 0 0 0 grid(1);
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    width: 100%;
+    padding: 20px 0 20px 0;
+  }
 }
 .gov-brands-box {
   position: relative;
   display: flex;
   box-sizing: border-box;
   padding: grid(1) 0 0 0;
+  @include media('<tablet-l') {
+    padding: 0 0 0 0;
+  }
 }
 .gov-brand {
   display: flex;
@@ -332,17 +371,43 @@ export default {
   width: 100%;
   padding: grid(1.2) 0;
   box-sizing: border-box;
+  @include media('<tablet-l') {
+    padding: 10px 0;
+  }
 }
 .gov-brand-logo {
   position: relative;
   width: 100%;
   max-width: 65%;
   max-height: 0.9vw;
+  @include media('<=tablet-xxl') {
+    max-width: 75%;
+    max-height: 1.2vw;
+  }
+  @include media('<tablet-l') {
+    max-width: 75%;
+    max-height: 2.5vw;
+  }
 }
 .gov-firstline-box {
   width: calc(100% - #{grid(2)});
   position: absolute;
   bottom: 0;
   left: grid(1);
+  @include media('<tablet-l') {
+    width: calc(100% - 20px);
+    left: 10px;
+  }
+}
+.lineonlyonmobile {
+  display: none;
+}
+@include media('<tablet-l') {
+  .linenotonmobile {
+    display: none;
+  }
+  .lineonlyonmobile {
+    display: block;
+  }
 }
 </style>

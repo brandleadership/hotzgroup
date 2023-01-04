@@ -101,7 +101,9 @@ export default {
 
 
 <template>
-  <section class="verwaltungsrat" id="vr">
+  <section class="verwaltungsrat" id="vr-anker">
+    <div class="vr-anker" id="vr"></div>
+
     <div class="vr-mask">
       <h1 class="vr-headline">{{ sectioncontent.Headline }}</h1>
     </div>
@@ -190,12 +192,20 @@ export default {
     display: inline-block;
   }
 }
-
+.vr-anker {
+  position: absolute;
+  height: 100vh;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 .vr-container {
   display: flex;
+  @include media('<tablet') {
+    flex-direction: column;
+  }
 }
 .vr-headline {
-  font-size: 24px;
+  @include miniHl;
   text-transform: uppercase;
 }
 .vr-picbox {
@@ -204,6 +214,29 @@ export default {
   margin-right: grid(5);
   flex-shrink: 0;
   margin-top: 3vw;
+
+  @include media('<=tablet-xxl') {
+    width: grid(41);
+  }
+  @include media('<tablet-xxl') {
+    @media (orientation: portrait) {
+      width: grid(50);
+    }
+  }
+  @include media('<=tablet-l') {
+    width: grid(47);
+  }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      width: 100%;
+      height: 100vw;
+      margin-top: 40px;
+    }
+    @media (orientation: landscape) {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 .vr-pic {
   object-fit: cover;
@@ -214,10 +247,20 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  @include media('<tablet') {
+    margin-bottom: 50px;
+  }
 }
 .vr-person {
   margin-top: 3vw;
   margin-bottom: -9px;
+
+  @include media('<=tablet-l') {
+    margin-bottom: -6px;
+  }
+  @include media('<=tablet-l') {
+    margin-top: 50px;
+  }
 }
 .vr-names {
   margin-bottom: 15px;
@@ -229,6 +272,11 @@ export default {
   // margin-bottom: 15px;
   text-transform: uppercase;
   line-height: 1em;
+  @include media('<=tablet-l') {
+    // @media (orientation: landscape) {
+    font-size: 30px;
+    // }
+  }
 }
 .vr-role {
   display: block;

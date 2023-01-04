@@ -27,13 +27,13 @@ export default {
     return {}
   },
 
-  middleware({ store, redirect, route, auth }) {
-    switch (route.path) {
-      case '/':
-        return redirect('/home')
-        break
-    }
-  },
+  // middleware({ store, redirect, route, auth }) {
+  //   switch (route.path) {
+  //     case '/':
+  //       return redirect('/home')
+  //       break
+  //   }
+  // },
 
   head() {
     return {

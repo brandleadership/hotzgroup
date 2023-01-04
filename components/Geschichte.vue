@@ -116,7 +116,8 @@ export default {
 
 
 <template>
-  <section class="geschichte" id="geschichte">
+  <section class="geschichte" id="geschichte-anker">
+    <div class="geschichte-anker" id="geschichte"></div>
     <div class="geschichte-bg-color"></div>
     <div class="geschichte-textbox">
       <h2 class="geschichte-hl">{{ sectioncontent.headline }}</h2>
@@ -149,7 +150,12 @@ export default {
   @include media('<phone') {
   }
 }
-
+.geschichte-anker {
+  position: absolute;
+  height: 100vh;
+  top: 50%;
+  transform: translate(0, -50%);
+}
 .geschichte-bg-color {
   background-color: var(--brand-color);
   position: fixed;
@@ -158,17 +164,22 @@ export default {
   top: 0;
   left: 0;
   opacity: 0;
+  pointer-events: none;
 }
 .geschichte-textbox {
   position: relative;
-
+  @include miniHl;
   width: grid(63);
   margin-left: grid(7);
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      width: calc(100% - #{grid(14)});
+    }
+  }
 }
 .geschichte-hl {
   display: block;
-  font-size: 24px;
-  line-height: 1.2em;
+
   margin-bottom: 80px;
   text-transform: uppercase;
 }
@@ -176,8 +187,7 @@ export default {
   display: block;
   width: 100%;
   position: absolute;
-  font-size: getVw(50px);
-  line-height: 1.2em;
+  @include textBig;
   @include sec-font;
 }
 .text-spacer {
