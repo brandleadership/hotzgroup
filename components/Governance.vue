@@ -289,7 +289,7 @@ export default {
   box-sizing: border-box;
 
   @include media('<tablet-l') {
-    padding: 860px 40px;
+    padding: 100px 40px;
   }
 }
 .gov-tier2 {
