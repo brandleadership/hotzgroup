@@ -147,7 +147,7 @@ export default {
         )
         .fromTo(
           this.logo,
-          { y: '110%' },
+          { y: '120%' },
           { duration: 0.4, y: '0%', ease: Power2.easeOut },
           0.3
         )
@@ -176,7 +176,7 @@ export default {
             this.menuOpen = false
           },
         })
-        .to(this.logo, { duration: 0.4, y: '110%', ease: Power2.easeOut }, 0.2)
+        .to(this.logo, { duration: 0.4, y: '120%', ease: Power2.easeOut }, 0.2)
         .to(
           this.navitem,
           { stagger: 0.03, duration: 0.4, y: '-100%', ease: Power2.easeOut },
@@ -469,7 +469,9 @@ header {
     }
   }
   @include media('<tablet') {
-    @media (orientation: landscape) {
+    @media (orientation: portrait) {
+      left: grid(41);
+      flex-direction: column;
     }
   }
   @include media('<phone') {
@@ -495,6 +497,19 @@ header {
   @include regular-font;
   color: var(--sec-color);
   width: grid(15);
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      width: grid(30);
+    }
+  }
+}
+.header-sectionlinks,
+.header-pagelinks {
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      margin-top: 20px;
+    }
+  }
 }
 .header-sectionlink,
 .header-link {

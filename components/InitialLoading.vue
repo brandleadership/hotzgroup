@@ -232,5 +232,12 @@ export default {
   text-transform: uppercase;
   opacity: 0;
   color: $sec-color;
+
+  @include media('<=tablet-l') {
+    font-size: getVw(70px);
+  }
+  @include media('<tablet') {
+    font-size: getVw(100px);
+  }
 }
 </style>
