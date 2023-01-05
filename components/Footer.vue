@@ -260,7 +260,7 @@ export default {
 
 .footer-inner {
   display: flex;
-  @include media('<tablet') {
+  @include media('<=tablet') {
     flex-direction: column;
   }
 }
@@ -271,7 +271,7 @@ export default {
   @include media('<tablet-l') {
     width: grid(22);
   }
-  @include media('<tablet') {
+  @include media('<=tablet') {
     flex-direction: column;
     width: 100%;
   }
@@ -292,32 +292,32 @@ export default {
   }
 }
 .footer-col1 {
-  @include media('<tablet-l') {
+  @include media('<=tablet') {
     order: 2;
     margin-bottom: 60px;
   }
 }
 .footer-col2 {
-  @include media('<tablet-l') {
+  @include media('<=tablet') {
     order: 1;
     margin-bottom: 60px;
     margin-top: 20px;
   }
 }
 .footer-col3 {
-  @include media('<tablet-l') {
+  @include media('<=tablet') {
     order: 3;
     margin-bottom: 60px;
   }
 }
 .footer-col4 {
-  @include media('<tablet-l') {
+  @include media('<=tablet') {
     order: 4;
     margin-bottom: 60px;
   }
 }
 .footer-col {
-  @include media('<tablet-l') {
+  @include media('<=tablet') {
     width: 100%;
   }
 }

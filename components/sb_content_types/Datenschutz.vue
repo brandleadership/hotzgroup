@@ -52,10 +52,16 @@ export default {
 }
 .datenschutz-logo-box {
   margin-bottom: 10vw;
+  @include media('<tablet') {
+    margin-top: 10vw;
+  }
 }
 .datenschutz-flexbox {
   display: flex;
   align-items: flex-start;
+  @include media('<tablet-l') {
+    flex-direction: column;
+  }
 }
 .datenschutz-hl {
   display: block;
@@ -69,6 +75,21 @@ export default {
   box-sizing: border-box;
   flex-shrink: 0;
   // text-indent: grid(10);
+  @include media('<=tablet-l') {
+    font-size: 40px;
+  }
+  @include media('<tablet-l') {
+    position: relative;
+    top: 0;
+    font-size: 50px;
+    width: 70%;
+    margin-bottom: 80px;
+  }
+  @include media('<tablet') {
+    font-size: 40px;
+    width: 100%;
+    margin-top: 20px;
+  }
 }
 
 .datenschutz-text {
@@ -87,15 +108,30 @@ export default {
   p:last-of-type {
     margin-bottom: 0;
   }
+
+  @include media('<tablet') {
+    line-height: 1.6em;
+    margin-top: -95px;
+  }
 }
 
 .datenschutz-headline-xxl {
   @include main-font;
   position: relative;
   display: block;
-  // line-height: 1em;
+  line-height: 1em;
   font-size: getVw(40px);
   margin-top: 160px;
+  @include media('<=tablet-l') {
+    font-size: 40px;
+  }
+  @include media('<tablet-l') {
+    font-size: 30px;
+  }
+
+  @include media('<tablet') {
+    margin-top: 100px;
+  }
 }
 
 .datenschutz-headline {
@@ -106,5 +142,8 @@ export default {
   margin-top: 3vw;
   margin-bottom: 40px;
   letter-spacing: 0.05em;
+  @include media('<=tablet-l') {
+    margin-top: 60px;
+  }
 }
 </style>
