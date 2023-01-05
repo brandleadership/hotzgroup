@@ -214,6 +214,7 @@ export default {
   margin-right: grid(5);
   flex-shrink: 0;
   margin-top: 3vw;
+  overflow: hidden;
 
   @include media('<=tablet-xxl') {
     width: grid(41);

@@ -357,6 +357,7 @@ header {
   @include media('<tablet') {
     @media (orientation: portrait) {
       padding-top: 20px;
+      padding-bottom: 20px;
     }
   }
   @include media('<phone') {

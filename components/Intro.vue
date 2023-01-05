@@ -97,20 +97,22 @@ export default {
     <div class="intro-logo-box">
       <Logo></Logo>
     </div>
-    <div class="intro-video-box">
-      <iframe
-        class="intro-video"
-        :src="
-          'https://player.vimeo.com/video/' +
-          sectioncontent.video +
-          '?background=1'
-        "
-        frameborder="0"
-        width="100%"
-        height="100%"
-        allowfullscreen
-        disablepictureinpicture
-      ></iframe>
+    <div class="intro-video-mask">
+      <div class="intro-video-box">
+        <iframe
+          class="intro-video"
+          :src="
+            'https://player.vimeo.com/video/' +
+            sectioncontent.video +
+            '?background=1'
+          "
+          frameborder="0"
+          width="100%"
+          height="100%"
+          allowfullscreen
+          disablepictureinpicture
+        ></iframe>
+      </div>
     </div>
   </section>
 </template>
@@ -125,6 +127,13 @@ export default {
   padding-bottom: 50vh;
   min-height: 110vh;
   @include sidepadding;
+  display: flex;
+  flex-direction: column;
+  @include media('<=tablet') {
+    @media (orientation: portrait) {
+      height: 110vh;
+    }
+  }
 }
 .intro-blackbg {
   position: fixed;
@@ -143,18 +152,44 @@ export default {
   @include media('<=tablet-l') {
     padding-top: 7vw;
   }
+  @include media('<=tablet') {
+    @media (orientation: portrait) {
+      padding-top: 60px;
+      padding-bottom: 20px;
+    }
+  }
 }
 
 .intro-video-box {
   pointer-events: none;
   padding-top: 5vw;
   height: calc(#{grid(92)} * 9 / 16);
-  max-width: 100%;
+  // max-width: 100%;
   // height: 100vh;
 
   @include media('<=tablet-xxl') {
     @media (orientation: portrait) {
       height: calc(#{grid(92)} * 9 / 16);
+    }
+  }
+  @include media('<=tablet') {
+    @media (orientation: portrait) {
+      padding-top: 0;
+      height: 100%;
+      width: 370vw;
+      transform: translate(-50%);
+      left: 50%;
+      position: absolute;
+    }
+  }
+}
+.intro-video-mask {
+  @include media('<=tablet') {
+    @media (orientation: portrait) {
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: block;
     }
   }
 }
