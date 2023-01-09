@@ -503,7 +503,7 @@ export default {
 }
 .haltung-textbox {
   position: relative;
-  margin-top: 100vh;
+  margin-top: 75vh;
   margin-bottom: 100vh;
   width: grid(56);
   margin-left: grid(32);
