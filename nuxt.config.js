@@ -190,7 +190,7 @@ module.exports = {
       {
         rel: 'preload',
         as: 'font',
-        href: '/fonts/avenir/avenir-next-lt-pro-bold.woff',
+        href: '/fonts/avenir/avenirnextltpro-bold-webfont.woff2',
         crossorigin: true,
       },
       {
