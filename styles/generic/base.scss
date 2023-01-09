@@ -25,7 +25,7 @@ html {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   touch-action: manipulation;
-  background-color: $bg-color;
+  background-color: $main-color;
 
   @include media('<desktop-l') {
     font-size: $base-font-size-m;
