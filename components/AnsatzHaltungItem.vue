@@ -468,12 +468,13 @@ export default {
   overflow: hidden;
   display: block;
   margin-left: -0.7vw;
+  margin-bottom: 0.5vw;
 }
 .haltung-headline {
   position: relative;
   font-size: getVw(200px);
-  line-height: 1em;
-  margin-bottom: -1.59vw;
+  line-height: 0.8em;
+  // margin-bottom: -1.59vw;
   text-transform: uppercase;
   transform: translate(0, 120%);
 
