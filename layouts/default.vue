@@ -26,10 +26,10 @@ export default {
 
     this.smoothscroll = SmoothScroll()
 
-    console.log(
-      '%c Made by SPATZEK STUDIO - https://spatzek.studio',
-      'background: #000; color: #fff; display: block; padding:5px; padding-right: 10px;'
-    )
+    // console.log(
+    //   '%c Made by SPATZEK STUDIO - https://spatzek.studio',
+    //   'background: #000; color: #fff; display: block; padding:5px; padding-right: 10px;'
+    // )
   },
   methods: {
     setViewportCSSVar() {

@@ -473,7 +473,7 @@ export default {
   position: relative;
   font-size: getVw(200px);
   line-height: 1em;
-  margin-bottom: -0.15em;
+  margin-bottom: -1.59vw;
   text-transform: uppercase;
   transform: translate(0, 120%);
 
