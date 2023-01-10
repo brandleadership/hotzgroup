@@ -493,6 +493,8 @@ header {
 .header-sectionlinks,
 .header-pagelinks {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   @include regular-font;
   color: var(--sec-color);
@@ -516,10 +518,37 @@ header {
   display: block;
   position: relative;
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
+  // &:hover {
+  //   text-decoration: underline;
+  // }
+}
+.header-sectionlink::after,
+.header-link::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: $sec-color;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (pointer: fine) {
+  .header-sectionlink:hover::after,
+  .header-link:hover::after {
+    animation: lineanim 0.3s forwards cubic-bezier(0.17, 0.38, 0.42, 1);
   }
 }
+
+@keyframes lineanim {
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .menu-active {
   display: flex;
 }

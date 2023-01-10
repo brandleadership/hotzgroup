@@ -9,10 +9,10 @@ import {
 } from '~/scripts/elements.js'
 // import imagesLoaded from 'imagesloaded'
 import Logo from '@/components/Logo.vue'
-
+import Sbimage from '@/components/Sbimage.vue'
 export default {
   name: 'Intro',
-  components: { Logo },
+  components: { Logo, Sbimage },
   props: ['sectioncontent'],
 
   data() {
@@ -98,6 +98,21 @@ export default {
       <Logo></Logo>
     </div>
     <div class="intro-video-mask">
+      <Sbimage
+        :class="'intro-video-poster'"
+        :imgParams="{
+          src: sectioncontent.poster_pic,
+          width: 1920,
+          quality: 60,
+          alt: 'HotzGroup',
+          bp: {
+            1920: { width: 1920 },
+            1600: { width: 1600 },
+            1366: { width: 1366 },
+          },
+        }"
+      />
+
       <div class="intro-video-box">
         <iframe
           class="intro-video"
@@ -183,7 +198,33 @@ export default {
     }
   }
 }
+.intro-video-poster {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  padding-top: 5vw;
+  height: calc(#{grid(92)} * 9 / 16);
+  width: 100%;
+
+  @include media('<=tablet-xxl') {
+    @media (orientation: portrait) {
+      height: calc(#{grid(92)} * 9 / 16);
+    }
+  }
+  @include media('<=tablet') {
+    @media (orientation: portrait) {
+      padding-top: 0;
+      height: 100%;
+      width: 370vw;
+      transform: translate(-50%);
+      left: 50%;
+      position: absolute;
+    }
+  }
+}
 .intro-video-mask {
+  position: relative;
   @include media('<=tablet') {
     @media (orientation: portrait) {
       height: 100%;

@@ -240,9 +240,9 @@ export default {
   // @include media('<phone') {
   // }
 
-  a:hover {
-    text-decoration: underline;
-  }
+  // a:hover {
+  //   text-decoration: underline;
+  // }
 }
 
 .footer-line {
@@ -277,8 +277,10 @@ export default {
   }
 }
 .footer-r-col {
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   width: grid(15);
   @include media('<tablet-l') {
     width: grid(20);
@@ -286,18 +288,18 @@ export default {
 }
 
 .footer-col2-item {
+  position: relative;
   cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
 }
 .footer-col1 {
+  position: relative;
   @include media('<=tablet') {
     order: 2;
     margin-bottom: 60px;
   }
 }
 .footer-col2 {
+  position: relative;
   @include media('<=tablet') {
     order: 1;
     margin-bottom: 60px;
@@ -305,20 +307,58 @@ export default {
   }
 }
 .footer-col3 {
+  position: relative;
   @include media('<=tablet') {
     order: 3;
     margin-bottom: 60px;
   }
 }
 .footer-col4 {
+  position: relative;
   @include media('<=tablet') {
     order: 4;
     margin-bottom: 60px;
   }
 }
 .footer-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   @include media('<=tablet') {
     width: 100%;
+  }
+}
+.footer-link {
+  position: relative;
+}
+.footer-link-txt::after,
+.footer-link::after,
+.footer-col2-item::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: $sec-color;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@media (pointer: fine) {
+  //this is only desktop
+  .footer-link-txt:hover::after,
+  .footer-link:hover::after,
+  .footer-col2-item:hover::after {
+    animation: lineanim 0.3s forwards cubic-bezier(0.17, 0.38, 0.42, 1);
+  }
+}
+
+@keyframes lineanim {
+  100% {
+    transform: scaleX(1);
   }
 }
 </style>
