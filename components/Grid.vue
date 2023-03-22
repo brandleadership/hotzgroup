@@ -21,8 +21,9 @@ export default {
   },
   methods: {
     onKeyPress: function (evt) {
-      if (evt.key !== 'g') return
-      this.show = !this.show
+      if (evt.keyCode === 71 && evt.altKey) {
+        this.show = !this.show
+      }
     },
 
     onResize: function () {
