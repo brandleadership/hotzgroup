@@ -27,19 +27,19 @@ export default {
     }
   },
   methods: {
-    toggleMenu: function () {
+    toggleMenu: function() {
       if (!this.menuOpen) {
         this.showMenu()
       } else {
         this.hideMenu()
       }
     },
-    backToHome: function () {
+    backToHome: function() {
       this.$router.push({
         path: '/',
       })
     },
-    scrollToAnim: function (sectionId) {
+    scrollToAnim: function(sectionId) {
       if (this.$route.path != '/') {
         this.$router.push({
           path: '/#' + sectionId,
@@ -55,7 +55,7 @@ export default {
         })
       }
     },
-    activateSection: function () {
+    activateSection: function() {
       const intro = find('.intro')[0]
       const haltung = find('.haltung')[0]
       const ansatz = find('.ansatz')[0]
@@ -120,7 +120,7 @@ export default {
       })
     },
 
-    showMenu: function () {
+    showMenu: function() {
       this.menuOpen = true
 
       this.darkener = find('.header-menu-darkener', this.$el)[0]
@@ -169,7 +169,7 @@ export default {
           0
         )
     },
-    hideMenu: function () {
+    hideMenu: function() {
       this.hideMenuTl = gsap
         .timeline({
           onComplete: () => {
@@ -200,7 +200,7 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     this.activateSection()
     // const elements = find('img', this.$el)
     // onFontLoaded(() => {
@@ -231,7 +231,7 @@ export default {
           <span class="section-indicator">Ansatz</span>
         </div>
         <div class="section-indicator-mask">
-          <span class="section-indicator">Geschichte</span>
+          <span class="section-indicator">Unsere Spuren</span>
         </div>
         <div class="section-indicator-mask">
           <span class="section-indicator">Governance</span>
@@ -395,6 +395,7 @@ header {
 }
 .section-indicator {
   display: none;
+  white-space: nowrap;
   // position: relative;
   // transform: translate(0, 120%);
 }

@@ -20,7 +20,7 @@ export default {
     return {}
   },
   methods: {
-    lineanim: function () {
+    lineanim: function() {
       const linesht = find('.gov-line-hor-top', this.$el)
       const lineshb = find('.gov-line-hor-bot', this.$el)
       const linesvt = find('.gov-line-vert-right', this.$el)
@@ -68,7 +68,7 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     this.lineanim()
     // const elements = find('img', this.$el)
     // onFontLoaded(() => {
@@ -84,12 +84,9 @@ export default {
 }
 </script>
 
-
-
-
 <template>
   <section class="governance" id="governance-anker">
-    <div class="gov-bg"></div>
+    <!-- <div class="gov-bg"></div> -->
     <div class="governance-anker" id="governance"></div>
 
     <h1 class="gov-hl">{{ sectioncontent }}</h1>
@@ -198,8 +195,6 @@ export default {
     </div>
   </section>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

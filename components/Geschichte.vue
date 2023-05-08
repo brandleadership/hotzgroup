@@ -8,23 +8,24 @@ import {
   onFontLoaded,
 } from '~/scripts/elements.js'
 import imagesLoaded from 'imagesloaded'
+import GeschichteSpuren from '@/components/GeschichteSpuren.vue'
 
 export default {
   name: 'Geschichte',
-  props: ['sectioncontent'],
-  components: {},
+  props: ['sectioncontent', 'spurencontent'],
+  components: { GeschichteSpuren },
 
   data() {
     //andere schreibweise für function() {
     return {}
   },
   methods: {
-    setColors: function () {
+    setColors: function() {
       this.bg = find('.geschichte-bg-color', this.$el)[0]
       this.bg.style.backgroundColor = this.sectioncontent.background_color
     },
 
-    lineHeightAnim: function () {
+    lineHeightAnim: function() {
       const textbox = find('.geschichte-textbox', this.$el)[0]
       const text = find('.geschichte-text', this.$el)[0]
 
@@ -51,9 +52,13 @@ export default {
       })
     },
 
-    scrollanim: function () {
+    scrollanim: function() {
       const bgColor = find('.geschichte-bg-color', this.$el)[0]
+      const geschichtetxt = find('.geschichte-text', this.$el)[0]
+      const menu = find('.header-menu-icon')[0]
+      const sectionIndicator = find('.section-indicator')
 
+      // const govBg = find('.gov-bg')[0]
       // IN
       this.bgColorInTl = gsap
         .timeline({ paused: true })
@@ -63,6 +68,28 @@ export default {
           { opacity: 1, duration: 0.4, ease: Power0.easeNone },
           0
         )
+
+      this.makeitWhite = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          bgColor,
+          { backgroundColor: this.sectioncontent.background_color },
+          { backgroundColor: 'white', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+        .fromTo(
+          menu,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+        .fromTo(
+          sectionIndicator,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+
       this.bgColorOutTl = gsap
         .timeline({ paused: true })
         .to(bgColor, { opacity: 0, duration: 0.4, ease: Power0.easeNone }, 0)
@@ -77,11 +104,12 @@ export default {
           // console.log('onEnter', 'PLAY')
         },
         // onLeave: () => {
-        //   this.headlineOutTl.play(0)
+        //   // this.makeitWhite.play(0)
+        //   // this.bgColorOutTl.play(0)
         //   // console.log('onLeave', 'PAUSE')
         // },
         // onEnterBack: () => {
-        //   this.headlineInRevTl.play(0)
+        //   // this.revertWhite.play(0)
         //   // console.log('onEnterBack', 'PLAY')
         // },
         onLeaveBack: () => {
@@ -91,10 +119,19 @@ export default {
         // scrub: 0,
         // markers: 'true',
       })
+
+      ScrollTrigger.create({
+        animation: this.makeitWhite,
+        trigger: geschichtetxt,
+        start: 'top top', // when the top of the trigger hits the top of the viewport
+        end: 'bottom bottom', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        // markers: 'true',
+      })
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     this.setColors()
     this.lineHeightAnim()
     this.scrollanim()
@@ -112,9 +149,6 @@ export default {
 }
 </script>
 
-
-
-
 <template>
   <section class="geschichte" id="geschichte-anker">
     <div class="geschichte-anker" id="geschichte"></div>
@@ -124,10 +158,9 @@ export default {
       <p class="geschichte-text">{{ sectioncontent.Text }}</p>
       <p class="geschichte-text text-spacer">{{ sectioncontent.Text }}</p>
     </div>
+    <GeschichteSpuren :spurencontent="spurencontent"></GeschichteSpuren>
   </section>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

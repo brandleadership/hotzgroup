@@ -16,6 +16,7 @@ import Intro from '@/components/Intro.vue'
 import Ansatz from '@/components/Ansatz.vue'
 import Haltung from '@/components/Haltung.vue'
 import Geschichte from '@/components/Geschichte.vue'
+// import Spuren from '@/components/Spuren.vue'
 import Verwaltungsrat from '@/components/Verwaltungsrat.vue'
 import Governance from '@/components/Governance.vue'
 
@@ -33,6 +34,7 @@ export default {
     Geschichte,
     Verwaltungsrat,
     Governance,
+    // Spuren
   },
 
   data() {
@@ -45,7 +47,7 @@ export default {
   },
   methods: {},
 
-  mounted: function () {
+  mounted: function() {
     // const elements = find('img', this.$el)
     // onFontLoaded(() => {
     //   this.$nextTick(() => {
@@ -64,7 +66,11 @@ export default {
     <Intro :sectioncontent="pagecontent.intro[0]"></Intro>
     <Haltung :sectioncontent="pagecontent.haltung"></Haltung>
     <Ansatz :sectioncontent="pagecontent.ansatz"></Ansatz>
-    <Geschichte :sectioncontent="pagecontent.geschichte[0]"></Geschichte>
+    <Geschichte
+      :sectioncontent="pagecontent.geschichte[0]"
+      :spurencontent="pagecontent.Spuren"
+    ></Geschichte>
+    <!-- <Spuren :sectioncontent="pagecontent.spuren"></Spuren> -->
     <Governance :sectioncontent="pagecontent.governance"></Governance>
     <Verwaltungsrat
       :sectioncontent="pagecontent.verwaltungsrat[0]"
