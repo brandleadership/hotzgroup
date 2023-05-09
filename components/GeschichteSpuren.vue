@@ -246,8 +246,6 @@ export default {
     removeAnim: function() {
       const textbox = find('.spuren-textbox', this.$el)[0]
       const pic = find('.geschichte-spuren-pic', this.$el)[0]
-      // const text = find(this.lines)
-      // console.log(text)
 
       this.lineHeightAnimTl = gsap.timeline({ paused: true }).fromTo(
         pic,
@@ -271,6 +269,59 @@ export default {
         // markers: 'true',
       })
     },
+    menucolorAnim: function() {
+      const menu = find('.header-menu-icon')[0]
+      const sectionIndicator = find('.section-indicator')
+
+      // const text = find(this.lines)
+      // console.log(text)
+
+      this.menuWhiteningTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          menu,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+        .fromTo(
+          sectionIndicator,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+
+      ScrollTrigger.create({
+        animation: this.menuWhiteningTl,
+        trigger: this.$el,
+        start: 'top -150%', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+      })
+
+      const textbox = find('.spuren-textbox', this.$el)[0]
+
+      this.menuBlackeningTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          menu,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+        .fromTo(
+          sectionIndicator,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+
+      ScrollTrigger.create({
+        animation: this.menuBlackeningTl,
+        trigger: textbox,
+        start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+      })
+    },
   },
 
   mounted: function() {
@@ -280,6 +331,7 @@ export default {
     this.headlineSlide()
     this.lineHeightAnim()
     this.removeAnim()
+    this.menucolorAnim()
   },
 }
 </script>
