@@ -23,7 +23,7 @@ export default {
     return {}
   },
   methods: {
-    setColors: function () {
+    setColors: function() {
       if (!this.haltungitem.background_color) return
 
       this.bg = find('.haltung-bg-color', this.$el)[0]
@@ -31,9 +31,9 @@ export default {
       this.bg.style.backgroundColor = this.haltungitem.background_color
     },
 
-    scrollanim: function () {
+    scrollanim: function() {
       const bgColor = find('.haltung-bg-color', this.$el)[0]
-      console.log(bgColor)
+
       this.headline1 = find('.haltung-headline1', this.$el)[0]
       this.headline2 = find('.haltung-headline2', this.$el)[0]
       const hlDuration = 0.7
@@ -204,7 +204,7 @@ export default {
       })
     },
 
-    lineHeightAnim: function () {
+    lineHeightAnim: function() {
       const textbox = find('.haltung-textbox', this.$el)[0]
       const link = find('.haltung-link', this.$el)[0]
       const text = find('.haltung-text', this.$el)[0]
@@ -328,7 +328,7 @@ export default {
     // },
   },
 
-  mounted: function () {
+  mounted: function() {
     // this.splitText()
     this.setColors()
 
@@ -344,9 +344,6 @@ export default {
   },
 }
 </script>
-
-
-
 
 <template>
   <div class="haltung-item">
@@ -401,8 +398,6 @@ export default {
     <!-- </div> -->
   </div>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

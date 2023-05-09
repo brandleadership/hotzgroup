@@ -203,6 +203,7 @@ export default {
   position: relative;
   color: var(--main-color);
   padding: 30vw grid(7);
+  background-color: var(--sec-color);
 
   @include media('<=tablet-l') {
   }

@@ -74,7 +74,11 @@ export default {
         .fromTo(
           bgColor,
           { backgroundColor: this.sectioncontent.background_color },
-          { backgroundColor: 'white', duration: 0.4, ease: Power0.easeNone },
+          {
+            backgroundColor: 'transparent',
+            duration: 0.4,
+            ease: Power0.easeNone,
+          },
           0
         )
         .fromTo(
@@ -151,13 +155,16 @@ export default {
 
 <template>
   <section class="geschichte" id="geschichte-anker">
-    <div class="geschichte-anker" id="geschichte"></div>
-    <div class="geschichte-bg-color"></div>
-    <div class="geschichte-textbox">
-      <h2 class="geschichte-hl">{{ sectioncontent.headline }}</h2>
-      <p class="geschichte-text">{{ sectioncontent.Text }}</p>
-      <p class="geschichte-text text-spacer">{{ sectioncontent.Text }}</p>
+    <div class="geschichte-intro">
+      <div class="geschichte-anker" id="geschichte"></div>
+      <div class="geschichte-bg-color"></div>
+      <div class="geschichte-textbox">
+        <h2 class="geschichte-hl">{{ sectioncontent.headline }}</h2>
+        <p class="geschichte-text">{{ sectioncontent.Text }}</p>
+        <p class="geschichte-text text-spacer">{{ sectioncontent.Text }}</p>
+      </div>
     </div>
+
     <GeschichteSpuren :spurencontent="spurencontent"></GeschichteSpuren>
   </section>
 </template>
@@ -169,7 +176,7 @@ export default {
   position: relative;
   color: var(--brand-color2);
   padding-top: 35vw;
-  padding-bottom: 35vw;
+  // padding-bottom: 35vw;
   @include media('<=tablet-l') {
   }
   @include media('<tablet-l') {
@@ -182,6 +189,11 @@ export default {
   }
   @include media('<phone') {
   }
+}
+.geschichte-intro {
+  z-index: 1;
+  position: relative;
+  width: 100%;
 }
 .geschichte-anker {
   position: absolute;
