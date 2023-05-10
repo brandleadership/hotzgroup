@@ -9,12 +9,11 @@ import {
 } from '~/scripts/elements.js'
 import imagesLoaded from 'imagesloaded'
 import Sbimage from '@/components/Sbimage.vue'
-import GeschichteSpurItem from '@/components/GeschichteSpurItem.vue'
 
 export default {
   name: 'GeschichteSpuren',
-  props: ['spurencontent'],
-  components: { Sbimage, GeschichteSpurItem },
+  props: ['spur'],
+  components: { Sbimage },
 
   data() {
     //andere schreibweise für function() {
@@ -31,88 +30,16 @@ export default {
     //     window.innerHeight || 0
     //   )
     // },
-    zoomAnim: function() {
-      this.geschichteSection = find('.geschichte')[0]
-      const scaler = find('.geschichte-spur1-scaler', this.$el)[0]
-      const mask = find('.geschichte-spur1-pic-mask', this.$el)[0]
-      const pic = find('.geschichte-spuren-pic', this.$el)[0]
-      const number = find('.spur-1-number', this.$el)[0]
-      const numberblocker = find(
-        '.geschichte-spur1-number-blocker',
-        this.$el
-      )[0]
-      // const trigger = find('.geschichte-spuren', this.$el)[0]
-
-      this.showSpurenTl = gsap
-        .timeline({ paused: true })
-        .fromTo(this.$el, { opacity: 0 }, { opacity: 1, duration: 0.0001 }, 0)
-
-      this.zoomAnimTl = gsap
-        .timeline({ paused: true })
-        .fromTo(
-          number,
-          {
-            y: '100%',
-          },
-          {
-            y: '0%',
-            duration: 1,
-            ease: Power3.easeOut,
-          },
-          0
-        )
-        .fromTo(
-          numberblocker,
-          {
-            y: '0%',
-          },
-          {
-            y: '-100%',
-            duration: 1,
-            ease: Power3.easeOut,
-          },
-          0
-        )
-        .fromTo(
-          scaler,
-          {
-            scale: 1,
-          },
-          {
-            scale: 18,
-            duration: 1,
-            ease: Power2.easeInOut,
-          },
-          '>'
-        )
-
-      ScrollTrigger.create({
-        animation: this.zoomAnimTl,
-        trigger: this.$el,
-        start: 'top 10%', // when the top of the trigger hits the top of the viewport
-        end: 'top -200%', // when the top of the trigger hits the top of the viewport
-        scrub: 0.3,
-        // markers: 'true',
-      })
-      ScrollTrigger.create({
-        animation: this.showSpurenTl,
-        trigger: this.geschichteSection,
-        start: 'top top', // when the top of the trigger hits the top of the viewport
-        end: 'top 10%', // when the top of the trigger hits the top of the viewport
-        scrub: 0,
-        // markers: 'true',
-      })
-    },
 
     headlineAnim: function() {
-      this.headline1 = find('.spuren-headline1', this.$el)[0]
+      this.headline = find('.geschichte-spur-headline', this.$el)[0]
       const hlDuration = 0.7
       const stagger = 0.13
       // this.headline2 = find('.spuren-headline2', this.$el)[0]
 
       // IN
       this.headlineInTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
+        this.headline,
         {
           y: '120%',
         },
@@ -126,7 +53,7 @@ export default {
 
       // OUT
       this.headlineOutTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
+        this.headline,
         {
           y: '0%',
         },
@@ -140,7 +67,7 @@ export default {
 
       //REV IN
       this.headlineInRevTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
+        this.headline,
         {
           y: '-120%',
         },
@@ -155,7 +82,7 @@ export default {
 
       //REV OUT
       this.headlineOutRevTl = gsap.timeline({ paused: true }).to(
-        this.headline1,
+        this.headline,
         {
           y: '120%',
           duration: hlDuration,
@@ -191,10 +118,10 @@ export default {
     },
 
     headlineSlide: function() {
-      this.headline1 = find('.spuren-headline1', this.$el)[0]
+      this.headline = find('.geschichte-spur-headline', this.$el)[0]
 
       this.headlineSlideTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
+        this.headline,
         {
           x: '0%',
         },
@@ -216,8 +143,8 @@ export default {
       })
     },
     lineHeightAnim: function() {
-      const textbox = find('.spuren-textbox', this.$el)[0]
-      const text = find('.spur1-text', this.$el)[0]
+      const textbox = find('.geschichte-spur-textbox', this.$el)[0]
+      const text = find('.geschichte-spur-text', this.$el)[0]
       // const text = find(this.lines)
       // console.log(text)
 
@@ -244,32 +171,59 @@ export default {
       })
     },
 
-    removeAnim: function() {
-      const textbox = find('.spuren-textbox', this.$el)[0]
-      const pic = find('.geschichte-spuren-pic', this.$el)[0]
+    showRemoveAnim: function() {
+      const textbox = find('.geschichte-spur-textbox', this.$el)[0]
+      const pic = find('.geschichte-spur-pic', this.$el)[0]
+      const picbox = find('.geschichte-spur-sticker', this.$el)[0]
 
-      this.lineHeightAnimTl = gsap.timeline({ paused: true }).fromTo(
+      this.showTl = gsap.timeline({ paused: true }).fromTo(
         pic,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.5,
+          ease: Power0.easeNone,
+        },
+        0
+      )
+
+      this.removeTl = gsap.timeline({ paused: true }).fromTo(
+        picbox,
         {
           opacity: 1,
         },
         {
           opacity: 0,
-          duration: 1,
+          duration: 0.5,
           ease: Power0.easeNone,
         },
         0
       )
 
       ScrollTrigger.create({
-        animation: this.lineHeightAnimTl,
-        trigger: textbox,
-        start: 'bottom 150%', // when the top of the trigger hits the top of the viewport
-        end: 'bottom bottom', // when the top of the trigger hits the top of the viewport
-        scrub: 0,
-        // markers: 'true',
+        animation: this.showTl,
+        trigger: this.$el,
+        start: 'top top', // when the top of the trigger hits the top of the viewport
+        // end: 'top -50%', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+
+        // scrub: 0,
+        markers: 'true',
+      })
+      ScrollTrigger.create({
+        animation: this.removeTl,
+        trigger: this.$el,
+        start: 'bottom bottom', // when the top of the trigger hits the top of the viewport
+        // end: 'bottom 100%', // when the top of the trigger hits the top of the viewport
+        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+
+        // scrub: 0,
+        markers: 'true',
       })
     },
+
     menucolorAnim: function() {
       const menu = find('.header-menu-icon')[0]
       const sectionIndicator = find('.section-indicator')
@@ -326,28 +280,26 @@ export default {
   },
 
   mounted: function() {
-    // this.getVpSizes()
-    this.zoomAnim()
     // this.headlineAnim()
     this.headlineSlide()
     this.lineHeightAnim()
-    this.removeAnim()
+    this.showRemoveAnim()
     this.menucolorAnim()
   },
 }
 </script>
 
 <template>
-  <div class="geschichte-spuren">
-    <div class="spuren-bg"></div>
+  <div class="geschichte-spur-item">
+    <!-- <div class="geschichte-spur-bg"></div> -->
 
-    <!-- <div class="geschichte-spur1"> -->
-    <div class="geschichte-spur1-sticker">
-      <!-- <div class="geschichte-spur1-pic-mask"> -->
+    <!-- <div class="geschichte-spur"> -->
+    <div class="geschichte-spur-sticker">
+      <!-- <div class="geschichte-spur-pic-mask"> -->
       <Sbimage
-        :class="'geschichte-spuren-pic'"
+        :class="'geschichte-spur-pic'"
         :imgParams="{
-          src: spurencontent[0].Spur1_Image,
+          src: spur.background_image,
           width: 2560,
           quality: 99,
           alt: 'gradient',
@@ -359,70 +311,45 @@ export default {
         }"
       />
       <!-- </div> -->
-
-      <div class="geschichte-spur1-scaler">
-        <div class="geschichte-spur1-blocker-top"></div>
-        <div class="geschichte-spur1-blocker-center">
-          <div class="geschichte-spur1-blocker-left"></div>
-          <div class="geschichte-spur1-number-box">
-            <div class="geschichte-spur1-number-blocker"></div>
-            <svg class="spur-1-number" viewBox="0 0 467 560">
-              <path
-                d="m0,0v560h467V0H0Zm377.661,552.38H89.761v-4.2h94.6V69.38l.1-10.2L41.561,126.58l-1.8-3.7L257.961,19.88c4.5-2.4,9.3-4.7,14.4-7.5h1.4l.4-.1.1.1h8.4l.1,535.8h94.9v4.2Z"
-              />
-            </svg>
-          </div>
-
-          <div class="geschichte-spur1-blocker-right"></div>
-        </div>
-        <div class="geschichte-spur1-blocker-bottom"></div>
-      </div>
     </div>
 
-    <!-- <div class="geschichte-spur1-content"> -->
-    <div class="geschichte-spur1-spacer"></div>
+    <!-- <div class="geschichte-spur-content"> -->
+    <div class="geschichte-spur-spacer"></div>
 
-    <div class="spuren-hl-container">
-      <div class="spuren-hl-box">
-        <div class="spuren-hl-mask">
-          <h1 class="spuren-headline spuren-headline1">{{
-            spurencontent[0].Spur1_Headline
-          }}</h1>
+    <div class="geschichte-spur-hl-container">
+      <div class="geschichte-spur-hl-box">
+        <div class="geschichte-spur-hl-mask">
+          <h1 class="geschichte-spur-headline">{{ spur.Headline_Line1 }}</h1>
         </div>
       </div>
     </div>
-    <div class="spuren-textbox">
-      <div class="spur1-text">{{ spurencontent[0].Spur1_Text }}</div>
+    <div class="geschichte-spur-textbox">
+      <div class="geschichte-spur-text">{{ spur.Text }}</div>
     </div>
+    <!-- </div> -->
 
-    <GeschichteSpurItem
-      v-for="(spur, key) in spurencontent[0].Spuren"
-      :key="key"
-      :number="key"
-      :amount="spurencontent[0].Spuren.length"
-      :spur="spur"
-    />
+    <!-- </div> -->
   </div>
 </template>
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';
 
-.geschichte-spuren {
+.geschichte-spur-item {
   position: relative;
-  opacity: 0;
+  // opacity: 0;
   // z-index: 1;
   // margin-top: 60vh;
 }
-// .geschichte-spur1 {
-//   height: 300vh;
-//   display: flex;
-//   justify-content: center;
-//   width: 100vw;
-//   // background-color: green;
-// }
+.geschichte-spur {
+  height: 300vh;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  // background-color: green;
+}
 
-.spuren-bg {
+.geschichte-spur-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -430,12 +357,12 @@ export default {
   height: 100%;
   background-color: var(--sec-color);
 }
-.geschichte-spur1-spacer {
+.geschichte-spur-spacer {
   height: 300vh;
   margin-bottom: 75vh;
   // background-color: blue;
 }
-.geschichte-spur1-sticker {
+.geschichte-spur-sticker {
   position: fixed;
   top: 0;
   height: 100vh;
@@ -446,50 +373,8 @@ export default {
   flex-direction: column;
   // background-color: red;
 }
-.geschichte-spur1-scaler {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  // background-color: red;
-}
-.spur-1-number {
-  height: 65vh;
-  flex-shrink: 0;
-  margin: 0 -1px;
-  path {
-    fill: var(--sec-color);
-  }
-}
-.geschichte-spur1-blocker-top,
-.geschichte-spur1-blocker-bottom {
-  background-color: var(--sec-color);
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-.geschichte-spur1-blocker-top {
-  margin-bottom: -1px;
-  margin-top: -1px;
-}
-.geschichte-spur1-blocker-bottom {
-  margin-top: -1px;
-}
-.geschichte-spur1-blocker-center {
-  display: flex;
-  width: 100%;
-  position: relative;
-}
-.geschichte-spur1-blocker-left,
-.geschichte-spur1-blocker-right {
-  background-color: var(--sec-color);
-  height: 100%;
-  width: 100%;
-}
-// .geschichte-spur1-pic-mask {
+
+// .geschichte-spur-pic-mask {
 //   overflow: hidden;
 //   position: absolute;
 //   top: 0;
@@ -497,29 +382,16 @@ export default {
 //   width: 100vw;
 //   height: 100vh;
 // }
-.geschichte-spuren-pic {
+.geschichte-spur-pic {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  opacity: 0;
 }
 
-.geschichte-spur1-number-box {
-  position: relative;
-  display: flex;
-}
-.geschichte-spur1-number-blocker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: calc(100% + 2px);
-  margin-top: 1px;
-  background-color: white;
-}
-
-.spuren-hl-container {
+.geschichte-spur-hl-container {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -532,7 +404,7 @@ export default {
   pointer-events: none;
   z-index: 1;
 }
-.spuren-hl-box {
+.geschichte-spur-hl-box {
   // width: grid(82);
   width: 100%;
   z-index: 1;
@@ -545,7 +417,7 @@ export default {
     }
   }
 }
-.spuren-hl-mask {
+.geschichte-spur-hl-mask {
   overflow: hidden;
   display: flex;
   margin-left: -0.7vw;
@@ -553,7 +425,7 @@ export default {
   flex-shrink: 0;
 }
 
-.spuren-headline {
+.geschichte-spur-headline {
   position: relative;
   display: block;
   font-size: getVw(300px);
@@ -572,7 +444,7 @@ export default {
   // }
 }
 
-.spuren-textbox {
+.geschichte-spur-textbox {
   position: relative;
   // padding-top: 75vh;
   padding-bottom: 150vh;
@@ -598,7 +470,7 @@ export default {
     }
   }
 }
-.spur1-text {
+.geschichte-spur-text {
   display: block;
   width: 100%;
   position: absolute;
