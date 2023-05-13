@@ -202,7 +202,7 @@ export default {
 .governance {
   position: relative;
   color: var(--main-color);
-  padding: 30vw grid(7);
+  padding: 0 grid(7) 30vw grid(7);
   // background-color: var(--sec-color);
 
   @include media('<=tablet-l') {

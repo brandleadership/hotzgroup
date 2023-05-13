@@ -412,7 +412,7 @@ export default {
   position: relative;
   opacity: 0;
   // z-index: 1;
-  // margin-top: 60vh;
+  margin-bottom: -20vw;
 }
 // .geschichte-spur1 {
 //   height: 300vh;

@@ -186,10 +186,10 @@ export default {
         .fromTo(
           picNrMiddle,
           {
-            y: '100%',
+            y: '100vh',
           },
           {
-            y: '0%',
+            y: '0vh',
             duration: 0.5,
             ease: Power2.easeOut,
           },
@@ -198,26 +198,12 @@ export default {
         .fromTo(
           picNrBottom,
           {
-            y: '5%',
+            y: '5vh',
             opacity: 0,
           },
           {
             opacity: 1,
-            y: '0%',
-            duration: 0.3,
-            ease: Power2.easeOut,
-          },
-          0.3
-        )
-        .fromTo(
-          picNrTop,
-          {
-            opacity: 0,
-            y: '5%',
-          },
-          {
-            opacity: 1,
-            y: '0%',
+            y: '0vh',
             duration: 0.3,
             ease: Power2.easeOut,
           },
@@ -225,9 +211,9 @@ export default {
         )
         .to(
           picNrMiddle,
-
           {
-            y: '-100%',
+            y: '-100vh',
+            opacity: 0,
             duration: 0.5,
             ease: Power2.easeIn,
           },
@@ -238,18 +224,7 @@ export default {
 
           {
             opacity: 0,
-            y: '-5%',
-            duration: 0.2,
-            ease: Power2.easeIn,
-          },
-          0.9
-        )
-        .to(
-          picNrTop,
-
-          {
-            opacity: 0,
-            y: '-5%',
+            y: '-5vh',
             duration: 0.2,
             ease: Power2.easeIn,
           },
@@ -279,6 +254,35 @@ export default {
           { color: 'white', duration: 0.4, ease: Power0.easeNone },
           1
         )
+
+      if (picNrTop) {
+        this.showTl
+          .fromTo(
+            picNrTop,
+            {
+              opacity: 0,
+              y: '5vh',
+            },
+            {
+              opacity: 1,
+              y: '0vh',
+              duration: 0.3,
+              ease: Power2.easeOut,
+            },
+            0.3
+          )
+          .to(
+            picNrTop,
+
+            {
+              opacity: 0,
+              y: '-5vh',
+              duration: 0.2,
+              ease: Power2.easeIn,
+            },
+            0.9
+          )
+      }
 
       this.removeTl = gsap
         .timeline({ paused: true })
@@ -415,10 +419,11 @@ export default {
       />
       <div class="geschichte-spur-nr-box">
         <Sbimage
+          v-if="spur.image_middle"
           :class="'geschichte-spur-nr-center'"
           :imgParams="{
             src: spur.image_middle,
-            width: 800,
+            width: 814,
             quality: 99,
             alt: 'number-center',
             // bp: {
@@ -429,10 +434,11 @@ export default {
           }"
         />
         <Sbimage
+          v-if="spur.image_bottom"
           :class="'geschichte-spur-nr-bottom'"
           :imgParams="{
             src: spur.image_bottom,
-            width: 800,
+            width: 814,
             quality: 99,
             alt: 'number-bottom',
             // bp: {
@@ -443,10 +449,11 @@ export default {
           }"
         />
         <Sbimage
+          v-if="spur.image_top"
           :class="'geschichte-spur-nr-top'"
           :imgParams="{
             src: spur.image_top,
-            width: 800,
+            width: 814,
             quality: 99,
             alt: 'number-top',
             // bp: {
@@ -543,6 +550,13 @@ export default {
 .geschichte-spur-nr-bottom {
   mix-blend-mode: multiply;
 }
+.geschichte-spur-nr-top,
+.geschichte-spur-nr-center,
+.geschichte-spur-nr-bottom {
+  width: 50vw;
+  max-width: 814px;
+  height: auto;
+}
 
 .geschichte-spur-bg {
   position: absolute;
@@ -551,6 +565,7 @@ export default {
   width: 100vw;
   height: 100vh;
   opacity: 0;
+  object-fit: cover;
 }
 
 .geschichte-spur-hl-container {
