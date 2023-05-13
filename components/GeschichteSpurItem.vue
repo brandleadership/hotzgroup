@@ -136,8 +136,8 @@ export default {
       ScrollTrigger.create({
         animation: this.headlineSlideTl,
         trigger: this.$el,
-        start: 'top -150%', // when the top of the trigger hits the top of the viewport
-        end: 'top -350%', // when the top of the trigger hits the top of the viewport
+        start: 'top -80%', // when the top of the trigger hits the top of the viewport
+        end: 'top -280%', // when the top of the trigger hits the top of the viewport
         scrub: 0.5,
         // markers: 'true',
       })
@@ -173,54 +173,157 @@ export default {
 
     showRemoveAnim: function() {
       const textbox = find('.geschichte-spur-textbox', this.$el)[0]
-      const pic = find('.geschichte-spur-pic', this.$el)[0]
+      const pic = find('.geschichte-spur-bg', this.$el)[0]
+      const picNrTop = find('.geschichte-spur-nr-top', this.$el)[0]
+      const picNrMiddle = find('.geschichte-spur-nr-center', this.$el)[0]
+      const picNrBottom = find('.geschichte-spur-nr-bottom', this.$el)[0]
       const picbox = find('.geschichte-spur-sticker', this.$el)[0]
+      const menu = find('.header-menu-icon')[0]
+      const sectionIndicator = find('.section-indicator')
 
-      this.showTl = gsap.timeline({ paused: true }).fromTo(
-        pic,
-        {
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          duration: 0.5,
-          ease: Power0.easeNone,
-        },
-        0
-      )
+      this.showTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          picNrMiddle,
+          {
+            y: '100%',
+          },
+          {
+            y: '0%',
+            duration: 0.5,
+            ease: Power2.easeOut,
+          },
+          0
+        )
+        .fromTo(
+          picNrBottom,
+          {
+            y: '5%',
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            y: '0%',
+            duration: 0.3,
+            ease: Power2.easeOut,
+          },
+          0.3
+        )
+        .fromTo(
+          picNrTop,
+          {
+            opacity: 0,
+            y: '5%',
+          },
+          {
+            opacity: 1,
+            y: '0%',
+            duration: 0.3,
+            ease: Power2.easeOut,
+          },
+          0.3
+        )
+        .to(
+          picNrMiddle,
 
-      this.removeTl = gsap.timeline({ paused: true }).fromTo(
-        picbox,
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-          duration: 0.5,
-          ease: Power0.easeNone,
-        },
-        0
-      )
+          {
+            y: '-100%',
+            duration: 0.5,
+            ease: Power2.easeIn,
+          },
+          1
+        )
+        .to(
+          picNrBottom,
+
+          {
+            opacity: 0,
+            y: '-5%',
+            duration: 0.2,
+            ease: Power2.easeIn,
+          },
+          0.9
+        )
+        .to(
+          picNrTop,
+
+          {
+            opacity: 0,
+            y: '-5%',
+            duration: 0.2,
+            ease: Power2.easeIn,
+          },
+          0.9
+        )
+        .fromTo(
+          pic,
+          {
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            duration: 0.5,
+            ease: Power0.easeNone,
+          },
+          1
+        )
+        .fromTo(
+          menu,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          1
+        )
+        .fromTo(
+          sectionIndicator,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          1
+        )
+
+      this.removeTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          picbox,
+          {
+            opacity: 1,
+          },
+          {
+            opacity: 0,
+            duration: 0.5,
+            ease: Power0.easeNone,
+          },
+          0
+        )
+        .fromTo(
+          menu,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
+        .fromTo(
+          sectionIndicator,
+          { color: 'white' },
+          { color: 'black', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
 
       ScrollTrigger.create({
         animation: this.showTl,
         trigger: this.$el,
-        start: 'top top', // when the top of the trigger hits the top of the viewport
-        // end: 'top -50%', // when the top of the trigger hits the top of the viewport
+        start: 'top bottom', // when the top of the trigger hits the top of the viewport
+        end: 'top -100%', // when the top of the trigger hits the top of the viewport
         toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
-
-        // scrub: 0,
-        markers: 'true',
+        scrub: 0,
+        // markers: 'true',
       })
       ScrollTrigger.create({
         animation: this.removeTl,
         trigger: this.$el,
-        start: 'bottom bottom', // when the top of the trigger hits the top of the viewport
+        start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
         // end: 'bottom 100%', // when the top of the trigger hits the top of the viewport
         toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
-
         // scrub: 0,
-        markers: 'true',
+        // markers: 'true',
       })
     },
 
@@ -284,7 +387,7 @@ export default {
     this.headlineSlide()
     this.lineHeightAnim()
     this.showRemoveAnim()
-    this.menucolorAnim()
+    // this.menucolorAnim()
   },
 }
 </script>
@@ -295,9 +398,9 @@ export default {
 
     <!-- <div class="geschichte-spur"> -->
     <div class="geschichte-spur-sticker">
-      <!-- <div class="geschichte-spur-pic-mask"> -->
+      <!-- <div class="geschichte-spur-bg-mask"> -->
       <Sbimage
-        :class="'geschichte-spur-pic'"
+        :class="'geschichte-spur-bg'"
         :imgParams="{
           src: spur.background_image,
           width: 2560,
@@ -310,6 +413,51 @@ export default {
           },
         }"
       />
+      <div class="geschichte-spur-nr-box">
+        <Sbimage
+          :class="'geschichte-spur-nr-center'"
+          :imgParams="{
+            src: spur.image_middle,
+            width: 800,
+            quality: 99,
+            alt: 'number-center',
+            // bp: {
+            //   1920: { width: 1920 },
+            //   1600: { width: 1600 },
+            //   1366: { width: 1366 },
+            // },
+          }"
+        />
+        <Sbimage
+          :class="'geschichte-spur-nr-bottom'"
+          :imgParams="{
+            src: spur.image_bottom,
+            width: 800,
+            quality: 99,
+            alt: 'number-bottom',
+            // bp: {
+            //   1920: { width: 1920 },
+            //   1600: { width: 1600 },
+            //   1366: { width: 1366 },
+            // },
+          }"
+        />
+        <Sbimage
+          :class="'geschichte-spur-nr-top'"
+          :imgParams="{
+            src: spur.image_top,
+            width: 800,
+            quality: 99,
+            alt: 'number-top',
+            // bp: {
+            //   1920: { width: 1920 },
+            //   1600: { width: 1600 },
+            //   1366: { width: 1366 },
+            // },
+          }"
+        />
+      </div>
+
       <!-- </div> -->
     </div>
 
@@ -358,8 +506,8 @@ export default {
   background-color: var(--sec-color);
 }
 .geschichte-spur-spacer {
-  height: 300vh;
-  margin-bottom: 75vh;
+  height: 290vh;
+  // margin-bottom: 10vh;
   // background-color: blue;
 }
 .geschichte-spur-sticker {
@@ -374,7 +522,7 @@ export default {
   // background-color: red;
 }
 
-// .geschichte-spur-pic-mask {
+// .geschichte-spur-bg-mask {
 //   overflow: hidden;
 //   position: absolute;
 //   top: 0;
@@ -382,7 +530,21 @@ export default {
 //   width: 100vw;
 //   height: 100vh;
 // }
-.geschichte-spur-pic {
+
+.geschichte-spur-nr-box {
+  position: relative;
+}
+.geschichte-spur-nr-top,
+.geschichte-spur-nr-center {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.geschichte-spur-nr-bottom {
+  mix-blend-mode: multiply;
+}
+
+.geschichte-spur-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -430,8 +592,8 @@ export default {
   display: block;
   font-size: getVw(300px);
   line-height: 0.8em;
-  padding-left: 100vw;
-  padding-right: 100vw;
+  padding-left: 103vw;
+  padding-right: 103vw;
   flex-shrink: 0;
   // margin-bottom: -1.59vw;
   text-transform: uppercase;
