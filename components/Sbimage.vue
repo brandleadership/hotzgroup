@@ -1,6 +1,6 @@
 <script>
 import SpatzekScroll from '~/scripts/SpatzekScroll'
-import { gsap, Power2, Power3 } from 'gsap'
+import { gsap } from 'gsap'
 import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 import { createSbUrl, testWebpSupport } from '~/scripts/utils'
 
@@ -41,6 +41,8 @@ export default {
     'usesrcset',
     'lazy',
     'alt',
+    'forcewebp',
+    'loadPreviewPic',
     //'autofit': 'width' // -> au
   ],
   data() {
@@ -55,9 +57,9 @@ export default {
       isInViewPort: true,
       nuxtLoader: undefined,
       isMounted: false,
-      useWebp: false,
+      useWebp: this.$attrs.imgParams.forcewebp === true,
       maxWh: 4000,
-      maxDensity: 1,
+      maxDensity: 2,
       src: '',
       srcset: '',
       width: 0,
@@ -65,7 +67,7 @@ export default {
     }
   },
   computed: {
-    rndId: function () {
+    rndId: function() {
       return 'sbimage-' + Math.floor(Math.random() * 100000000000)
     },
     /* srcset: function() {
@@ -74,7 +76,7 @@ export default {
 
       if (this.loadLazy) return this.getSrcset()
     }, */
-    alt: function () {
+    alt: function() {
       if (!this.$attrs.imgParams) return
       if (!this.$attrs.imgParams.src) return
       if (this.$attrs.imgParams.alt) {
@@ -84,7 +86,7 @@ export default {
       let filename = arrUrlParts[arrUrlParts.length - 1]
         .split('.')[0]
         .replace(/-/g, ' ')
-        .replace(/^(.)|\s+(.)/g, function ($1) {
+        .replace(/^(.)|\s+(.)/g, function($1) {
           return $1.toUpperCase()
         })
 
@@ -100,10 +102,11 @@ export default {
       }
     }, */
   },
-  created: function () {},
+  created: function() {},
 
-  mounted: function () {
+  mounted: function() {
     this.useWebp = testWebpSupport()
+
     let imgParams = this.$attrs.imgParams
 
     if (!imgParams) {
@@ -113,7 +116,7 @@ export default {
 
     this.spatzekscroll = SpatzekScroll()
 
-    this.testWebpSupport()
+    // this.testWebpSupport()
 
     this.width = this.getWidth()
     this.height = this.getHeight()
@@ -124,7 +127,12 @@ export default {
       //!this.loadLazy
       // && !this.checkIsInViewPort()
       //) {
-      this.src = this.getSrcLazy()
+      if (this.$attrs.imgParams.loadPreviewPic) {
+        this.src = this.getSrcLazy()
+      } else {
+        this.src = this.getSrc()
+      }
+
       //} else {
       //  this.src = this.getSrc()
       //}
@@ -154,13 +162,13 @@ export default {
   },
 
   methods: {
-    testWebpSupport: function () {
+    testWebpSupport: function() {
       return testWebpSupport()
     },
-    triggerLazyLoad: function () {
+    triggerLazyLoad: function() {
       this.load()
     },
-    initLazyLoad: function () {
+    initLazyLoad: function() {
       let dummyTl = gsap.timeline({
         onComplete: () => {
           // contains
@@ -187,16 +195,16 @@ export default {
         // duration: 20,
       })
     },
-    setSpatzekscrolltainer: function (scrolltainer) {
+    setSpatzekscrolltainer: function(scrolltainer) {
       this.spatzekscroll = SpatzekScroll({ scrolltainer: scrolltainer })
       this.initLazyLoad()
     },
-    load: function (fromInterval) {
+    load: function(fromInterval) {
       this.loadLazy = true
       this.src = this.getSrc()
       this.srcset = this.getSrcset()
     },
-    getSrcLazy: function () {
+    getSrcLazy: function() {
       let imgParams = { ...this.$attrs.imgParams }
       imgParams = this.extractSizeFromUrl(imgParams)
       if (imgParams.fullscreen)
@@ -211,7 +219,7 @@ export default {
       const imageSrc = this.getImageSrc(imgParams)
       return this.getImageSrc(imgParams) // fallback -<default image
     },
-    getSrc: function () {
+    getSrc: function() {
       let imgParams = { ...this.$attrs.imgParams }
       imgParams = this.extractSizeFromUrl(imgParams)
       if (imgParams.fullscreen)
@@ -220,12 +228,12 @@ export default {
       return this.getImageSrc(imgParams, true) // fallback -<default image
     },
 
-    getWidth: function () {
+    getWidth: function() {
       let imgParams = this.$attrs.imgParams
       return imgParams.width
     },
 
-    getHeight: function () {
+    getHeight: function() {
       let imgParams = { ...this.$attrs.imgParams }
       imgParams = this.extractSizeFromUrl(imgParams)
 
@@ -245,7 +253,7 @@ export default {
       return ''
     },
 
-    getSrcset: function () {
+    getSrcset: function() {
       let imgParams = this.$attrs.imgParams // default image for desctop
 
       var srcset = ''
@@ -260,7 +268,7 @@ export default {
         srcset += this.getImageSrc(imgParams, true, 2.5) + ' 2.5x, '
         srcset += this.getImageSrc(imgParams, true, 3) + ' 3x '
       } else if (imgParams.bp) {
-        Object.keys(imgParams.bp).forEach((breakpoint) => {
+        Object.keys(imgParams.bp).forEach(breakpoint => {
           //console.log(breakpoint, imgParams.bp[breakpoint])
           let breakpointData = imgParams.bp[breakpoint]
           let breakPointImageParams = { ...imgParams }
@@ -533,7 +541,7 @@ export default {
       return srcset
     },
 
-    getImageSrc: function (imgParams, retina, density) {
+    getImageSrc: function(imgParams, retina, density) {
       if (!imgParams) {
         return
       }
@@ -608,13 +616,17 @@ export default {
       // if ((window.devicePixelRatio && window.devicePixelRatio > 1) || retina) {
 
       if (retina) {
+        // console.log('retina1', this.useWebp)
         return this.buildUrlRetina(imgParams, this.useWebp)
       } else {
+        // console.log('retina2', this.useWebp)
         return this.buildUrl(imgParams, this.useWebp)
       }
     },
 
-    buildUrl: function (imgParams, useWebp) {
+    buildUrl: function(imgParams, useWebp) {
+      // console.log(createSbUrl(imgParams, useWebp))
+      // console.log(useWebp)
       return createSbUrl(imgParams, useWebp)
       let imageService = 'https://img2.storyblok.com/'
       let path = imgParams.src
@@ -646,7 +658,7 @@ export default {
         path)
     },
 
-    buildUrlRetina: function (imgParams) {
+    buildUrlRetina: function(imgParams, useWebp) {
       let imageService = 'https://img2.storyblok.com/'
       let path = imgParams.src
         .replace('https://a.storyblok.com', '')
@@ -659,10 +671,10 @@ export default {
         filters = '/filters:quality(' + imgParams.quality + ')'
       }
 
-      if (this.useWebp) {
+      if (useWebp) {
         filters += ':format(webp)'
       }
-
+      // console.log(useWebp, 'WTFOIDA')
       let smartcrop = imgParams.smartcrop ? '/smart' : ''
 
       return (imgParams.src_retina =
@@ -676,7 +688,7 @@ export default {
         path)
     },
 
-    calcFullscreenDimensions: function (imgParams) {
+    calcFullscreenDimensions: function(imgParams) {
       // immer den höheren wert verwenden
       let ratio = 1
       let screenHeight = screen.height
@@ -736,7 +748,7 @@ export default {
       return imgParams
     },
 
-    extractSizeFromUrl: function (imgParams) {
+    extractSizeFromUrl: function(imgParams) {
       if (imgParams.src) {
         const arrUrlParts = imgParams.src.split('/')
         if (arrUrlParts[5]) {
@@ -750,7 +762,7 @@ export default {
       return imgParams
     },
 
-    onLoad: function () {
+    onLoad: function() {
       if (this.loadLazy) {
         this.loadedLazy = true
         // if (this.nuxtLoader != undefined) {
@@ -776,7 +788,7 @@ export default {
       }
     },
 
-    onError: function () {
+    onError: function() {
       if (this.loadLazy) {
         this.loadedLazy = true
         /* if (this.nuxtLoader != undefined) {
@@ -794,7 +806,7 @@ export default {
     },
 
     /* HELPER */
-    checkIsInViewPort: function () {
+    checkIsInViewPort: function() {
       let windowOffset = document.documentElement.scrollTop
       let windowHeight =
         document.documentElement.clientHeight || document.body.clientHeight
@@ -803,19 +815,19 @@ export default {
       return elementTop < windowOffset + windowHeight
     },
 
-    isCached: function (src) {
+    isCached: function(src) {
       var imgEle = document.createElement('img')
       imgEle.src = src
       return imgEle.complete || imgEle.width + imgEle.height > 0
     },
 
-    getBase64: function (url) {
+    getBase64: function(url) {
       let imgParams = this.$attrs.imgParams
       return axios
         .get(url, {
           responseType: 'arraybuffer',
         })
-        .then((response) =>
+        .then(response =>
           Buffer.from(response.data, 'binary').toString('base64')
         )
     },
@@ -833,7 +845,7 @@ export default {
     :src="src"
     :srcset="srcset"
     :alt="alt"
-    @load="onLoad"
+    @load="() => onLoad()"
     @error="onError"
   />
 </template>

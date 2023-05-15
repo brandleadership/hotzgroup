@@ -556,6 +556,10 @@ export default {
   width: 50vw;
   max-width: 814px;
   height: auto;
+
+  @media (orientation: portrait) {
+    width: 100vw;
+  }
 }
 
 .geschichte-spur-bg {
@@ -585,14 +589,14 @@ export default {
   // width: grid(82);
   width: 100%;
   z-index: 1;
-  @include media('<=tablet-l') {
-    width: grid(78);
-  }
-  @include media('<tablet') {
-    @media (orientation: portrait) {
-      width: grid(88);
-    }
-  }
+  // @include media('<=tablet-l') {
+  //   width: grid(78);
+  // }
+  // @include media('<tablet') {
+  //   @media (orientation: portrait) {
+  //     width: grid(88);
+  //   }
+  // }
 }
 .geschichte-spur-hl-mask {
   overflow: hidden;

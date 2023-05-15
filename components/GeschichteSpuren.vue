@@ -463,6 +463,10 @@ export default {
   path {
     fill: var(--sec-color);
   }
+
+  @media (orientation: portrait) {
+    height: 100vw;
+  }
 }
 .geschichte-spur1-blocker-top,
 .geschichte-spur1-blocker-bottom {
@@ -481,6 +485,7 @@ export default {
 .geschichte-spur1-blocker-center {
   display: flex;
   width: 100%;
+  justify-content: center;
   position: relative;
 }
 .geschichte-spur1-blocker-left,
@@ -536,14 +541,14 @@ export default {
   // width: grid(82);
   width: 100%;
   z-index: 1;
-  @include media('<=tablet-l') {
-    width: grid(78);
-  }
-  @include media('<tablet') {
-    @media (orientation: portrait) {
-      width: grid(88);
-    }
-  }
+  // @include media('<=tablet-l') {
+  //   width: grid(78);
+  // }
+  // @include media('<tablet') {
+  //   @media (orientation: portrait) {
+  //     width: grid(88);
+  //   }
+  // }
 }
 .spuren-hl-mask {
   overflow: hidden;
