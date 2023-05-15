@@ -20,23 +20,20 @@ export default {
   },
   methods: {},
 
-  mounted: function () {
-    const elements = find('img', this.$el)
-    onFontLoaded(() => {
-      this.$nextTick(() => {
-        imagesLoaded(elements, () => {
-          setTimeout(() => {
-            //do something
-          }, 100)
-        })
-      })
-    })
+  mounted: function() {
+    // const elements = find('img', this.$el)
+    // document.fonts.ready.then(() => {
+    //   this.$nextTick(() => {
+    //     imagesLoaded(elements, () => {
+    //       setTimeout(() => {
+    //         //do something
+    //       }, 100)
+    //     })
+    //   })
+    // })
   },
 }
 </script>
-
-
-
 
 <template>
   <section class="ansatz" id="ansatz">
@@ -49,8 +46,6 @@ export default {
     />
   </section>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

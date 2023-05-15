@@ -104,91 +104,91 @@ export default {
       })
     },
 
-    headlineAnim: function() {
-      this.headline1 = find('.spuren-headline1', this.$el)[0]
-      const hlDuration = 0.7
-      const stagger = 0.13
-      // this.headline2 = find('.spuren-headline2', this.$el)[0]
+    // headlineAnim: function() {
+    //   this.headline1 = find('.spuren-headline1', this.$el)[0]
+    //   const hlDuration = 0.7
+    //   const stagger = 0.13
+    //   // this.headline2 = find('.spuren-headline2', this.$el)[0]
 
-      // IN
-      this.headlineInTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
-        {
-          y: '120%',
-        },
-        {
-          y: '0%',
-          duration: hlDuration,
-          ease: Power2.easeInOut,
-        },
-        0
-      )
+    //   // IN
+    //   this.headlineInTl = gsap.timeline({ paused: true }).fromTo(
+    //     this.headline1,
+    //     {
+    //       y: '120%',
+    //     },
+    //     {
+    //       y: '0%',
+    //       duration: hlDuration,
+    //       ease: Power2.easeInOut,
+    //     },
+    //     0
+    //   )
 
-      // OUT
-      this.headlineOutTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
-        {
-          y: '0%',
-        },
-        {
-          y: '-120%',
-          duration: hlDuration,
-          ease: Power2.easeInOut,
-        },
-        0
-      )
+    //   // OUT
+    //   this.headlineOutTl = gsap.timeline({ paused: true }).fromTo(
+    //     this.headline1,
+    //     {
+    //       y: '0%',
+    //     },
+    //     {
+    //       y: '-120%',
+    //       duration: hlDuration,
+    //       ease: Power2.easeInOut,
+    //     },
+    //     0
+    //   )
 
-      //REV IN
-      this.headlineInRevTl = gsap.timeline({ paused: true }).fromTo(
-        this.headline1,
-        {
-          y: '-120%',
-        },
-        {
-          y: '0%',
-          stagger: 0.03,
-          duration: hlDuration,
-          ease: Power2.easeInOut,
-        },
-        stagger
-      )
+    //   //REV IN
+    //   this.headlineInRevTl = gsap.timeline({ paused: true }).fromTo(
+    //     this.headline1,
+    //     {
+    //       y: '-120%',
+    //     },
+    //     {
+    //       y: '0%',
+    //       stagger: 0.03,
+    //       duration: hlDuration,
+    //       ease: Power2.easeInOut,
+    //     },
+    //     stagger
+    //   )
 
-      //REV OUT
-      this.headlineOutRevTl = gsap.timeline({ paused: true }).to(
-        this.headline1,
-        {
-          y: '120%',
-          duration: hlDuration,
-          ease: Power2.easeInOut,
-        },
-        stagger
-      )
+    //   //REV OUT
+    //   this.headlineOutRevTl = gsap.timeline({ paused: true }).to(
+    //     this.headline1,
+    //     {
+    //       y: '120%',
+    //       duration: hlDuration,
+    //       ease: Power2.easeInOut,
+    //     },
+    //     stagger
+    //   )
 
-      ScrollTrigger.create({
-        animation: this.scrollanimTl,
-        trigger: this.$el,
-        start: 'top -150%', // when the top of the trigger hits the top of the viewport
-        end: 'top -250%', // when the top of the trigger hits the top of the viewport
-        onEnter: () => {
-          this.headlineInTl.play(0)
-          // console.log('onEnter', 'PLAY')
-        },
-        onLeave: () => {
-          this.headlineOutTl.play(0)
-          // console.log('onLeave', 'PAUSE')
-        },
-        onEnterBack: () => {
-          this.headlineInRevTl.play(0)
-          // console.log('onEnterBack', 'PLAY')
-        },
-        onLeaveBack: () => {
-          this.headlineOutRevTl.play(0)
-          // console.log('onLeaveBack', 'PAUSE')
-        },
-        // scrub: 0,
-        markers: 'true',
-      })
-    },
+    //   ScrollTrigger.create({
+    //     animation: this.scrollanimTl,
+    //     trigger: this.$el,
+    //     start: 'top -150%', // when the top of the trigger hits the top of the viewport
+    //     end: 'top -250%', // when the top of the trigger hits the top of the viewport
+    //     onEnter: () => {
+    //       this.headlineInTl.play(0)
+    //       // console.log('onEnter', 'PLAY')
+    //     },
+    //     onLeave: () => {
+    //       this.headlineOutTl.play(0)
+    //       // console.log('onLeave', 'PAUSE')
+    //     },
+    //     onEnterBack: () => {
+    //       this.headlineInRevTl.play(0)
+    //       // console.log('onEnterBack', 'PLAY')
+    //     },
+    //     onLeaveBack: () => {
+    //       this.headlineOutRevTl.play(0)
+    //       // console.log('onLeaveBack', 'PAUSE')
+    //     },
+    //     // scrub: 0,
+    //     markers: 'true',
+    //   })
+    // },
 
     headlineSlide: function() {
       this.headline1 = find('.spuren-headline1', this.$el)[0]
@@ -326,9 +326,7 @@ export default {
   },
 
   mounted: function() {
-    // this.getVpSizes()
     this.zoomAnim()
-    // this.headlineAnim()
     this.headlineSlide()
     this.lineHeightAnim()
     this.removeAnim()

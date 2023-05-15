@@ -1,12 +1,4 @@
 <script>
-import { gsap } from 'gsap'
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
 import Sbimage from '@/components/Sbimage.vue'
 
 export default {
@@ -21,22 +13,9 @@ export default {
   },
   methods: {},
 
-  mounted: function() {
-    // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {
-    //         //do something
-    //       }, 100)
-    //     })
-    //   })
-    // })
-  },
+  mounted: function() {},
 }
 </script>
-
-
 
 <template>
   <a
@@ -73,8 +52,6 @@ export default {
     </svg> -->
   </a>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

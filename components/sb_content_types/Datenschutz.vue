@@ -1,12 +1,4 @@
 <script>
-import { gsap, Power2 } from 'gsap'
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
 import SbRichText from '@/components/SbRichText.vue'
 import Logo from '../Logo.vue'
 
@@ -22,7 +14,7 @@ export default {
   },
   methods: {},
 
-  mounted: function () {},
+  mounted: function() {},
 }
 </script>
 

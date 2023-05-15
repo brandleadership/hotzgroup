@@ -1,17 +1,11 @@
 <script>
-import { gsap, Power2, Power3, Power0 } from 'gsap'
+import { gsap, Power3 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
+import { find } from '~/scripts/elements.js'
 import Sbimage from '@/components/Sbimage.vue'
 import SbLink from '@/components/SbLink.vue'
 import ObjectFitImage from '@/components/ObjectFitImage.vue'
-import { addListener, removeListener } from '~/scripts/events'
 
 // import SpatzekScroll from '~/scripts/SpatzekScroll'
 import imagesLoaded from 'imagesloaded'
@@ -40,8 +34,8 @@ export default {
     }
   },
   methods: {
-    teamPicAnim: function () {
-      this.teamPicAnimTl = function (container) {
+    teamPicAnim: function() {
+      this.teamPicAnimTl = function(container) {
         const element = find('.js-about-team-pic', container)[0]
         const mask = find('.js-about-team-pic-mask', container)[0]
         // const rdm = Math.floor(Math.random() * (4 - 1 + 1) + 1) //Math.floor(Math.random() * (max - min + 1) + min);
@@ -70,7 +64,7 @@ export default {
       }
 
       let allContainers = find('.js-about-team-member', this.$el)
-      allContainers.map((container) => {
+      allContainers.map(container => {
         if (this.rdm <= 3) {
           this.rdm++
         } else {
@@ -85,8 +79,8 @@ export default {
         })
       })
     },
-    teamTextAnim: function () {
-      this.teamTextAnimTl = function (container) {
+    teamTextAnim: function() {
+      this.teamTextAnimTl = function(container) {
         const names = find('.js-about-name-slideup', container)
 
         return gsap
@@ -100,7 +94,7 @@ export default {
       }
 
       let allContainers = find('.js-about-team-info', this.$el)
-      allContainers.map((container) => {
+      allContainers.map(container => {
         ScrollTrigger.create({
           animation: this.teamTextAnimTl(container),
           trigger: container,
@@ -112,10 +106,10 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     const elements = find('img', this.$el)
 
-    onFontLoaded(() => {
+    document.fonts.ready.then(() => {
       this.$nextTick(() => {
         imagesLoaded(elements, () => {
           setTimeout(() => {

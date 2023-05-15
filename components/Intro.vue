@@ -1,12 +1,7 @@
 <script>
-import { gsap, Power0, Power2 } from 'gsap'
+import { gsap, Power0 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
+import { find } from '~/scripts/elements.js'
 // import imagesLoaded from 'imagesloaded'
 import Logo from '@/components/Logo.vue'
 import Sbimage from '@/components/Sbimage.vue'
@@ -20,7 +15,7 @@ export default {
     return {}
   },
   methods: {
-    blackening: function () {
+    blackening: function() {
       const bg = find('.intro-blackbg', this.$el)[0]
       // const video = find('.intro-video-box', this.$el)[0]
       const haltung = find('.haltung')[0]
@@ -72,24 +67,11 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     this.blackening()
-    // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {
-    //         //do something
-    //       }, 100)
-    //     })
-    //   })
-    // })
   },
 }
 </script>
-
-
-
 
 <template>
   <section class="intro" id="home">
@@ -118,8 +100,8 @@ export default {
           class="intro-video"
           :src="
             'https://player.vimeo.com/video/' +
-            sectioncontent.video +
-            '?background=1'
+              sectioncontent.video +
+              '?background=1'
           "
           frameborder="0"
           width="100%"
@@ -131,8 +113,6 @@ export default {
     </div>
   </section>
 </template>
-
-
 
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';

@@ -2,17 +2,9 @@
 import { gsap, Power0, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js'
-
 gsap.registerPlugin(ScrollToPlugin)
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
-import SbLink from '@/components/SbLink.vue'
-// import NavItem from '@/components/NavItem.vue'
+
+import { find } from '~/scripts/elements.js'
 import Logo from '@/components/Logo.vue'
 
 export default {
@@ -202,14 +194,6 @@ export default {
 
   mounted: function() {
     this.activateSection()
-    // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {}, 1000)
-    //     })
-    //   })
-    // })
   },
 }
 </script>

@@ -18,7 +18,7 @@ export default {
   data() {
     return {}
   },
-  mounted: function () {
+  mounted: function() {
     this.setViewportCSSVar()
     addListener(window, 'resize', () => {
       this.setViewportCSSVar()
@@ -41,7 +41,7 @@ export default {
 </script>
 <template>
   <div class="site">
-    <Grid />
+    <!-- <Grid /> -->
     <InitialLoading />
     <nuxt />
   </div>

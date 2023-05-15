@@ -1,13 +1,7 @@
 <script>
 import { gsap, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
+import { find } from '~/scripts/elements.js'
 import Logo from './Logo.vue'
 
 export default {
@@ -70,16 +64,6 @@ export default {
 
   mounted: function() {
     this.lineanim()
-    // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {
-    //         //do something
-    //       }, 100)
-    //     })
-    //   })
-    // })
   },
 }
 </script>

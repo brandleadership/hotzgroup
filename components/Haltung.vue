@@ -20,7 +20,7 @@ export default {
   },
   methods: {},
 
-  mounted: function () {
+  mounted: function() {
     const elements = find('img', this.$el)
     onFontLoaded(() => {
       this.$nextTick(() => {
@@ -35,9 +35,6 @@ export default {
 }
 </script>
 
-
-
-
 <template>
   <section class="haltung" id="haltung">
     <AnsatzHaltungItem
@@ -50,26 +47,11 @@ export default {
   </section>
 </template>
 
-
-
 <style lang="scss" scoped="true">
 @import '@/styles/tools.scss';
 
 .haltung {
   // position: relative;
   @include sidepadding('padding');
-
-  @include media('<=tablet-l') {
-  }
-  @include media('<tablet-l') {
-  }
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {
-    }
-  }
-  @include media('<tablet') {
-  }
-  @include media('<phone') {
-  }
 }
 </style>

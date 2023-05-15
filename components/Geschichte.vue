@@ -1,13 +1,7 @@
 <script>
-import { gsap, Power0, Power2 } from 'gsap'
+import { gsap, Power0 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
+import { find } from '~/scripts/elements.js'
 import GeschichteSpuren from '@/components/GeschichteSpuren.vue'
 
 export default {
@@ -139,16 +133,6 @@ export default {
     this.setColors()
     this.lineHeightAnim()
     this.scrollanim()
-    // const elements = find('img', this.$el)
-    // onFontLoaded(() => {
-    //   this.$nextTick(() => {
-    //     imagesLoaded(elements, () => {
-    //       setTimeout(() => {
-    //         //do something
-    //       }, 100)
-    //     })
-    //   })
-    // })
   },
 }
 </script>

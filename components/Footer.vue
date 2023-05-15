@@ -1,18 +1,11 @@
 <script>
-import { gsap, Power0, Power2, Power3, Linear } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
+import { gsap, Power2, Power3 } from 'gsap'
 import SbLink from '@/components/SbLink.vue'
 import SbRichText from '@/components/SbRichText.vue'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js'
 gsap.registerPlugin(ScrollToPlugin)
 
-import {
-  find,
-  hasClass,
-  isTouchDevice,
-  onFontLoaded,
-} from '~/scripts/elements.js'
-import imagesLoaded from 'imagesloaded'
+import { find, isTouchDevice } from '~/scripts/elements.js'
 
 export default {
   name: 'Footer',
@@ -24,7 +17,7 @@ export default {
     return {}
   },
   methods: {
-    scrollToAnim: function (sectionId) {
+    scrollToAnim: function(sectionId) {
       if (this.$route.path != '/') {
         this.$router.push({
           path: '/#' + sectionId,
@@ -40,7 +33,7 @@ export default {
         })
       }
     },
-    backToTopHoverAnim: function () {
+    backToTopHoverAnim: function() {
       if (isTouchDevice() == true) {
         return
       }
@@ -86,7 +79,7 @@ export default {
 
       return backToTopHoverTl
     },
-    backToTopDeHoverAnim: function () {
+    backToTopDeHoverAnim: function() {
       if (isTouchDevice() == true) {
         return
       }
@@ -95,16 +88,19 @@ export default {
       const bttArrowHead = find('.arrowhead', this.$el)[0]
       const bttArrowLine = find('.arrowline', this.$el)[0]
 
-      const backToTopDeHoverTl = gsap.timeline().set(bg, { opacity: 1 }).to(
-        bg,
-        {
-          duration: 0.3,
-          scaleY: 0,
-          ease: Power3.easeOut,
-          transformOrigin: 'top',
-        },
-        0
-      )
+      const backToTopDeHoverTl = gsap
+        .timeline()
+        .set(bg, { opacity: 1 })
+        .to(
+          bg,
+          {
+            duration: 0.3,
+            scaleY: 0,
+            ease: Power3.easeOut,
+            transformOrigin: 'top',
+          },
+          0
+        )
 
       backToTopDeHoverTl
         .to(bttArrowHead, { duration: 0.3, fill: '#000' }, 0)
@@ -114,7 +110,7 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     // const elements = find('img')
     // onFontLoaded(() => {
     //   this.$nextTick(() => {
