@@ -20,8 +20,8 @@ export default {
     },
 
     lineHeightAnim: function() {
-      const textbox = find('.geschichte-textbox', this.$el)[0]
-      const text = find('.geschichte-text', this.$el)[0]
+      const textbox = find('.geschichte-textbox-intro', this.$el)[0]
+      const text = find('.geschichte-text-intro', this.$el)[0]
 
       this.lineHeightAnimTl = gsap.timeline({ paused: true }).fromTo(
         text,
@@ -48,7 +48,7 @@ export default {
 
     scrollanim: function() {
       const bgColor = find('.geschichte-bg-color', this.$el)[0]
-      const geschichtetxt = find('.geschichte-text', this.$el)[0]
+      const geschichtetxt = find('.geschichte-text-intro', this.$el)[0]
       const menu = find('.header-menu-icon')[0]
       const sectionIndicator = find('.section-indicator')
 
@@ -142,9 +142,11 @@ export default {
     <div class="geschichte-intro">
       <div class="geschichte-anker" id="geschichte"></div>
       <div class="geschichte-bg-color"></div>
-      <div class="geschichte-textbox">
+      <div class="geschichte-textbox geschichte-textbox-intro">
         <h2 class="geschichte-hl">{{ sectioncontent.headline }}</h2>
-        <p class="geschichte-text">{{ sectioncontent.Text }}</p>
+        <p class="geschichte-text geschichte-text-intro">{{
+          sectioncontent.Text
+        }}</p>
         <p class="geschichte-text text-spacer">{{ sectioncontent.Text }}</p>
       </div>
     </div>
@@ -160,6 +162,8 @@ export default {
   position: relative;
   color: var(--brand-color2);
   padding-top: 35vw;
+  // margin-bottom: -20vw;
+
   // padding-bottom: 35vw;
   @include media('<=tablet-l') {
   }

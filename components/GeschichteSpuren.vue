@@ -34,8 +34,9 @@ export default {
     zoomAnim: function() {
       this.geschichteSection = find('.geschichte')[0]
       const scaler = find('.geschichte-spur1-scaler', this.$el)[0]
-      const mask = find('.geschichte-spur1-pic-mask', this.$el)[0]
-      const pic = find('.geschichte-spuren-pic', this.$el)[0]
+      // const mask = find('.geschichte-spur1-pic-mask', this.$el)[0]
+      // const pic = find('.geschichte-spuren-pic', this.$el)[0]
+      const spur1 = find('.geschichte-spur1-sticker', this.$el)[0]
       const number = find('.spur-1-number', this.$el)[0]
       const numberblocker = find(
         '.geschichte-spur1-number-blocker',
@@ -49,6 +50,7 @@ export default {
 
       this.zoomAnimTl = gsap
         .timeline({ paused: true })
+        .set(spur1, { visibility: 'visible' }, 0)
         .fromTo(
           number,
           {
@@ -216,7 +218,7 @@ export default {
       })
     },
     lineHeightAnim: function() {
-      const textbox = find('.spuren-textbox', this.$el)[0]
+      const textbox = find('.spuren-textbox-spur1', this.$el)[0]
       const text = find('.spur1-text', this.$el)[0]
       // const text = find(this.lines)
       // console.log(text)
@@ -245,21 +247,25 @@ export default {
     },
 
     removeAnim: function() {
-      const textbox = find('.spuren-textbox', this.$el)[0]
+      const textbox = find('.spuren-textbox-spur1', this.$el)[0]
       const pic = find('.geschichte-spuren-pic', this.$el)[0]
+      const spur1 = find('.geschichte-spur1-sticker', this.$el)[0]
 
-      this.lineHeightAnimTl = gsap.timeline({ paused: true }).fromTo(
-        pic,
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-          duration: 1,
-          ease: Power0.easeNone,
-        },
-        0
-      )
+      this.lineHeightAnimTl = gsap
+        .timeline({ paused: true })
+        .fromTo(
+          pic,
+          {
+            opacity: 1,
+          },
+          {
+            opacity: 0,
+            duration: 1,
+            ease: Power0.easeNone,
+          },
+          0
+        )
+        .set(spur1, { visibility: 'hidden' }, '>')
 
       ScrollTrigger.create({
         animation: this.lineHeightAnimTl,
@@ -299,7 +305,7 @@ export default {
         toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
       })
 
-      const textbox = find('.spuren-textbox', this.$el)[0]
+      const textbox = find('.spuren-textbox-spur1', this.$el)[0]
 
       this.menuBlackeningTl = gsap
         .timeline({ paused: true })
@@ -389,7 +395,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="spuren-textbox">
+    <div class="spuren-textbox spuren-textbox-spur1">
       <div class="spur1-text">{{ spurencontent[0].Spur1_Text }}</div>
     </div>
 
@@ -410,7 +416,7 @@ export default {
   position: relative;
   opacity: 0;
   // z-index: 1;
-  margin-bottom: -20vw;
+  // margin-bottom: -20vw;
 }
 // .geschichte-spur1 {
 //   height: 300vh;
@@ -433,6 +439,7 @@ export default {
   margin-bottom: 75vh;
   // background-color: blue;
 }
+
 .geschichte-spur1-sticker {
   position: fixed;
   top: 0;
@@ -442,6 +449,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  visibility: hidden;
   // background-color: red;
 }
 .geschichte-spur1-scaler {
@@ -452,12 +460,15 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  will-change: transform;
   // background-color: red;
 }
 .spur-1-number {
   height: 65vh;
   flex-shrink: 0;
   margin: 0 -1px;
+  will-change: transform;
+
   path {
     fill: var(--sec-color);
   }
@@ -520,6 +531,7 @@ export default {
   height: calc(100% + 2px);
   margin-top: 1px;
   background-color: white;
+  will-change: transform;
 }
 
 .spuren-hl-container {
@@ -569,6 +581,7 @@ export default {
   // transform: translate(0, 120%);
   // transform: translate(100%, 120%);
   color: white;
+  will-change: transform;
 
   // @include media('<=tablet-l') {
   //   font-size: getVw(200px);
@@ -578,14 +591,14 @@ export default {
 .spuren-textbox {
   position: relative;
   // padding-top: 75vh;
-  padding-bottom: 150vh;
+  padding-bottom: 120vh;
   width: grid(56);
   margin-left: grid(7);
 
   @include media('<tablet-xxl') {
     @media (orientation: portrait) {
       margin-top: 50vh;
-      margin-bottom: 50vh;
+      // margin-bottom: 50vh;
     }
   }
   @include media('<tablet-l') {

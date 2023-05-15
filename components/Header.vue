@@ -3,6 +3,7 @@ import { gsap, Power0, Power2 } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin.js'
 gsap.registerPlugin(ScrollToPlugin)
+import imagesLoaded from 'imagesloaded'
 
 import { find } from '~/scripts/elements.js'
 import Logo from '@/components/Logo.vue'
@@ -190,10 +191,26 @@ export default {
           0.7
         )
     },
+
+    initialMenuBlackener: function() {
+      const menu = find('.header-menu-icon')[0]
+      gsap.set(menu, { color: 'black' }, 0)
+    },
   },
 
   mounted: function() {
     this.activateSection()
+    const elements = find('img', this.$el)
+
+    document.fonts.ready.then(() => {
+      this.$nextTick(() => {
+        imagesLoaded(elements, () => {
+          setTimeout(() => {
+            this.initialMenuBlackener()
+          }, 100)
+        })
+      })
+    })
   },
 }
 </script>

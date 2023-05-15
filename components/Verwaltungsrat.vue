@@ -21,7 +21,7 @@ export default {
     return {}
   },
   methods: {
-    picanim: function () {
+    picanim: function() {
       const trigger = find('.vr-picbox', this.$el)[0]
       const pic = find('.vr-pic', this.$el)[0]
       const headline = find('.vr-headline', this.$el)
@@ -52,10 +52,10 @@ export default {
         // markers: 'true',
       })
     },
-    wordanim: function () {
+    wordanim: function() {
       // let letters = gsap.utils.toArray('.home-letter')
 
-      this.animation = function (container) {
+      this.animation = function(container) {
         const element = find('.vr-word', container)
         return gsap
           .timeline()
@@ -68,7 +68,7 @@ export default {
       }
 
       let allContainers = find('.vr-person', this.$el)
-      allContainers.map((container) => {
+      allContainers.map(container => {
         ScrollTrigger.create({
           animation: this.animation(container),
           trigger: container,
@@ -80,7 +80,7 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     this.picanim()
     this.wordanim()
     // const elements = find('img', this.$el)
@@ -97,9 +97,6 @@ export default {
 }
 </script>
 
-
-
-
 <template>
   <section class="verwaltungsrat" id="vr-anker">
     <div class="vr-anker" id="vr"></div>
@@ -113,13 +110,11 @@ export default {
           :class="'vr-pic'"
           :imgParams="{
             src: sectioncontent.Image,
-            width: 2560,
+            width: 853,
             quality: 60,
             alt: 'famous pic',
             bp: {
-              1920: { width: 1920 },
-              1600: { width: 1600 },
-              1366: { width: 1366 },
+              1920: { width: 640 },
             },
           }"
         />
@@ -162,8 +157,6 @@ export default {
     </div>
   </section>
 </template>
-
-
 
 <style lang="scss">
 @import '@/styles/tools.scss';

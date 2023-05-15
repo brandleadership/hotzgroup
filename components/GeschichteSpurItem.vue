@@ -183,18 +183,21 @@ export default {
 
       this.showTl = gsap
         .timeline({ paused: true })
-        .fromTo(
-          picNrMiddle,
-          {
-            y: '100vh',
-          },
-          {
-            y: '0vh',
-            duration: 0.5,
-            ease: Power2.easeOut,
-          },
-          0
-        )
+        .set(this.$el, { visibility: 'visible' }, 0)
+        .set(picNrMiddle, { visibility: 'visible' }, 0)
+        .set(picNrBottom, { visibility: 'visible' }, 0)
+        // .fromTo(
+        //   picNrMiddle,
+        //   {
+        //     y: '-20vh',
+        //   },
+        //   {
+        //     y: '0vh',
+        //     duration: 0.4,
+        //     ease: Power3.easeOut,
+        //   },
+        //   0.2
+        // )
         .fromTo(
           picNrBottom,
           {
@@ -207,7 +210,7 @@ export default {
             duration: 0.3,
             ease: Power2.easeOut,
           },
-          0.3
+          0.6
         )
         .to(
           picNrMiddle,
@@ -228,7 +231,7 @@ export default {
             duration: 0.2,
             ease: Power2.easeIn,
           },
-          0.9
+          1
         )
         .fromTo(
           pic,
@@ -257,6 +260,7 @@ export default {
 
       if (picNrTop) {
         this.showTl
+          .set(picNrTop, { visibility: 'visible' }, 0)
           .fromTo(
             picNrTop,
             {
@@ -269,7 +273,7 @@ export default {
               duration: 0.3,
               ease: Power2.easeOut,
             },
-            0.3
+            0.6
           )
           .to(
             picNrTop,
@@ -280,7 +284,7 @@ export default {
               duration: 0.2,
               ease: Power2.easeIn,
             },
-            0.9
+            1
           )
       }
 
@@ -310,6 +314,13 @@ export default {
           { color: 'black', duration: 0.4, ease: Power0.easeNone },
           0
         )
+        .set(this.$el, { visibility: 'hidden' }, '>')
+        .set(picNrBottom, { visibility: 'hidden' }, '>')
+        .set(picNrMiddle, { visibility: 'hidden' }, '>')
+
+      if (picNrTop) {
+        this.removeTl.set(picNrTop, { visibility: 'hidden' }, '>')
+      }
 
       ScrollTrigger.create({
         animation: this.showTl,
@@ -415,6 +426,10 @@ export default {
           },
         }"
       />
+
+      <!-- </div> -->
+    </div>
+    <div class="geschichte-spur-nr-sticker">
       <div class="geschichte-spur-nr-box">
         <Sbimage
           v-if="spur.image_middle"
@@ -422,7 +437,7 @@ export default {
           :imgParams="{
             src: spur.image_middle,
             width: 814,
-            quality: 99,
+            quality: 60,
             alt: 'number-center',
             // bp: {
             //   1920: { width: 1920 },
@@ -437,7 +452,7 @@ export default {
           :imgParams="{
             src: spur.image_bottom,
             width: 814,
-            quality: 99,
+            quality: 60,
             alt: 'number-bottom',
             // bp: {
             //   1920: { width: 1920 },
@@ -452,7 +467,7 @@ export default {
           :imgParams="{
             src: spur.image_top,
             width: 814,
-            quality: 99,
+            quality: 60,
             alt: 'number-top',
             // bp: {
             //   1920: { width: 1920 },
@@ -462,10 +477,7 @@ export default {
           }"
         />
       </div>
-
-      <!-- </div> -->
     </div>
-
     <!-- <div class="geschichte-spur-content"> -->
     <div class="geschichte-spur-spacer"></div>
 
@@ -489,6 +501,7 @@ export default {
 @import '@/styles/tools.scss';
 
 .geschichte-spur-item {
+  visibility: hidden;
   position: relative;
   // opacity: 0;
   // z-index: 1;
@@ -524,6 +537,8 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  // display: none;
+
   // background-color: red;
 }
 
@@ -535,15 +550,32 @@ export default {
 //   width: 100vw;
 //   height: 100vh;
 // }
+.geschichte-spur-nr-sticker {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
+  // display: none;
+}
 .geschichte-spur-nr-box {
-  position: relative;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  // display: none;
 }
 .geschichte-spur-nr-top,
 .geschichte-spur-nr-center {
   position: absolute;
-  top: 0;
-  left: 0;
 }
 .geschichte-spur-nr-bottom {
   mix-blend-mode: multiply;
@@ -554,6 +586,7 @@ export default {
   width: 50vw;
   max-width: 814px;
   height: auto;
+  will-change: transform;
 
   @media (orientation: portrait) {
     width: 100vw;
@@ -617,6 +650,7 @@ export default {
   // transform: translate(0, 120%);
   // transform: translate(100%, 120%);
   color: white;
+  will-change: transform;
 
   // @include media('<=tablet-l') {
   //   font-size: getVw(200px);
