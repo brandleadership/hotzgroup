@@ -460,14 +460,14 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  will-change: transform;
+  // will-change: transform;
   // background-color: red;
 }
 .spur-1-number {
   height: 65vh;
   flex-shrink: 0;
   margin: 0 -1px;
-  will-change: transform;
+  // will-change: transform;
 
   path {
     fill: var(--sec-color);
@@ -531,7 +531,7 @@ export default {
   height: calc(100% + 2px);
   margin-top: 1px;
   background-color: white;
-  will-change: transform;
+  // will-change: transform;
 }
 
 .spuren-hl-container {

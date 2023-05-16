@@ -1,5 +1,5 @@
 <script>
-import { gsap, Power0, Power2, Power3 } from 'gsap'
+import { gsap, Power0, Power2, Power3, Linear } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
 import {
   find,
@@ -180,6 +180,7 @@ export default {
       const picbox = find('.geschichte-spur-sticker', this.$el)[0]
       const menu = find('.header-menu-icon')[0]
       const sectionIndicator = find('.section-indicator')
+      const allNrPics = find('.geschichte-spur-nr-box', this.$el)[0]
 
       this.showTl = gsap
         .timeline({ paused: true })
@@ -201,37 +202,37 @@ export default {
         .fromTo(
           picNrBottom,
           {
-            y: '5vh',
-            opacity: 0,
+            y: '30vh',
+            // opacity: 0,
           },
           {
-            opacity: 1,
+            // opacity: 1,
             y: '0vh',
-            duration: 0.3,
+            duration: 0.5,
             ease: Power2.easeOut,
           },
-          0.6
+          0.3
         )
-        .to(
-          picNrMiddle,
-          {
-            y: '-100vh',
-            opacity: 0,
-            duration: 0.5,
-            ease: Power2.easeIn,
-          },
-          1
-        )
+        // .to(
+        //   picNrMiddle,
+        //   {
+        //     y: '-100vh',
+        //     opacity: 0,
+        //     duration: 0.5,
+        //     ease: Power2.easeIn,
+        //   },
+        //   1
+        // )
         .to(
           picNrBottom,
 
           {
-            opacity: 0,
-            y: '-5vh',
-            duration: 0.2,
+            // opacity: 0,
+            y: '-30vh',
+            duration: 0.5,
             ease: Power2.easeIn,
           },
-          1
+          0.8
         )
         .fromTo(
           pic,
@@ -240,7 +241,7 @@ export default {
           },
           {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.3,
             ease: Power0.easeNone,
           },
           1
@@ -265,26 +266,26 @@ export default {
             picNrTop,
             {
               opacity: 0,
-              y: '5vh',
+              y: '30vh',
             },
             {
               opacity: 1,
               y: '0vh',
-              duration: 0.3,
+              duration: 0.5,
               ease: Power2.easeOut,
             },
-            0.6
+            0.3
           )
           .to(
             picNrTop,
 
             {
               opacity: 0,
-              y: '-5vh',
-              duration: 0.2,
+              y: '-30vh',
+              duration: 0.5,
               ease: Power2.easeIn,
             },
-            1
+            0.8
           )
       }
 
@@ -322,6 +323,27 @@ export default {
         this.removeTl.set(picNrTop, { visibility: 'hidden' }, '>')
       }
 
+      // this.nrSmootherTl = gsap.timeline({ paused: true }).fromTo(
+      //   allNrPics,
+      //   {
+      //     y: '-50vh',
+      //   },
+      //   {
+      //     y: '50vh',
+      //     duration: 1,
+      //     ease: Linear.easeNone,
+      //   },
+      //   0
+      // )
+      // ScrollTrigger.create({
+      //   animation: this.nrSmootherTl,
+      //   trigger: this.$el,
+      //   start: 'top center', // when the top of the trigger hits the top of the viewport
+      //   end: 'top -50%', // when the top of the trigger hits the top of the viewport
+      //   toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+      //   scrub: 0,
+      //   markers: 'true',
+      // })
       ScrollTrigger.create({
         animation: this.showTl,
         trigger: this.$el,
@@ -429,55 +451,55 @@ export default {
 
       <!-- </div> -->
     </div>
-    <div class="geschichte-spur-nr-sticker">
-      <div class="geschichte-spur-nr-box">
-        <Sbimage
-          v-if="spur.image_middle"
-          :class="'geschichte-spur-nr-center'"
-          :imgParams="{
-            src: spur.image_middle,
-            width: 814,
-            quality: 60,
-            alt: 'number-center',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
-          }"
-        />
-        <Sbimage
-          v-if="spur.image_bottom"
-          :class="'geschichte-spur-nr-bottom'"
-          :imgParams="{
-            src: spur.image_bottom,
-            width: 814,
-            quality: 60,
-            alt: 'number-bottom',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
-          }"
-        />
-        <Sbimage
-          v-if="spur.image_top"
-          :class="'geschichte-spur-nr-top'"
-          :imgParams="{
-            src: spur.image_top,
-            width: 814,
-            quality: 60,
-            alt: 'number-top',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
-          }"
-        />
-      </div>
+    <!-- <div class="geschichte-spur-nr-sticker"> -->
+    <div class="geschichte-spur-nr-box">
+      <Sbimage
+        v-if="spur.image_middle"
+        :class="'geschichte-spur-nr-center'"
+        :imgParams="{
+          src: spur.image_middle,
+          width: 814,
+          quality: 60,
+          alt: 'number-center',
+          // bp: {
+          //   1920: { width: 1920 },
+          //   1600: { width: 1600 },
+          //   1366: { width: 1366 },
+          // },
+        }"
+      />
+      <Sbimage
+        v-if="spur.image_bottom"
+        :class="'geschichte-spur-nr-bottom'"
+        :imgParams="{
+          src: spur.image_bottom,
+          width: 814,
+          quality: 60,
+          alt: 'number-bottom',
+          // bp: {
+          //   1920: { width: 1920 },
+          //   1600: { width: 1600 },
+          //   1366: { width: 1366 },
+          // },
+        }"
+      />
+      <Sbimage
+        v-if="spur.image_top"
+        :class="'geschichte-spur-nr-top'"
+        :imgParams="{
+          src: spur.image_top,
+          width: 814,
+          quality: 60,
+          alt: 'number-top',
+          // bp: {
+          //   1920: { width: 1920 },
+          //   1600: { width: 1600 },
+          //   1366: { width: 1366 },
+          // },
+        }"
+      />
     </div>
+    <!-- </div> -->
     <!-- <div class="geschichte-spur-content"> -->
     <div class="geschichte-spur-spacer"></div>
 
@@ -503,9 +525,22 @@ export default {
 .geschichte-spur-item {
   visibility: hidden;
   position: relative;
+  margin-top: -10vh;
   // opacity: 0;
   // z-index: 1;
   // margin-top: 60vh;
+  @include media('<tablet-l') {
+    @media (orientation: portrait) {
+      margin-top: -70vh;
+      // margin-bottom: 50vh;
+    }
+  }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      margin-top: -100vh;
+      // margin-bottom: 50vh;
+    }
+  }
 }
 .geschichte-spur {
   height: 300vh;
@@ -524,9 +559,21 @@ export default {
   background-color: var(--sec-color);
 }
 .geschichte-spur-spacer {
-  height: 290vh;
+  height: 190vh;
   // margin-bottom: 10vh;
   // background-color: blue;
+  @include media('<tablet-l') {
+    @media (orientation: portrait) {
+      height: 140vh;
+      // margin-bottom: 50vh;
+    }
+  }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      height: 120vh;
+      // margin-bottom: 50vh;
+    }
+  }
 }
 .geschichte-spur-sticker {
   position: fixed;
@@ -550,21 +597,21 @@ export default {
 //   width: 100vw;
 //   height: 100vh;
 // }
-.geschichte-spur-nr-sticker {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  // justify-content: center;
-  align-items: center;
-  flex-direction: column;
+// .geschichte-spur-nr-sticker {
+//   position: absolute;
+//   height: 100%;
+//   width: 100%;
+//   top: 0;
+//   left: 0;
+//   display: flex;
+//   // justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
 
-  // display: none;
-}
+//   // display: none;
+// }
 .geschichte-spur-nr-box {
-  position: sticky;
+  // position: sticky;
   top: 0;
   display: flex;
   justify-content: center;
