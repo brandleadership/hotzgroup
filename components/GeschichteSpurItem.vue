@@ -537,7 +537,7 @@ export default {
   }
   @include media('<tablet') {
     @media (orientation: portrait) {
-      margin-top: -100vh;
+      margin-top: -80vh;
       // margin-bottom: 50vh;
     }
   }
@@ -737,6 +737,7 @@ export default {
     @media (orientation: portrait) {
       width: grid(76);
       margin-left: grid(12);
+      margin-bottom: 0vh;
     }
   }
 }
