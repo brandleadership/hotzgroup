@@ -227,9 +227,9 @@ export default {
           picNrBottom,
 
           {
-            // opacity: 0,
+            opacity: 0,
             y: '-30vh',
-            duration: 0.5,
+            duration: 0.4,
             ease: Power2.easeIn,
           },
           0.8
@@ -241,10 +241,10 @@ export default {
           },
           {
             opacity: 1,
-            duration: 0.3,
+            duration: 0.2,
             ease: Power0.easeNone,
           },
-          1
+          0.9
         )
         .fromTo(
           menu,
@@ -282,7 +282,7 @@ export default {
             {
               opacity: 0,
               y: '-30vh',
-              duration: 0.5,
+              duration: 0.4,
               ease: Power2.easeIn,
             },
             0.8
@@ -459,7 +459,7 @@ export default {
         :imgParams="{
           src: spur.image_middle,
           width: 814,
-          quality: 60,
+          quality: 99,
           alt: 'number-center',
           // bp: {
           //   1920: { width: 1920 },
@@ -570,7 +570,7 @@ export default {
   }
   @include media('<tablet') {
     @media (orientation: portrait) {
-      height: 120vh;
+      height: 135vh;
       // margin-bottom: 50vh;
     }
   }
@@ -611,7 +611,7 @@ export default {
 //   // display: none;
 // }
 .geschichte-spur-nr-box {
-  // position: sticky;
+  // position: absolute;
   top: 0;
   display: flex;
   justify-content: center;
@@ -619,6 +619,11 @@ export default {
   width: 100vw;
   height: 100vh;
   // display: none;
+  // @include media('<tablet') {
+  //   @media (orientation: portrait) {
+  //     margin-bottom: -50vh;
+  //   }
+  // }
 }
 .geschichte-spur-nr-top,
 .geschichte-spur-nr-center {
@@ -702,6 +707,11 @@ export default {
   // @include media('<=tablet-l') {
   //   font-size: getVw(200px);
   // }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      font-size: getVw(400px);
+    }
+  }
 }
 
 .geschichte-spur-textbox {

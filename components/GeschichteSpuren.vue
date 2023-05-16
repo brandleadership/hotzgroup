@@ -573,8 +573,8 @@ export default {
   display: block;
   font-size: getVw(300px);
   line-height: 0.8em;
-  padding-left: 100vw;
-  padding-right: 100vw;
+  padding-left: 103vw;
+  padding-right: 103vw;
   flex-shrink: 0;
   // margin-bottom: -1.59vw;
   text-transform: uppercase;
@@ -586,6 +586,11 @@ export default {
   // @include media('<=tablet-l') {
   //   font-size: getVw(200px);
   // }
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      font-size: getVw(400px);
+    }
+  }
 }
 
 .spuren-textbox {
@@ -609,8 +614,16 @@ export default {
   }
   @include media('<tablet') {
     @media (orientation: portrait) {
+      // padding-bottom: 240vh;
       width: grid(76);
       margin-left: grid(12);
+    }
+  }
+}
+.spuren-textbox-spur1 {
+  @include media('<tablet') {
+    @media (orientation: portrait) {
+      margin-bottom: 50vh;
     }
   }
 }
