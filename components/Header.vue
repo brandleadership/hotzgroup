@@ -200,17 +200,17 @@ export default {
 
   mounted: function() {
     this.activateSection()
-    const elements = find('img', this.$el)
+    // const elements = find('img', this.$el)
 
-    document.fonts.ready.then(() => {
-      this.$nextTick(() => {
-        imagesLoaded(elements, () => {
-          setTimeout(() => {
-            this.initialMenuBlackener()
-          }, 100)
-        })
-      })
-    })
+    // document.fonts.ready.then(() => {
+    //   this.$nextTick(() => {
+    //     imagesLoaded(elements, () => {
+    //       setTimeout(() => {
+    //         this.initialMenuBlackener()
+    //       }, 100)
+    //     })
+    //   })
+    // })
   },
 }
 </script>

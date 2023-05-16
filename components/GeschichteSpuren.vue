@@ -435,7 +435,7 @@ export default {
   background-color: var(--sec-color);
 }
 .geschichte-spur1-spacer {
-  height: 300vh;
+  height: 280vh;
   margin-bottom: 75vh;
   // background-color: blue;
 }
