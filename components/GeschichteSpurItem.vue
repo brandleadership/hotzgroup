@@ -370,7 +370,7 @@ export default {
         trigger: this.$el,
         start: 'top bottom', // when the top of the trigger hits the top of the viewport
         end: 'top -100%', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
         scrub: 0,
         // markers: 'true',
       })
@@ -379,7 +379,7 @@ export default {
         trigger: this.$el,
         start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
         end: 'bottom 70%', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
         scrub: 0,
         // markers: 'true',
       })
@@ -411,32 +411,36 @@ export default {
         animation: this.menuWhiteningTl,
         trigger: this.$el,
         start: 'top -150%', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        end: 'top -200%', // when the top of the trigger hits the top of the viewport
+        // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        scrub: 0,
       })
 
-      const textbox = find('.spuren-textbox', this.$el)[0]
+      // const textbox = find('.spuren-textbox', this.$el)[0]
 
-      this.menuBlackeningTl = gsap
-        .timeline({ paused: true })
-        .fromTo(
-          menu,
-          { color: 'white' },
-          { color: 'black', duration: 0.4, ease: Power0.easeNone },
-          0
-        )
-        .fromTo(
-          sectionIndicator,
-          { color: 'white' },
-          { color: 'black', duration: 0.4, ease: Power0.easeNone },
-          0
-        )
+      // this.menuBlackeningTl = gsap
+      //   .timeline({ paused: true })
+      //   .fromTo(
+      //     menu,
+      //     { color: 'white' },
+      //     { color: 'black', duration: 0.4, ease: Power0.easeNone },
+      //     0
+      //   )
+      //   .fromTo(
+      //     sectionIndicator,
+      //     { color: 'white' },
+      //     { color: 'black', duration: 0.4, ease: Power0.easeNone },
+      //     0
+      //   )
 
-      ScrollTrigger.create({
-        animation: this.menuBlackeningTl,
-        trigger: textbox,
-        start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
-      })
+      // ScrollTrigger.create({
+      //   animation: this.menuBlackeningTl,
+      //   trigger: textbox,
+      //   start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
+      //   end: 'bottom 70%', // when the top of the trigger hits the top of the viewport
+      //   // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+      //   scrub: 0,
+      // })
     },
   },
 

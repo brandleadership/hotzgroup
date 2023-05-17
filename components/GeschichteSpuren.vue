@@ -31,6 +31,41 @@ export default {
     //     window.innerHeight || 0
     //   )
     // },
+    toggleFixed: function() {
+      const sticker = find('.geschichte-spur1-sticker', this.$el)[0]
+      // const spurenBg = find('.spuren-bg', this.$el)[0]
+
+      ScrollTrigger.create({
+        trigger: this.$el,
+        start: 'top bottom', // when the top of the trigger hits the top of the viewport
+        end: 'bottom top', // when the top of the trigger hits the top of the viewport
+        onEnter: () => {
+          // gsap.set(this.$el, { visibility: 'visible' }, '>')
+          sticker.style.position = 'fixed'
+          // spurenBg.style.position = 'fixed'
+          // console.log('onEnter', 'PLAY')
+        },
+        onLeave: () => {
+          // gsap.set(this.$el, { visibility: 'hidden' }, '>')
+          sticker.style.position = 'absolute'
+          // spurenBg.style.position = 'absolute'
+          // console.log('onLeave', 'PAUSE')
+        },
+        onEnterBack: () => {
+          // gsap.set(this.$el, { visibility: 'visible' }, '>')
+          sticker.style.position = 'fixed'
+          // spurenBg.style.position = 'fixed'
+          // console.log('onEnterBack', 'PLAY')
+        },
+        onLeaveBack: () => {
+          // gsap.set(this.$el, { visibility: 'hidden' }, '>')
+          sticker.style.position = 'absolute'
+          // spurenBg.style.position = 'absolute'
+          // console.log('onLeaveBack', 'PAUSE')
+        },
+      })
+    },
+
     zoomAnim: function() {
       this.geschichteSection = find('.geschichte')[0]
       const scaler = find('.geschichte-spur1-scaler', this.$el)[0]
@@ -326,7 +361,9 @@ export default {
         animation: this.menuBlackeningTl,
         trigger: textbox,
         start: 'bottom 120%', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        end: 'bottom 70%', // when the top of the trigger hits the top of the viewport
+        // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        scrub: 0,
       })
     },
   },
@@ -337,6 +374,7 @@ export default {
     this.lineHeightAnim()
     this.removeAnim()
     this.menucolorAnim()
+    this.toggleFixed()
   },
 }
 </script>

@@ -195,11 +195,31 @@ export default {
     initialMenuBlackener: function() {
       const menu = find('.header-menu-icon')[0]
       gsap.set(menu, { color: 'black' }, 0)
+
+      // this.makeitBlack = gsap
+      //   .timeline({ paused: true })
+      //   .fromTo(
+      //     menu,
+      //     { color: 'black' },
+      //     { color: 'black', duration: 0.01, ease: Power0.easeNone },
+      //     0
+      //   )
+
+      // ScrollTrigger.create({
+      //   animation: this.makeitBlack,
+      //   trigger: this.$el,
+      //   start: 'top bottom', // when the top of the trigger hits the top of the viewport
+      //   // end: 'top -100%', // when the top of the trigger hits the top of the viewport
+      //   // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+      //   scrub: 0,
+      //   // markers: 'true',
+      // })
     },
   },
 
   mounted: function() {
     this.activateSection()
+
     const elements = find('img', this.$el)
 
     document.fonts.ready.then(() => {

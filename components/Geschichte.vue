@@ -122,9 +122,10 @@ export default {
         animation: this.makeitWhite,
         trigger: geschichtetxt,
         start: 'top top', // when the top of the trigger hits the top of the viewport
-        end: 'bottom bottom', // when the top of the trigger hits the top of the viewport
-        toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
+        end: 'top -50%', // when the top of the trigger hits the top of the viewport
+        // toggleActions: 'play none none reverse', //onEnter, onLeave, onEnterBack, onLeaveBack
         // markers: 'true',
+        scrub: 0,
       })
     },
   },

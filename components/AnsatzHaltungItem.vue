@@ -338,6 +338,7 @@ export default {
         imagesLoaded(elements, () => {
           this.scrollanim()
           this.lineHeightAnim()
+          // this.toggleFixed()
         })
       })
     })

@@ -20,6 +20,7 @@ export default {
       // const video = find('.intro-video-box', this.$el)[0]
       const haltung = find('.haltung')[0]
       const menu = find('.header-menu-icon')[0]
+      const sectionIndicator = find('.section-indicator')
 
       this.blackeningTl = gsap
         .timeline({ paused: true })
@@ -35,13 +36,19 @@ export default {
           { color: 'white', duration: 0.4, ease: Power0.easeNone },
           0
         )
+        .fromTo(
+          sectionIndicator,
+          { color: 'black' },
+          { color: 'white', duration: 0.4, ease: Power0.easeNone },
+          0
+        )
       this.whiteningTl = gsap
         .timeline({ paused: true })
         .to(bg, { opacity: 0, duration: 0.4, ease: Power0.easeNone }, 0)
         .to(menu, { color: 'black', duration: 0.4, ease: Power0.easeNone }, 0)
 
       ScrollTrigger.create({
-        animation: this.scrollanimTl,
+        // animation: this.scrollanimTl,
         trigger: haltung,
         start: 'top 80%', // when the top of the trigger hits the top of the viewport
         // end: 'bottom 80%', // when the top of the trigger hits the top of the viewport
