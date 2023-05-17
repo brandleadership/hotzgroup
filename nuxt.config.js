@@ -9,9 +9,7 @@ module.exports = {
   dev: process.env.NODE_ENV !== 'production',
   build: {
     filenames: {
-      chunk: ({
-        isDev
-      }) => (isDev ? '[name].js' : '[name].[chunkhash].js'),
+      chunk: ({ isDev }) => (isDev ? '[name].js' : '[name].[chunkhash].js'),
     },
     transpile: ['gsap'],
   },
@@ -20,7 +18,8 @@ module.exports = {
       lang: 'en-US',
     },
     title: pkg.name,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8',
       },
       {
@@ -37,7 +36,7 @@ module.exports = {
       //   hid: 'description',
       //   name: 'description',
       //   content: 'Blumenkopf is no studio. With everything you need',
-      // },      
+      // },
       // {
       //   name: 'keyword',
       //   content: 'keyword1, keyword2',
@@ -103,7 +102,8 @@ module.exports = {
         content: 'website',
       },
     ],
-    link: [{
+    link: [
+      {
         rel: 'icon',
         type: 'image/x-icon',
         href: '/favicon.ico',
@@ -196,6 +196,12 @@ module.exports = {
       {
         rel: 'preload',
         as: 'font',
+        href: '/fonts/avenir/avenir-next-lt-pro-regular.woff2',
+        crossorigin: true,
+      },
+      {
+        rel: 'preload',
+        as: 'font',
         href: '/fonts/avenir/avenir-next-lt-pro-it.woff2',
         crossorigin: true,
       },
@@ -221,32 +227,36 @@ module.exports = {
     ],
   },
   generate: {
-    routes: function (callback) {
+    routes: function(callback) {
       const version = 'published'
       let routes = ['/']
       let toIgnore = ['settings']
 
       // load space data
-      fetch(`https://api.storyblok.com/v1/cdn/spaces/me?token=${accesstoken}`).then(res => res.json()).then((space_res) => {
+      fetch(`https://api.storyblok.com/v1/cdn/spaces/me?token=${accesstoken}`)
+        .then(res => res.json())
+        .then(space_res => {
+          // last published
+          cache_version = space_res.space.version
 
-        // last published
-        cache_version = space_res.space.version
+          fetch(
+            `https://api.storyblok.com/v1/cdn/links?token=${accesstoken}&version=${version}&cv=${cache_version}&per_page=100`
+          )
+            .then(res => res.json())
+            .then(res => {
+              Object.keys(res.links).forEach(key => {
+                if (!toIgnore.includes(res.links[key].slug)) {
+                  routes.push('/' + res.links[key].slug)
+                }
+              })
 
-        fetch(`https://api.storyblok.com/v1/cdn/links?token=${accesstoken}&version=${version}&cv=${cache_version}&per_page=100`).then(res => res.json()).then((res) => {
-
-          Object.keys(res.links).forEach((key) => {
-            if (!toIgnore.includes(res.links[key].slug)) {
-              routes.push('/' + res.links[key].slug)
-            }
-          })
-
-          callback(null, routes)
+              callback(null, routes)
+            })
         })
-      })
-    }
+    },
   },
   router: {
-    extendRoutes: function (routes, resolve) {
+    extendRoutes: function(routes, resolve) {
       // await fetch("https://api.storyblok.com/v1/cdn/stories/?starts_with=work/&token=" + accesstoken ).then(res => res.json()).then(res => {
       //   	res.stories.map(story => {
       //       routes.push({
@@ -279,8 +289,10 @@ module.exports = {
   webfontloader: {
     custom: {
       families: [
-        'SuisseIntl-Book',
-        'SangBleuOGSerif'
+        'avenir-next-lt-pro-bold',
+        'avenir-next-lt-pro-regular',
+        'avenir-next-lt-pro-it',
+        'iskry-bold',
       ],
       urls: ['/fonts/fonts.css'],
     },
@@ -308,10 +320,10 @@ module.exports = {
     //   src: '~/plugins/pixi',
     //   ssr: false,
     // },
-    {
-      src: '~/plugins/ga.js',
-      ssr: false,
-    },
+    // {
+    //   src: '~/plugins/ga.js',
+    //   ssr: false,
+    // },
     // {
     //   src: '~/plugins/typekit.js',
     //   ssr: false,
@@ -342,8 +354,8 @@ module.exports = {
         accessToken: accesstoken,
         cache: {
           clear: 'auto',
-          type: 'memory'
-        }
+          type: 'memory',
+        },
         // cacheProvider: 'memory',
       },
     ],
@@ -353,7 +365,8 @@ module.exports = {
     baseURL: 'http://localhost:3000',
   },
 
-  serverMiddleware: [{
+  serverMiddleware: [
+    {
       path: '~/scripts/api',
       handler: '~/scripts/api/index.js',
     },
