@@ -483,14 +483,14 @@ export default {
           :class="'geschichte-spur-nr-center'"
           :imgParams="{
             src: spur.image_middle,
-            width: 814,
+            width: 1075,
             quality: 99,
             alt: 'number-center',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
+            bp: {
+              1920: { width: 814 },
+              // 1600: { width: 1600 },
+              // 1366: { width: 1366 },
+            },
           }"
         />
         <Sbimage
@@ -498,14 +498,14 @@ export default {
           :class="'geschichte-spur-nr-bottom'"
           :imgParams="{
             src: spur.image_bottom,
-            width: 814,
+            width: 1075,
             quality: 60,
             alt: 'number-bottom',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
+            bp: {
+              1920: { width: 814 },
+              // 1600: { width: 1600 },
+              // 1366: { width: 1366 },
+            },
           }"
         />
         <Sbimage
@@ -513,14 +513,14 @@ export default {
           :class="'geschichte-spur-nr-top'"
           :imgParams="{
             src: spur.image_top,
-            width: 814,
+            width: 1075,
             quality: 60,
             alt: 'number-top',
-            // bp: {
-            //   1920: { width: 1920 },
-            //   1600: { width: 1600 },
-            //   1366: { width: 1366 },
-            // },
+            bp: {
+              1920: { width: 814 },
+              // 1600: { width: 1600 },
+              // 1366: { width: 1366 },
+            },
           }"
         />
       </div>
@@ -664,8 +664,8 @@ export default {
 .geschichte-spur-nr-top,
 .geschichte-spur-nr-center,
 .geschichte-spur-nr-bottom {
-  width: 50vw;
-  max-width: 814px;
+  width: 42vw;
+  // max-width: 814px;
   height: auto;
   will-change: transform;
 
