@@ -582,6 +582,8 @@ export default {
   width: 100%;
   height: 100%;
   background-color: black;
+  opacity: 0;
+  object-fit: cover;
 }
 .geschichte-spur-spacer {
   // height: 190vh;
@@ -672,16 +674,6 @@ export default {
   @media (orientation: portrait) {
     width: 100vw;
   }
-}
-
-.geschichte-spur-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0;
-  object-fit: cover;
 }
 
 .geschichte-spur-hl-container {

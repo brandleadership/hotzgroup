@@ -147,9 +147,12 @@ export default {
               <span class="vr-role vr-word">{{ person.position3 }}</span>
             </div>
             <div class="vr-mask">
-              <a class="vr-link vr-word" :href="person.link">{{
-                person.link_text
-              }}</a>
+              <a
+                class="vr-link vr-word"
+                aria-label="Verwaltungsrat"
+                :href="person.link"
+                >{{ person.link_text }}</a
+              >
             </div>
           </div>
         </div>

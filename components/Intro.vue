@@ -104,6 +104,7 @@ export default {
 
       <div class="intro-video-box">
         <iframe
+          title="hotzgroup"
           class="intro-video"
           :src="
             'https://player.vimeo.com/video/' +
