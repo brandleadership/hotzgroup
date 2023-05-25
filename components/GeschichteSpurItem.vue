@@ -588,6 +588,7 @@ export default {
 .geschichte-spur-spacer {
   // height: 190vh;
   height: 280vh;
+  width: 100%;
   // margin-bottom: 10vh;
   // background-color: blue;
   @include media('<tablet-l') {
@@ -645,7 +646,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   // display: none;
   // @include media('<tablet') {

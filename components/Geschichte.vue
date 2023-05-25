@@ -163,6 +163,8 @@ export default {
   position: relative;
   color: var(--brand-color2);
   padding-top: 35vw;
+  width: 100%;
+  overflow: hidden;
   // margin-bottom: -20vw;
 
   // padding-bottom: 35vw;
