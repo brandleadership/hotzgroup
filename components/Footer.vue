@@ -193,7 +193,7 @@ export default {
         <nuxt-link class="footer-link" :to="'/datenschutz'"
           >Datenschutz
         </nuxt-link>
-        <nuxt-link class="footer-link" :to="'/agb'">AGB </nuxt-link>
+        <!-- <nuxt-link class="footer-link" :to="'/agb'">AGB </nuxt-link> -->
       </div>
       <div class="footer-col4 footer-col footer-r-col">
         <SbRichText

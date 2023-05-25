@@ -4,7 +4,6 @@
 // }
 //
 .site--home {
-
   // padding-top: 0;
   .intro-fade {
     opacity: 0;
@@ -25,7 +24,6 @@
 }
 
 @include media('>tablet-l') {
-
   /* width */
   ::-webkit-scrollbar {
     display: none;
@@ -68,17 +66,22 @@ html {
   // margin-left: -0.2vw;
   cursor: default;
 
-  @include media('<=tablet-l') {}
-
-  @include media('<tablet-l') {}
-
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {}
+  @include media('<=tablet-l') {
   }
 
-  @include media('<tablet') {}
+  @include media('<tablet-l') {
+  }
 
-  @include media('<=phone') {}
+  @include media('<tablet-l') {
+    @media (orientation: landscape) {
+    }
+  }
+
+  @include media('<tablet') {
+  }
+
+  @include media('<=phone') {
+  }
 }
 
 .text30 {
@@ -99,12 +102,15 @@ html {
   }
 
   @include media('<tablet-l') {
-    @media (orientation: landscape) {}
+    @media (orientation: landscape) {
+    }
   }
 
-  @include media('<tablet') {}
+  @include media('<tablet') {
+  }
 
-  @include media('<=phone') {}
+  @include media('<=phone') {
+  }
 }
 
 .yellowtext {

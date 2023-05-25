@@ -339,11 +339,11 @@ export default {
                   >Datenschutz
                 </nuxt-link>
               </div>
-              <div class="header-link-mask">
+              <!-- <div class="header-link-mask">
                 <nuxt-link class="js-header-link-anim header-link" :to="'/agb'"
                   >AGB
                 </nuxt-link>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
