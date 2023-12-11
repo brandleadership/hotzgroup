@@ -30,17 +30,10 @@ export default {
 
 <template>
   <div class="error404 transition">
-    <div class="error404-pic-box">
-      <ObjectFitImage
-        :class="'error404-image'"
-        :imageSource="pagecontent.image_detail_header"
-        :imageSourcePortrait="pagecontent.image_portrait_detail_header"
-        :SbimageParams="{ fullscreen:true, fullscreenUseVh: 100 }"
-      />
-      <div class="error404-darkener"></div>
-    </div>
     <div class="error404-name-box">
-      <SbTextArea class="error404-text">{{pagecontent.text_headline}}</SbTextArea>
+      <SbTextArea class="error404-text">{{
+        pagecontent.text_headline
+      }}</SbTextArea>
     </div>
   </div>
 </template>
@@ -51,29 +44,11 @@ export default {
 .error404 {
   position: relative;
   box-sizing: border-box;
+  background-color: var(--main-color);
   // padding-top: $sidebar-width;
   // width: 100vw;
   // @include vh(100, min-height);
-  height: 100vh;
-
-  @include media('<tablet-l') {
-  }
-  @include media('<tablet-l') {
-    @media (orientation: landscape) {
-    }
-  }
-  @include media('<tablet') {
-  }
-}
-
-.error404-pic-box {
-  position: absolute;
-  width: 100vw;
   // height: 100vh;
-  // min-height: 100vh;
-  // @include vh(100, height);
-  height: 100vh;
-  overflow: hidden;
 
   @include media('<tablet-l') {
   }
@@ -84,45 +59,34 @@ export default {
   @include media('<tablet') {
   }
 }
-.error404-darkener {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  // @include vh(100, height);
-  // height: 100%;
-  // @include vh(100, height);
-  height: 100vh;
-  background-color: black;
-  opacity: 0.3;
-}
-.error404-name-box {
-  position: absolute;
-  bottom: grid(2);
-  margin-left: grid(2);
 
-  width: calc(100% - #{grid(2)});
+.error404-name-box {
+  position: relative;
+  // bottom: grid(4);
+  padding-top: grid(2);
+  margin-left: grid(7);
+  width: calc(100% - #{grid(16)});
   // left: $sidebar-width + $side-offset;
   @include media('<tablet-l') {
-    bottom: grid(18);
-    margin-left: grid(3);
+    // bottom: grid(18);
+    // margin-left: grid(3);
   }
   @include media('<tablet-l') {
     @media (orientation: landscape) {
     }
   }
   @include media('<tablet') {
-    bottom: grid(20);
-    margin-left: grid(5);
+    // bottom: grid(20);
+    // margin-left: grid(5);
   }
 }
 .error404-name {
-  position: absolute;
+  position: relative;
 }
 .error404-text {
   font-size: getVw(300px);
   line-height: 0.8em;
-  @include sec-font;
+  @include main-font;
   text-transform: uppercase;
 }
 </style>

@@ -4,7 +4,7 @@ import Header from '../components/Header.vue'
 import SmoothScroll from '~/scripts/SmoothScroll'
 import { addListener } from '../scripts/events'
 
-import Grid from '../components/Grid.vue'
+// import Grid from '../components/Grid.vue'
 import InitialLoading from '../components/InitialLoading.vue'
 
 import Device from '../scripts/device'
@@ -12,7 +12,7 @@ import Device from '../scripts/device'
 export default {
   components: {
     Header,
-    Grid,
+    // Grid,
     InitialLoading,
   },
   data() {

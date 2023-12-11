@@ -20,17 +20,17 @@ export default {
     }
   },
   methods: {
-    onKeyPress: function (evt) {
+    onKeyPress: function(evt) {
       if (evt.keyCode === 71 && evt.altKey) {
         this.show = !this.show
       }
     },
 
-    onResize: function () {
+    onResize: function() {
       this.createLines()
     },
 
-    createLines: function () {
+    createLines: function() {
       const linesContainer = find('.grid')[0]
       const vpWidth = window.innerWidth
       let count = 0
@@ -45,7 +45,7 @@ export default {
     },
   },
 
-  mounted: function () {
+  mounted: function() {
     //TEST
     this.createLines()
     addListener(window, 'keydown', this.onKeyPress)

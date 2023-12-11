@@ -154,7 +154,7 @@ export default {
         </div>
         <div class="gov-rightbox">
           <div class="gov-categories-box">
-            <span class="gov-categories">Luxusmarken</span>
+            <span class="gov-categories">Brand Equity</span>
             <div class="gov-line-hor-bot linenotonmobile"></div>
           </div>
           <div class="gov-brands-box">

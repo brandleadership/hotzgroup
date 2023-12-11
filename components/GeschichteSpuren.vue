@@ -504,7 +504,7 @@ export default {
 .spur-1-number {
   height: 65vh;
   flex-shrink: 0;
-  margin: 0 -1px;
+  margin: 0 -3px;
   // will-change: transform;
 
   path {

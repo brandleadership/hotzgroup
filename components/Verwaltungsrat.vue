@@ -105,7 +105,7 @@ export default {
       <h1 class="vr-headline">{{ sectioncontent.Headline }}</h1>
     </div>
     <div class="vr-container">
-      <div class="vr-picbox">
+      <!-- <div class="vr-picbox">
         <Sbimage
           :class="'vr-pic'"
           :imgParams="{
@@ -118,7 +118,7 @@ export default {
             },
           }"
         />
-      </div>
+      </div> -->
       <div class="vr-people-box">
         <div
           class="vr-person"
@@ -128,6 +128,18 @@ export default {
           :amount="sectioncontent.length"
           :person="person"
         >
+          <Sbimage
+            :class="'vr-pic-l1'"
+            :imgParams="{
+              src: person.image,
+              width: 500,
+              quality: 60,
+              alt: person.name,
+              bp: {
+                1920: { width: 500 },
+              },
+            }"
+          />
           <h2 class="vr-names">
             <div class="vr-mask">
               <span class="vr-name vr-word">{{ person.name }}</span>
@@ -152,6 +164,67 @@ export default {
                 aria-label="Verwaltungsrat"
                 :href="person.link"
                 >{{ person.link_text }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-box">
+        <div
+          class="team-person"
+          v-for="(teammember, key) in sectioncontent.team"
+          :key="key"
+          :number="key"
+          :amount="sectioncontent.length"
+          :teammember="teammember"
+        >
+          <Sbimage
+            :class="'team-pic-l1'"
+            :imgParams="{
+              src: teammember.image,
+              width: 500,
+              quality: 60,
+              alt: teammember.name,
+              bp: {
+                1920: { width: 500 },
+              },
+            }"
+          />
+          <h2 class="vr-names">
+            <div class="vr-mask">
+              <span class="vr-name team-names vr-word">{{
+                teammember.name
+              }}</span>
+            </div>
+            <div class="vr-mask">
+              <span class="vr-surname team-names vr-word">{{
+                teammember.nachname
+              }}</span>
+            </div>
+          </h2>
+          <div class="vr-roles">
+            <div class="vr-mask">
+              <span class="vr-role team-roles vr-word">{{
+                teammember.position1
+              }}</span>
+            </div>
+            <div class="vr-mask">
+              <span class="vr-role team-roles vr-word">{{
+                teammember.position2
+              }}</span>
+            </div>
+            <div class="vr-mask">
+              <span class="vr-role team-roles vr-word">{{
+                teammember.position3
+              }}</span>
+            </div>
+            <div class="vr-mask">
+              <a
+                class="vr-link vr-word"
+                aria-label="Verwaltungsrat"
+                :href="teammember.link"
+                >{{ teammember.link_text }}</a
               >
             </div>
           </div>
@@ -196,6 +269,7 @@ export default {
 }
 .vr-container {
   display: flex;
+  flex-direction: column;
   @include media('<tablet') {
     flex-direction: column;
   }
@@ -240,17 +314,22 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .vr-people-box {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  width: calc(100% + grid(7));
+  flex-wrap: wrap;
+  // flex-direction: column;
+  // justify-content: flex-end;
   @include media('<tablet') {
     margin-bottom: 50px;
   }
 }
+
 .vr-person {
   margin-top: 3vw;
-  margin-bottom: -9px;
+  // margin-bottom: -9px;
+  margin-right: grid(4);
 
   @include media('<=tablet-l') {
     margin-bottom: -6px;
@@ -258,24 +337,72 @@ export default {
   @include media('<=tablet-l') {
     margin-top: 50px;
   }
+  @include media('<=phone') {
+    // @media (orientation: landscape) {
+    margin-right: 0;
+    // }
+  }
+}
+
+.vr-pic-l1 {
+  object-fit: cover;
+  width: grid(15);
+  height: grid(20);
+  @include media('<=tablet-xxl') {
+    // @media (orientation: landscape) {
+    width: grid(20);
+    height: grid(26);
+    // }
+  }
+  // @include media('<tablet-l') {
+  //   // @media (orientation: landscape) {
+  //   width: grid(24);
+  //   height: grid(30);
+  //   // }
+  // }
+  @include media('<tablet-l') {
+    // @media (orientation: landscape) {
+    width: grid(38);
+    height: grid(42);
+    // }
+  }
+  @include media('<=phone') {
+    // @media (orientation: landscape) {
+    width: grid(82);
+    height: grid(100);
+    // }
+  }
 }
 .vr-names {
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 .vr-name,
 .vr-surname {
   display: block;
-  font-size: 35px;
+  // font-size: 35px;
+  font-size: getVw(30px);
   // margin-bottom: 15px;
   text-transform: uppercase;
   line-height: 1em;
+  @include media('<=tablet-xxl') {
+    font-size: 25px;
+    // }
+  }
   @include media('<=tablet-l') {
     // @media (orientation: landscape) {
     font-size: 30px;
     // }
   }
+  @include media('<=tablet-l') {
+    // @media (orientation: landscape) {
+    font-size: 25px;
+    // }
+  }
 }
+
 .vr-role {
+  @include regular-font;
   display: block;
   line-height: 1.2em;
 }
@@ -290,5 +417,88 @@ export default {
   margin-top: 5px;
   position: relative;
   display: block;
+}
+
+.team-box {
+  display: flex;
+  // flex-direction: column;
+  flex-wrap: wrap;
+  padding-top: grid(8);
+  padding-bottom: grid(4);
+  padding-left: grid(19);
+  width: grid(48);
+  // width: grid(50);
+  // justify-content: flex-end;
+  @include media('<=tablet-xxl') {
+    // @media (orientation: landscape) {
+    padding-left: grid(24);
+    width: grid(57);
+    // }
+  }
+  @include media('<=tablet-l') {
+    // @media (orientation: landscape) {
+    width: grid(58);
+    // }
+  }
+  @include media('<tablet') {
+    // @media (orientation: landscape) {
+    padding-left: grid(0);
+    width: calc(100% + grid(6));
+    // }
+  }
+}
+.team-person {
+  margin-top: 3vw;
+  // margin-bottom: -9px;
+  margin-right: grid(3);
+
+  @include media('<=tablet-l') {
+    margin-bottom: -6px;
+  }
+  @include media('<=tablet-l') {
+    margin-top: 50px;
+  }
+  @include media('<tablet-l') {
+    margin-right: grid(4);
+  }
+  @include media('<tablet-l') {
+    margin-right: grid(2);
+  }
+}
+.team-names {
+  @include media('<phone') {
+    font-size: 20px;
+  }
+}
+.team-roles {
+  @include media('<phone') {
+    font-size: 16px;
+  }
+}
+.team-pic-l1 {
+  object-fit: cover;
+  width: grid(13);
+  height: grid(17);
+  // height: auto;
+  @include media('<=tablet-xxl') {
+    // @media (orientation: landscape) {
+    width: grid(16);
+    height: grid(22);
+    // }
+  }
+  @include media('<tablet-l') {
+    width: grid(24);
+    height: grid(30);
+  }
+  @include media('<tablet') {
+    // @media (orientation: landscape) {
+    width: grid(38);
+    height: grid(42);
+    // }
+  }
+  @include media('<phone') {
+    width: grid(40);
+    height: grid(42);
+  }
 }
 </style>

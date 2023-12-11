@@ -52,12 +52,21 @@ export default {
       const intro = find('.intro')[0]
       const haltung = find('.haltung')[0]
       const ansatz = find('.ansatz')[0]
+      const wertschoepfung = find('.wertschoepfung')[0]
       const geschichte = find('#geschichte-anker')[0]
       const governance = find('#governance-anker')[0]
       const vr = find('#vr-anker')[0]
       const indicators = find('.section-indicator')
 
-      this.allSections = [intro, haltung, ansatz, geschichte, governance, vr]
+      this.allSections = [
+        intro,
+        haltung,
+        ansatz,
+        wertschoepfung,
+        geschichte,
+        governance,
+        vr,
+      ]
 
       this.allSections.map((section, index) => {
         // this.sectionInTl = gsap
@@ -252,6 +261,9 @@ export default {
           <span class="section-indicator">Ansatz</span>
         </div>
         <div class="section-indicator-mask">
+          <span class="section-indicator">Wertschöpfung</span>
+        </div>
+        <div class="section-indicator-mask">
           <span class="section-indicator">Unsere Spuren</span>
         </div>
         <div class="section-indicator-mask">
@@ -306,6 +318,13 @@ export default {
                   class="js-header-link-anim header-sectionlink"
                   @click="scrollToAnim('ansatz')"
                   >Ansatz</span
+                >
+              </div>
+              <div class="header-link-mask">
+                <span
+                  class="js-header-link-anim header-sectionlink"
+                  @click="scrollToAnim('wertschoepfung')"
+                  >Wertschöpfung</span
                 >
               </div>
               <div class="header-link-mask">
@@ -404,7 +423,7 @@ header {
 .section-indicator-box {
   @include regular-font;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 15px;
   position: relative;
   color: $sec-color;
   // left: 0;

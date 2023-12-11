@@ -15,6 +15,7 @@ import SbRichText from '@/components/SbRichText.vue'
 import Intro from '@/components/Intro.vue'
 import Ansatz from '@/components/Ansatz.vue'
 import Haltung from '@/components/Haltung.vue'
+import Wertschoepfung from '@/components/Wertschoepfung.vue'
 import Geschichte from '@/components/Geschichte.vue'
 // import Spuren from '@/components/Spuren.vue'
 import Verwaltungsrat from '@/components/Verwaltungsrat.vue'
@@ -34,6 +35,7 @@ export default {
     Geschichte,
     Verwaltungsrat,
     Governance,
+    Wertschoepfung,
     // Spuren
   },
 
@@ -66,6 +68,9 @@ export default {
     <Intro :sectioncontent="pagecontent.intro[0]"></Intro>
     <Haltung :sectioncontent="pagecontent.haltung"></Haltung>
     <Ansatz :sectioncontent="pagecontent.ansatz"></Ansatz>
+    <Wertschoepfung
+      :sectioncontent="pagecontent.Wertschoepfung"
+    ></Wertschoepfung>
     <Geschichte
       :sectioncontent="pagecontent.geschichte[0]"
       :spurencontent="pagecontent.Spuren"
