@@ -158,6 +158,14 @@ export default {
         </a>
         <a
           class="footer-link"
+          href="https://hilda.ch/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="footer-link-txt">Hilda</span>
+        </a>
+        <a
+          class="footer-link"
           href="https://focusnext.ch/"
           target="_blank"
           rel="noopener noreferrer"
